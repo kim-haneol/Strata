@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "path": "/home/haneol/work/strata-causal-upstream/docs/causal-diag/fixtures/code.tokens",
+      "bytes": 260,
+      "sha256": "d268978c23e471badbdee73dd8699aec2b062892f062bd9b31e02ae40a143635"
+    },
+    {
+      "path": "/home/haneol/work/strata-causal-upstream/docs/causal-diag/fixtures/edit.tokens",
+      "bytes": 1499,
+      "sha256": "21ddf12b3a8cdcc0553562493004a8bbc59a5384180f1ee14c2333a82e8365c7"
+    },
+    {
+      "path": "/home/haneol/work/strata-causal-upstream/docs/causal-diag/fixtures/long-code.tokens",
+      "bytes": 153361,
+      "sha256": "c3d81f44d894536f3e180aa7e9377ba1988f22286daa6dbb3f0aef7001c484dd"
+    },
+    {
+      "path": "/home/haneol/work/strata-causal-upstream/docs/causal-diag/fixtures/follow.tokens",
+      "bytes": 1341,
+      "sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792"
+    },
+    {
+      "path": "/home/haneol/work/strata-custom-5080/data/expert-profile.bin",
+      "bytes": 196632,
+      "sha256": "8f59b4aa8873209dff11c11e37bcda9529a1335b724a1afeea37bf6388975baf"
+    },
+    {
+      "path": "/home/haneol/models/strata/mtp/rt/dense.bin",
+      "bytes": 116099072,
+      "sha256": "c724dc0b0822ada5d2977bf5bde821605feabaa64ea2e0045b67ca656329070a"
+    },
+    {
+      "path": "/home/haneol/models/strata/mtp/rt/dense.txt",
+      "bytes": 1851,
+      "sha256": "991456cf4eb266eb8a888c349e548d11bc640f5dbd9149439aa9786af0f732fd"
+    },
+    {
+      "path": "/home/haneol/models/strata/mtp/rt/experts.bin",
+      "bytes": 707788800,
+      "sha256": "09398406be61f1f54c93861f449e48b8df0bfccbc9ec9b2b7636775a6ea9244f"
+    },
+    {
+      "path": "/home/haneol/models/strata/mtp/rt/draft_vocab.bin",
+      "bytes": 425196,
+      "sha256": "b1e1d3a7a9e4bf862dcd5923ce661fb59bbd07907e594df5cf86a62ac235cb91"
+    },
+    {
+      "path": "/home/haneol/work/strata-causal-custom/build/strata-phase2",
+      "bytes": 67678456,
+      "sha256": "fee41d11c7f288baec6ece9ed6d67309317bba648c8ca17f656cc680fca1a172"
+    }
+  ],
+  "custom_source_commit": "d20edc1466a13065ae1d0897479d2a85d72fdaab",
+  "phase1_binary": "/home/haneol/work/strata-causal-upstream/local-runs/causal-20261003T095910Z/binaries/custom-strata",
+  "phase1_source_commits": {
+    "upstream": "f0376d287c25e0a3ec08095b2f13c2f5e9a25785",
+    "custom": "4d23c92489b731f6dea09e87184b946488efa215"
+  }
+}

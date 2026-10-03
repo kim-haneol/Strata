@@ -1,0 +1,5295 @@
+{
+  "run_dir": "/home/haneol/work/strata-causal-upstream/local-runs/causal-20261003T095910Z",
+  "limits": [
+    "Teacher-forced continuation is a mechanical throughput diagnostic, not generated-code quality.",
+    "Matching tokens does not guarantee identical routed experts or draft acceptance across numerical implementations.",
+    "Single-token mode retains the MTP allocation and prompt processing; it isolates decode speculation, not startup or memory savings.",
+    "Caches remain adaptive only in the explicit adapt interventions.",
+    "Cache placements and architecture differ across C/P/L; their cross-mode residual is a combined implementation effect.",
+    "Intervention effects are conditional, not additive percentages of the historical speed gap.",
+    "Three code requests share one engine; only reference reloads are independent repetitions.",
+    "The primary budget uses max-blob slot units, not a guaranteed count of mixed-size native experts."
+  ],
+  "variants": {
+    "C-gate-original": {
+      "code_decode_tok_s": 54.80853551593101,
+      "edit_decode_tok_s": null,
+      "long_prefill_tok_s": null,
+      "long_decode_tok_s": null,
+      "target_disagreements": [],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "C-gate-original",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791021594.7650833,
+          "end_unix": 1791021601.0022633,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 763.5,
+          "decode_ms": 5473.6,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 252,
+          "reused": 0,
+          "extra_done_fields": [
+            "68604",
+            "155287"
+          ],
+          "output_sha256": "2b13399dbac6aaaafc50a7893f8fcbf0f0961d6eaaf0716916a175852971dad4",
+          "decode_tok_s": 54.80853551593101,
+          "prefill_tok_s": 70.72691552062868
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 1,
+        "fixed_output_all_match": false
+      }
+    },
+    "C-gate-patched": {
+      "code_decode_tok_s": 54.231895585523695,
+      "edit_decode_tok_s": null,
+      "long_prefill_tok_s": null,
+      "long_decode_tok_s": null,
+      "target_disagreements": [],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "C-gate-patched",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791021638.77621,
+          "end_unix": 1791021645.070118,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 762.0,
+          "decode_ms": 5531.8,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 252,
+          "reused": 0,
+          "extra_done_fields": [
+            "68604",
+            "155287"
+          ],
+          "output_sha256": "2b13399dbac6aaaafc50a7893f8fcbf0f0961d6eaaf0716916a175852971dad4",
+          "decode_tok_s": 54.231895585523695,
+          "prefill_tok_s": 70.86614173228347
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 1,
+        "fixed_output_all_match": false
+      }
+    },
+    "P-gate-original": {
+      "code_decode_tok_s": 47.02562896778744,
+      "edit_decode_tok_s": null,
+      "long_prefill_tok_s": null,
+      "long_decode_tok_s": null,
+      "target_disagreements": [],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2432",
+            "2432"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1687 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 94 windows, avg T 3.70, 3.19 tokens/window, 67.87 ms/window = verify 65.61 (GPU-reach wait 11.29 + per-layer host 52.66 [plan 0.63 actq 0.30 jobs 0.17 CPU 51.56] + stage 0.44) + commit/emit 0.02 + draft 2.23; per layer-window: CPU experts 12.57 (20.51 entries), VRAM hits 6.31, PCIe 2.39",
+        "strata serve: stage 0: 101 windows; per window: wait for the GPU 11.599 ms, pool + plan 54.738 ms, host staging 0.479 ms, commit 0.016 ms"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "P-gate-original",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791021675.1106112,
+          "end_unix": 1791021682.2151515,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 724.4,
+          "decode_ms": 6379.5,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 254,
+          "reused": 0,
+          "extra_done_fields": [
+            "28453",
+            "121007",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "2b13399dbac6aaaafc50a7893f8fcbf0f0961d6eaaf0716916a175852971dad4",
+          "decode_tok_s": 47.02562896778744,
+          "prefill_tok_s": 74.54445057979018
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 1,
+        "fixed_output_all_match": false
+      }
+    },
+    "P-gate-patched": {
+      "code_decode_tok_s": 45.03084612959877,
+      "edit_decode_tok_s": null,
+      "long_prefill_tok_s": null,
+      "long_decode_tok_s": null,
+      "target_disagreements": [],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2432",
+            "2432"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1687 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 94 windows, avg T 3.70, 3.19 tokens/window, 70.87 ms/window = verify 68.62 (GPU-reach wait 11.29 + per-layer host 55.59 [plan 0.84 actq 0.34 jobs 0.22 CPU 54.18] + stage 0.47) + commit/emit 0.03 + draft 2.23; per layer-window: CPU experts 12.57 (20.51 entries), VRAM hits 6.31, PCIe 2.39",
+        "strata serve: stage 0: 101 windows; per window: wait for the GPU 11.605 ms, pool + plan 57.491 ms, host staging 0.499 ms, commit 0.017 ms"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "P-gate-patched",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791021706.2348294,
+          "end_unix": 1791021713.6252115,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 727.5,
+          "decode_ms": 6662.1,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 254,
+          "reused": 0,
+          "extra_done_fields": [
+            "28453",
+            "121007",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "2b13399dbac6aaaafc50a7893f8fcbf0f0961d6eaaf0716916a175852971dad4",
+          "decode_tok_s": 45.03084612959877,
+          "prefill_tok_s": 74.22680412371135
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 1,
+        "fixed_output_all_match": false
+      }
+    },
+    "C-base": {
+      "code_decode_tok_s": 55.413942147844395,
+      "edit_decode_tok_s": 40.771394789415744,
+      "long_prefill_tok_s": 2736.27603253336,
+      "long_decode_tok_s": 53.81262444169403,
+      "target_disagreements": [
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 59.06 ms/window; wait 8.16 pool 47.35 host 0.11 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 60.83 ms/window; wait 8.21 pool 49.45 host 0.02 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 63.07 ms/window; wait 8.11 pool 51.71 host 0.02 commit 0.02 draft 1.88 ms/window",
+        "strata diagnostic timing: 79 windows, avg T 3.91, 3.80 tokens/window, 93.14 ms/window; wait 8.45 pool 81.24 host 0.08 commit 0.02 draft 1.97 ms/window",
+        "strata diagnostic timing: 93 windows, avg T 3.71, 3.23 tokens/window, 59.95 ms/window; wait 8.49 pool 48.12 host 0.15 commit 0.01 draft 1.97 ms/window"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "C-base",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791021740.5426416,
+          "end_unix": 1791021746.3781326,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 578.6,
+          "decode_ms": 5256.7,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 57.07002492057755,
+          "prefill_tok_s": 93.32872450743173
+        },
+        {
+          "variant": "C-base",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791021746.3785486,
+          "end_unix": 1791021752.3481462,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 555.6,
+          "decode_ms": 5413.8,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 55.413942147844395,
+          "prefill_tok_s": 97.19222462203024
+        },
+        {
+          "variant": "C-base",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791021752.3486125,
+          "end_unix": 1791021758.5207837,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 558.8,
+          "decode_ms": 5613.1,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 53.44640216636083,
+          "prefill_tok_s": 96.6356478167502
+        },
+        {
+          "variant": "C-base",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791021758.5212348,
+          "end_unix": 1791021767.2118516,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 1332.3,
+          "decode_ms": 7358.1,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 230,
+          "reused": 0,
+          "extra_done_fields": [
+            "53549",
+            "134949"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 40.771394789415744,
+          "prefill_tok_s": 249.94370637243864
+        },
+        {
+          "variant": "C-base",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791021767.21233,
+          "end_unix": 1791021784.7715495,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 11975.4,
+          "decode_ms": 5574.9,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 252,
+          "reused": 0,
+          "extra_done_fields": [
+            "86684",
+            "156878"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 53.81262444169403,
+          "prefill_tok_s": 2736.27603253336
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 0.1484733070815425,
+        "edit_decode_tok_s": -2.181641438689075,
+        "long_prefill_tok_s": 0.21082103543959008,
+        "long_decode_tok_s": 0.6929352666642963
+      }
+    },
+    "P-base": {
+      "code_decode_tok_s": 43.25696076593658,
+      "edit_decode_tok_s": 37.581740285120134,
+      "long_prefill_tok_s": 1523.7882656026934,
+      "long_decode_tok_s": 42.31968288450959,
+      "target_disagreements": [
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 14,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2432",
+            "2432"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1687 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 80.53 ms/window = verify 78.24 (GPU-reach wait 11.44 + per-layer host 64.77 [plan 0.70 actq 0.32 jobs 0.19 CPU 63.56] + stage 0.73) + commit/emit 0.09 + draft 2.21; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 96 windows; per window: wait for the GPU 11.759 ms, pool + plan 66.697 ms, host staging 0.761 ms, commit 0.017 ms",
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 77.92 ms/window = verify 75.65 (GPU-reach wait 11.35 + per-layer host 63.37 [plan 0.75 actq 0.32 jobs 0.19 CPU 62.11] + stage 0.01) + commit/emit 0.08 + draft 2.19; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 192 windows; per window: wait for the GPU 11.735 ms, pool + plan 66.018 ms, host staging 0.388 ms, commit 0.017 ms",
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 76.48 ms/window = verify 74.21 (GPU-reach wait 11.65 + per-layer host 61.65 [plan 0.72 actq 0.32 jobs 0.19 CPU 60.42] + stage 0.01) + commit/emit 0.07 + draft 2.20; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 288 windows; per window: wait for the GPU 11.820 ms, pool + plan 65.164 ms, host staging 0.263 ms, commit 0.017 ms",
+        "strata decode timing: 79 windows, avg T 3.90, 3.80 tokens/window, 101.05 ms/window = verify 98.68 (GPU-reach wait 11.65 + per-layer host 86.07 [plan 0.70 actq 0.34 jobs 0.21 CPU 84.81] + stage 0.06) + commit/emit 0.09 + draft 2.27; per layer-window: CPU experts 18.76 (25.66 entries), VRAM hits 4.51, PCIe 3.94",
+        "strata serve: stage 0: 367 windows; per window: wait for the GPU 11.783 ms, pool + plan 69.664 ms, host staging 0.219 ms, commit 0.017 ms",
+        "strata decode timing: 93 windows, avg T 3.72, 3.23 tokens/window, 76.23 ms/window = verify 73.33 (GPU-reach wait 12.00 + per-layer host 60.34 [plan 0.84 actq 0.31 jobs 0.18 CPU 58.99] + stage 0.10) + commit/emit 0.07 + draft 2.82; per layer-window: CPU experts 12.69 (21.18 entries), VRAM hits 5.93, PCIe 2.43",
+        "strata serve: stage 0: 460 windows; per window: wait for the GPU 11.827 ms, pool + plan 67.778 ms, host staging 0.195 ms, commit 0.017 ms"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "P-base",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791021813.4827988,
+          "end_unix": 1791021821.4390447,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 787.9,
+          "decode_ms": 7167.5,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 41.85559818625741,
+          "prefill_tok_s": 68.53661632186827
+        },
+        {
+          "variant": "P-base",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791021821.43953,
+          "end_unix": 1791021829.1346009,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 758.5,
+          "decode_ms": 6935.3,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 43.25696076593658,
+          "prefill_tok_s": 71.19314436387607
+        },
+        {
+          "variant": "P-base",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791021829.1350622,
+          "end_unix": 1791021836.673287,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 731.3,
+          "decode_ms": 6806.3,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.07681118963313,
+          "prefill_tok_s": 73.8411048817175
+        },
+        {
+          "variant": "P-base",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791021836.673815,
+          "end_unix": 1791021847.5799332,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2923.1,
+          "decode_ms": 7982.6,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 229,
+          "reused": 0,
+          "extra_done_fields": [
+            "17107",
+            "114425",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 37.581740285120134,
+          "prefill_tok_s": 113.92015326194793
+        },
+        {
+          "variant": "P-base",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791021847.5806046,
+          "end_unix": 1791021876.1772988,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 21504.3,
+          "decode_ms": 7088.9,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 253,
+          "reused": 0,
+          "extra_done_fields": [
+            "26467",
+            "121034",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 42.31968288450959,
+          "prefill_tok_s": 1523.7882656026934
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -3.366147746834691,
+        "edit_decode_tok_s": -1.3721419001720747,
+        "long_prefill_tok_s": 0.01673803579149702,
+        "long_decode_tok_s": -2.8629055661965275
+      }
+    },
+    "L-base": {
+      "code_decode_tok_s": 43.96248534583822,
+      "edit_decode_tok_s": 36.14153023239004,
+      "long_prefill_tok_s": 1998.584986215814,
+      "long_decode_tok_s": 41.6817183983105,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2554",
+            "2554"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [],
+        "layer_helper": [
+          [
+            "2566",
+            "7.49"
+          ]
+        ],
+        "prompt_loans": [
+          "prompt path borrows 1690 CUDA0 cache slots (4.93 GiB)",
+          "prompt path borrows 1685 of its 2566 slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 83.36 ms/window = verify 80.62 (GPU-reach wait 6.18 + per-layer host 38.97 [plan 0.12 actq 0.31 jobs 0.26 CPU 66.43] + stage 0.82) + commit/emit 0.64 + draft 2.10; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata serve: stage 0: 95 windows; per window: wait for the GPU 6.328 ms, pool + plan 39.522 ms, host staging 0.854 ms, commit 0.309 ms",
+        "strata serve: stage 1: 95 windows; per window: wait for the GPU 5.274 ms, pool + plan 29.281 ms, host staging 0.001 ms, commit 0.292 ms",
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 76.04 ms/window = verify 73.37 (GPU-reach wait 6.00 + per-layer host 35.56 [plan 0.11 actq 0.31 jobs 0.26 CPU 60.57] + stage 0.01) + commit/emit 0.63 + draft 2.04; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata serve: stage 0: 190 windows; per window: wait for the GPU 6.245 ms, pool + plan 37.928 ms, host staging 0.434 ms, commit 0.309 ms",
+        "strata serve: stage 1: 190 windows; per window: wait for the GPU 5.264 ms, pool + plan 28.028 ms, host staging 0.001 ms, commit 0.282 ms",
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 77.55 ms/window = verify 74.87 (GPU-reach wait 5.93 + per-layer host 36.33 [plan 0.11 actq 0.31 jobs 0.26 CPU 62.16] + stage 0.01) + commit/emit 0.63 + draft 2.04; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata serve: stage 0: 285 windows; per window: wait for the GPU 6.193 ms, pool + plan 37.609 ms, host staging 0.294 ms, commit 0.308 ms",
+        "strata serve: stage 1: 285 windows; per window: wait for the GPU 5.261 ms, pool + plan 27.967 ms, host staging 0.001 ms, commit 0.279 ms",
+        "strata decode timing: 78 windows, avg T 3.95, 3.85 tokens/window, 106.42 ms/window = verify 103.66 (GPU-reach wait 6.16 + per-layer host 52.63 [plan 0.11 actq 0.32 jobs 0.23 CPU 90.47] + stage 0.13) + commit/emit 0.66 + draft 2.09; per layer-window: CPU experts 19.54 (26.03 entries), VRAM hits 9.23, PCIe 4.14",
+        "strata serve: stage 0: 363 windows; per window: wait for the GPU 6.185 ms, pool + plan 40.836 ms, host staging 0.259 ms, commit 0.310 ms",
+        "strata serve: stage 1: 363 windows; per window: wait for the GPU 5.258 ms, pool + plan 30.236 ms, host staging 0.001 ms, commit 0.278 ms",
+        "strata decode timing: 93 windows, avg T 3.71, 3.23 tokens/window, 77.39 ms/window = verify 74.13 (GPU-reach wait 6.18 + per-layer host 34.80 [plan 0.11 actq 0.30 jobs 0.26 CPU 60.80] + stage 0.11) + commit/emit 0.62 + draft 2.64; per layer-window: CPU experts 13.36 (22.56 entries), VRAM hits 11.77, PCIe 2.59",
+        "strata serve: stage 0: 456 windows; per window: wait for the GPU 6.185 ms, pool + plan 39.604 ms, host staging 0.230 ms, commit 0.307 ms",
+        "strata serve: stage 1: 456 windows; per window: wait for the GPU 5.284 ms, pool + plan 29.512 ms, host staging 0.001 ms, commit 0.275 ms"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "L-base",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791021902.2714446,
+          "end_unix": 1791021910.3895776,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 782.7,
+          "decode_ms": 7335.3,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 40.89812277616457,
+          "prefill_tok_s": 68.9919509390571
+        },
+        {
+          "variant": "L-base",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791021910.389988,
+          "end_unix": 1791021917.8080602,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 726.2,
+          "decode_ms": 6691.7,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.83165712748629,
+          "prefill_tok_s": 74.35968052877995
+        },
+        {
+          "variant": "L-base",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791021917.8085067,
+          "end_unix": 1791021925.3823543,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 749.6,
+          "decode_ms": 6824.0,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 43.96248534583822,
+          "prefill_tok_s": 72.03842049092849
+        },
+        {
+          "variant": "L-base",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791021925.3828356,
+          "end_unix": 1791021935.6935654,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2009.7,
+          "decode_ms": 8300.7,
+          "finish": "length",
+          "draft_accepted": 222,
+          "draft_offered": 230,
+          "reused": 0,
+          "extra_done_fields": [
+            "34558",
+            "132024",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 36.14153023239004,
+          "prefill_tok_s": 165.69637259292432
+        },
+        {
+          "variant": "L-base",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791021935.6940646,
+          "end_unix": 1791021959.2896605,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 16395.6,
+          "decode_ms": 7197.4,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 252,
+          "reused": 0,
+          "extra_done_fields": [
+            "52534",
+            "153262",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 41.6817183983105,
+          "prefill_tok_s": 1998.584986215814
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 0.11782700653537592,
+        "edit_decode_tok_s": -1.5332676888451302,
+        "long_prefill_tok_s": -0.8060499861661907,
+        "long_decode_tok_s": -1.3839685032715265
+      }
+    },
+    "C-chunk16K": {
+      "code_decode_tok_s": 55.484658491926986,
+      "edit_decode_tok_s": 44.048335707049205,
+      "long_prefill_tok_s": 3724.1018763709103,
+      "long_decode_tok_s": 57.25081582412549,
+      "target_disagreements": [
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 14,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 543 cache slots (1.59 GiB), 216 (0.63 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 60.75 ms/window; wait 8.25 pool 48.60 host 0.27 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 60.57 ms/window; wait 8.44 pool 49.06 host 0.01 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 63.96 ms/window; wait 8.25 pool 52.60 host 0.01 commit 0.01 draft 1.87 ms/window",
+        "strata diagnostic timing: 79 windows, avg T 3.91, 3.80 tokens/window, 86.21 ms/window; wait 8.51 pool 74.38 host 0.11 commit 0.01 draft 1.91 ms/window",
+        "strata diagnostic timing: 93 windows, avg T 3.63, 3.23 tokens/window, 56.35 ms/window; wait 8.50 pool 44.67 host 0.09 commit 0.01 draft 1.95 ms/window"
+      ],
+      "effect": "prompt chunk",
+      "measurements": [
+        {
+          "variant": "C-chunk16K",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791021988.645061,
+          "end_unix": 1791021994.6359777,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 583.6,
+          "decode_ms": 5406.9,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 55.484658491926986,
+          "prefill_tok_s": 92.52912954078135
+        },
+        {
+          "variant": "C-chunk16K",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791021994.6364212,
+          "end_unix": 1791022000.577607,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 550.4,
+          "decode_ms": 5390.6,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 55.65243201127889,
+          "prefill_tok_s": 98.11046511627907
+        },
+        {
+          "variant": "C-chunk16K",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022000.578059,
+          "end_unix": 1791022006.8413165,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 570.8,
+          "decode_ms": 5692.4,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 52.70184807813928,
+          "prefill_tok_s": 94.60406447091802
+        },
+        {
+          "variant": "C-chunk16K",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022006.8417773,
+          "end_unix": 1791022014.9225712,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 1269.9,
+          "decode_ms": 6810.7,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 230,
+          "reused": 0,
+          "extra_done_fields": [
+            "53549",
+            "134949"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.048335707049205,
+          "prefill_tok_s": 262.2253720765414
+        },
+        {
+          "variant": "C-chunk16K",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022014.923088,
+          "end_unix": 1791022028.970095,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 8798.9,
+          "decode_ms": 5240.1,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 245,
+          "reused": 0,
+          "extra_done_fields": [
+            "84453",
+            "153636"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 57.25081582412549,
+          "prefill_tok_s": 3724.1018763709103
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 0.27627749539995694,
+        "edit_decode_tok_s": 5.680365326615755,
+        "long_prefill_tok_s": 36.38803330277687,
+        "long_decode_tok_s": 7.126399270648798
+      }
+    },
+    "C-single": {
+      "code_decode_tok_s": 33.940491005769886,
+      "edit_decode_tok_s": 24.306455794659062,
+      "long_prefill_tok_s": 2739.9826075322762,
+      "long_decode_tok_s": 24.96338703235255,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 1
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 300 windows, avg T 1.00, 1.00 tokens/window, 27.35 ms/window; wait 6.88 pool 19.14 host 0.22 commit 0.00 draft 0.00 ms/window",
+        "strata diagnostic timing: 300 windows, avg T 1.00, 1.00 tokens/window, 29.46 ms/window; wait 7.00 pool 21.38 host 0.01 commit 0.00 draft 0.00 ms/window",
+        "strata diagnostic timing: 300 windows, avg T 1.00, 1.00 tokens/window, 30.87 ms/window; wait 7.57 pool 22.12 host 0.01 commit 0.00 draft 0.00 ms/window",
+        "strata diagnostic timing: 300 windows, avg T 1.00, 1.00 tokens/window, 41.14 ms/window; wait 6.81 pool 33.23 host 0.01 commit 0.00 draft 0.00 ms/window",
+        "strata diagnostic timing: 300 windows, avg T 1.00, 1.00 tokens/window, 40.06 ms/window; wait 7.58 pool 31.36 host 0.01 commit 0.00 draft 0.00 ms/window"
+      ],
+      "effect": "decode speculation; MTP memory/prompt work retained",
+      "measurements": [
+        {
+          "variant": "C-single",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022058.394687,
+          "end_unix": 1791022067.1611965,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 560.6,
+          "decode_ms": 8205.7,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "78910",
+            "138559"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 36.55995222832909,
+          "prefill_tok_s": 96.32536567962896
+        },
+        {
+          "variant": "C-single",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022067.1616514,
+          "end_unix": 1791022076.5479493,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 547.1,
+          "decode_ms": 8839.0,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "78910",
+            "138559"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 33.940491005769886,
+          "prefill_tok_s": 98.70224821787608
+        },
+        {
+          "variant": "C-single",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022076.548434,
+          "end_unix": 1791022086.5459409,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 736.0,
+          "decode_ms": 9261.3,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "78910",
+            "138559"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 32.39286061352078,
+          "prefill_tok_s": 73.3695652173913
+        },
+        {
+          "variant": "C-single",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022086.5464985,
+          "end_unix": 1791022100.1560705,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 1266.9,
+          "decode_ms": 12342.4,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "59215",
+            "135560"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 24.306455794659062,
+          "prefill_tok_s": 262.8463177835662
+        },
+        {
+          "variant": "C-single",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022100.1566021,
+          "end_unix": 1791022124.140655,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 11959.2,
+          "decode_ms": 12017.6,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "79146",
+            "138629"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 24.96338703235255,
+          "prefill_tok_s": 2739.9826075322762
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -38.6600515001835,
+        "edit_decode_tok_s": -41.68417292179949,
+        "long_prefill_tok_s": 0.34656718073142745,
+        "long_decode_tok_s": -53.28908893471851
+      }
+    },
+    "P-single": {
+      "code_decode_tok_s": 28.630052011261153,
+      "edit_decode_tok_s": 27.433086130746087,
+      "long_prefill_tok_s": 1523.349062085958,
+      "long_decode_tok_s": 30.333977087735974,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 1
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2432",
+            "2432"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1687 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 48.49 ms/window = verify 48.43 (GPU-reach wait 9.27 + per-layer host 37.87 [plan 0.59 actq 0.11 jobs 0.05 CPU 37.12] + stage 0.43) + commit/emit 0.06 + draft 0.00; per layer-window: CPU experts 5.80 (5.80 entries), VRAM hits 1.55, PCIe 0.68",
+        "strata serve: stage 0: 307 windows; per window: wait for the GPU 9.422 ms, pool + plan 39.897 ms, host staging 0.454 ms, commit 0.017 ms",
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 34.93 ms/window = verify 34.90 (GPU-reach wait 9.05 + per-layer host 25.03 [plan 0.57 actq 0.09 jobs 0.06 CPU 24.31] + stage 0.01) + commit/emit 0.03 + draft 0.00; per layer-window: CPU experts 5.80 (5.80 entries), VRAM hits 1.55, PCIe 0.68",
+        "strata serve: stage 0: 614 windows; per window: wait for the GPU 9.316 ms, pool + plan 33.483 ms, host staging 0.231 ms, commit 0.016 ms",
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 33.16 ms/window = verify 33.13 (GPU-reach wait 9.05 + per-layer host 23.26 [plan 0.50 actq 0.08 jobs 0.05 CPU 22.62] + stage 0.01) + commit/emit 0.02 + draft 0.00; per layer-window: CPU experts 5.80 (5.80 entries), VRAM hits 1.55, PCIe 0.68",
+        "strata serve: stage 0: 921 windows; per window: wait for the GPU 9.282 ms, pool + plan 30.505 ms, host staging 0.157 ms, commit 0.015 ms",
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 36.45 ms/window = verify 36.43 (GPU-reach wait 9.12 + per-layer host 26.50 [plan 0.36 actq 0.09 jobs 0.05 CPU 26.00] + stage 0.01) + commit/emit 0.02 + draft 0.00; per layer-window: CPU experts 6.81 (6.81 entries), VRAM hits 1.15, PCIe 0.85",
+        "strata serve: stage 0: 1221 windows; per window: wait for the GPU 9.241 ms, pool + plan 29.520 ms, host staging 0.120 ms, commit 0.014 ms",
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 32.97 ms/window = verify 32.95 (GPU-reach wait 9.37 + per-layer host 22.76 [plan 0.52 actq 0.08 jobs 0.05 CPU 22.10] + stage 0.01) + commit/emit 0.02 + draft 0.00; per layer-window: CPU experts 5.79 (5.79 entries), VRAM hits 1.54, PCIe 0.68",
+        "strata serve: stage 0: 1521 windows; per window: wait for the GPU 9.266 ms, pool + plan 28.186 ms, host staging 0.098 ms, commit 0.013 ms"
+      ],
+      "effect": "decode speculation; MTP memory/prompt work retained",
+      "measurements": [
+        {
+          "variant": "P-single",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022153.9208834,
+          "end_unix": 1791022169.508519,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 1039.8,
+          "decode_ms": 14547.3,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "22326",
+            "105872",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 20.622383535088986,
+          "prefill_tok_s": 51.933064050778995
+        },
+        {
+          "variant": "P-single",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022169.5089483,
+          "end_unix": 1791022180.9150548,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 927.1,
+          "decode_ms": 10478.5,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "22326",
+            "105872",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 28.630052011261153,
+          "prefill_tok_s": 58.24614388954805
+        },
+        {
+          "variant": "P-single",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022180.915566,
+          "end_unix": 1791022191.5465622,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 683.3,
+          "decode_ms": 9947.2,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "22326",
+            "105872",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 30.159240791378476,
+          "prefill_tok_s": 79.02824528025758
+        },
+        {
+          "variant": "P-single",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022191.5470839,
+          "end_unix": 1791022205.4115894,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2928.3,
+          "decode_ms": 10935.7,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "16531",
+            "114582",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 27.433086130746087,
+          "prefill_tok_s": 113.71785677696957
+        },
+        {
+          "variant": "P-single",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022205.4120915,
+          "end_unix": 1791022236.8156,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 21510.5,
+          "decode_ms": 9889.9,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "22247",
+            "105664",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 30.333977087735974,
+          "prefill_tok_s": 1523.349062085958
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -36.04191863994109,
+        "edit_decode_tok_s": -28.00582129468745,
+        "long_prefill_tok_s": -0.012089921523394942,
+        "long_decode_tok_s": -30.373901785479184
+      }
+    },
+    "L-single": {
+      "code_decode_tok_s": 29.58988420491981,
+      "edit_decode_tok_s": 25.086548592644622,
+      "long_prefill_tok_s": 2048.268835284631,
+      "long_decode_tok_s": 22.599210534245337,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 1
+        },
+        {
+          "different": 14,
+          "emitted": 300,
+          "single": 1
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2554",
+            "2554"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [],
+        "layer_helper": [
+          [
+            "2566",
+            "7.49"
+          ]
+        ],
+        "prompt_loans": [
+          "prompt path borrows 1690 CUDA0 cache slots (4.93 GiB)",
+          "prompt path borrows 1685 of its 2566 slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 34.11 ms/window = verify 33.67 (GPU-reach wait 4.54 + per-layer host 13.03 [plan 0.03 actq 0.10 jobs 0.07 CPU 23.75] + stage 0.19) + commit/emit 0.44 + draft 0.00; per layer-window: CPU experts 6.18 (6.18 entries), VRAM hits 3.08, PCIe 0.75",
+        "strata serve: stage 0: 307 windows; per window: wait for the GPU 4.622 ms, pool + plan 13.722 ms, host staging 0.207 ms, commit 0.230 ms",
+        "strata serve: stage 1: 307 windows; per window: wait for the GPU 4.174 ms, pool + plan 11.574 ms, host staging 0.001 ms, commit 0.206 ms",
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 33.74 ms/window = verify 33.30 (GPU-reach wait 4.54 + per-layer host 12.95 [plan 0.03 actq 0.10 jobs 0.07 CPU 23.60] + stage 0.01) + commit/emit 0.43 + draft 0.00; per layer-window: CPU experts 6.18 (6.18 entries), VRAM hits 3.08, PCIe 0.75",
+        "strata serve: stage 0: 614 windows; per window: wait for the GPU 4.620 ms, pool + plan 13.671 ms, host staging 0.106 ms, commit 0.229 ms",
+        "strata serve: stage 1: 614 windows; per window: wait for the GPU 4.175 ms, pool + plan 11.521 ms, host staging 0.000 ms, commit 0.206 ms",
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 33.80 ms/window = verify 33.36 (GPU-reach wait 4.54 + per-layer host 12.98 [plan 0.03 actq 0.10 jobs 0.07 CPU 23.66] + stage 0.01) + commit/emit 0.43 + draft 0.00; per layer-window: CPU experts 6.18 (6.18 entries), VRAM hits 3.08, PCIe 0.75",
+        "strata serve: stage 0: 921 windows; per window: wait for the GPU 4.620 ms, pool + plan 13.668 ms, host staging 0.073 ms, commit 0.229 ms",
+        "strata serve: stage 1: 921 windows; per window: wait for the GPU 4.176 ms, pool + plan 11.514 ms, host staging 0.000 ms, commit 0.206 ms",
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 39.86 ms/window = verify 39.41 (GPU-reach wait 4.58 + per-layer host 17.16 [plan 0.03 actq 0.10 jobs 0.06 CPU 29.65] + stage 0.01) + commit/emit 0.45 + draft 0.00; per layer-window: CPU experts 6.87 (6.87 entries), VRAM hits 2.31, PCIe 0.82",
+        "strata serve: stage 0: 1221 windows; per window: wait for the GPU 4.609 ms, pool + plan 14.525 ms, host staging 0.057 ms, commit 0.228 ms",
+        "strata serve: stage 1: 1221 windows; per window: wait for the GPU 4.161 ms, pool + plan 11.805 ms, host staging 0.000 ms, commit 0.205 ms",
+        "strata decode timing: 300 windows, avg T 1.00, 1.00 tokens/window, 44.25 ms/window = verify 43.75 (GPU-reach wait 4.75 + per-layer host 18.05 [plan 0.05 actq 0.12 jobs 0.09 CPU 33.55] + stage 0.01) + commit/emit 0.50 + draft 0.00; per layer-window: CPU experts 6.18 (6.18 entries), VRAM hits 3.07, PCIe 0.75",
+        "strata serve: stage 0: 1521 windows; per window: wait for the GPU 4.637 ms, pool + plan 15.221 ms, host staging 0.048 ms, commit 0.229 ms",
+        "strata serve: stage 1: 1521 windows; per window: wait for the GPU 4.186 ms, pool + plan 12.586 ms, host staging 0.001 ms, commit 0.205 ms"
+      ],
+      "effect": "decode speculation; MTP memory/prompt work retained",
+      "measurements": [
+        {
+          "variant": "L-single",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022262.0939696,
+          "end_unix": 1791022273.056929,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 730.9,
+          "decode_ms": 10231.9,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "44293",
+            "133248",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 29.32006763162267,
+          "prefill_tok_s": 73.88151593925298
+        },
+        {
+          "variant": "L-single",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022273.0573683,
+          "end_unix": 1791022283.8644636,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 685.8,
+          "decode_ms": 10121.1,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "44293",
+            "133248",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 29.641046921777278,
+          "prefill_tok_s": 78.74015748031496
+        },
+        {
+          "variant": "L-single",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022283.8649461,
+          "end_unix": 1791022294.695841,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 692.2,
+          "decode_ms": 10138.6,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "44293",
+            "133248",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 29.58988420491981,
+          "prefill_tok_s": 78.01213522103438
+        },
+        {
+          "variant": "L-single",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022294.6963375,
+          "end_unix": 1791022308.6641333,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2009.0,
+          "decode_ms": 11958.6,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "33250",
+            "132247",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 25.086548592644622,
+          "prefill_tok_s": 165.75410652065705
+        },
+        {
+          "variant": "L-single",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022308.664721,
+          "end_unix": 1791022337.9405913,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 15997.9,
+          "decode_ms": 13274.8,
+          "finish": "length",
+          "draft_accepted": 0,
+          "draft_offered": 0,
+          "reused": 0,
+          "extra_done_fields": [
+            "44209",
+            "133206",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 22.599210534245337,
+          "prefill_tok_s": 2048.268835284631
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -32.613570760006574,
+        "edit_decode_tok_s": -31.65230002716011,
+        "long_prefill_tok_s": 1.6598632849819994,
+        "long_decode_tok_s": -46.5318479303226
+      }
+    },
+    "C-lookup": {
+      "code_decode_tok_s": 44.673437174256186,
+      "edit_decode_tok_s": 56.6689963920739,
+      "long_prefill_tok_s": 2736.5959579088026,
+      "long_decode_tok_s": 58.90322200624374,
+      "target_disagreements": [
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 78.24 ms/window; wait 8.75 pool 65.20 host 0.29 commit 0.01 draft 2.03 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 75.45 ms/window; wait 8.23 pool 64.16 host 0.01 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 74.16 ms/window; wait 8.22 pool 62.87 host 0.01 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 41 windows, avg T 7.32, 7.32 tokens/window, 129.12 ms/window; wait 10.82 pool 115.81 host 0.02 commit 0.33 draft 0.88 ms/window",
+        "strata diagnostic timing: 93 windows, avg T 3.71, 3.23 tokens/window, 54.76 ms/window; wait 8.50 pool 43.07 host 0.11 commit 0.01 draft 1.98 ms/window"
+      ],
+      "effect": "prompt lookup",
+      "measurements": [
+        {
+          "variant": "C-lookup",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022365.9426782,
+          "end_unix": 1791022373.5407028,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 634.4,
+          "decode_ms": 6963.1,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 43.08425844810501,
+          "prefill_tok_s": 85.11979823455233
+        },
+        {
+          "variant": "C-lookup",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022373.5412068,
+          "end_unix": 1791022380.8725142,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 615.8,
+          "decode_ms": 6715.4,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.673437174256186,
+          "prefill_tok_s": 87.69080870412472
+        },
+        {
+          "variant": "C-lookup",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022380.8730402,
+          "end_unix": 1791022388.1628191,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 689.0,
+          "decode_ms": 6600.6,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 45.450413598763745,
+          "prefill_tok_s": 78.3744557329463
+        },
+        {
+          "variant": "C-lookup",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022388.1632936,
+          "end_unix": 1791022394.7533627,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 1295.4,
+          "decode_ms": 5293.9,
+          "finish": "length",
+          "draft_accepted": 259,
+          "draft_offered": 259,
+          "reused": 0,
+          "extra_done_fields": [
+            "49559",
+            "131397"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 56.6689963920739,
+          "prefill_tok_s": 257.0634553033812
+        },
+        {
+          "variant": "C-lookup",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022394.7538521,
+          "end_unix": 1791022411.8280578,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 11974.0,
+          "decode_ms": 5093.1,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 252,
+          "reused": 0,
+          "extra_done_fields": [
+            "86684",
+            "156878"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 58.90322200624374,
+          "prefill_tok_s": 2736.5959579088026
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -19.262619532734014,
+        "edit_decode_tok_s": 35.95973934716976,
+        "long_prefill_tok_s": 0.2225376839655402,
+        "long_decode_tok_s": 10.218343409343378
+      }
+    },
+    "P-lookup": {
+      "code_decode_tok_s": 47.493904948864895,
+      "edit_decode_tok_s": 48.6121238636916,
+      "long_prefill_tok_s": 1523.5615482971057,
+      "long_decode_tok_s": 44.51434845831973,
+      "target_disagreements": [
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 14,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2432",
+            "2432"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1687 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 70.98 ms/window = verify 68.73 (GPU-reach wait 11.31 + per-layer host 55.77 [plan 0.73 actq 0.34 jobs 0.18 CPU 54.52] + stage 0.37) + commit/emit 0.03 + draft 2.22; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 96 windows; per window: wait for the GPU 11.637 ms, pool + plan 57.596 ms, host staging 0.416 ms, commit 0.018 ms",
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 70.97 ms/window = verify 68.74 (GPU-reach wait 11.31 + per-layer host 56.52 [plan 0.65 actq 0.33 jobs 0.17 CPU 55.36] + stage 0.01) + commit/emit 0.03 + draft 2.20; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 192 windows; per window: wait for the GPU 11.653 ms, pool + plan 58.012 ms, host staging 0.214 ms, commit 0.016 ms",
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 70.60 ms/window = verify 68.37 (GPU-reach wait 11.31 + per-layer host 56.15 [plan 0.63 actq 0.33 jobs 0.17 CPU 55.01] + stage 0.01) + commit/emit 0.02 + draft 2.21; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 288 windows; per window: wait for the GPU 11.659 ms, pool + plan 58.011 ms, host staging 0.147 ms, commit 0.015 ms",
+        "strata decode timing: 43 windows, avg T 6.98, 6.98 tokens/window, 143.52 ms/window = verify 141.09 (GPU-reach wait 15.64 + per-layer host 123.87 [plan 0.77 actq 0.59 jobs 0.29 CPU 122.22] + stage 0.02) + commit/emit 0.03 + draft 2.39; per layer-window: CPU experts 28.10 (46.60 entries), VRAM hits 7.99, PCIe 6.27",
+        "strata serve: stage 0: 331 windows; per window: wait for the GPU 12.176 ms, pool + plan 66.567 ms, host staging 0.130 ms, commit 0.015 ms",
+        "strata decode timing: 93 windows, avg T 3.73, 3.23 tokens/window, 72.47 ms/window = verify 69.61 (GPU-reach wait 11.88 + per-layer host 56.77 [plan 0.80 actq 0.33 jobs 0.18 CPU 55.47] + stage 0.06) + commit/emit 0.03 + draft 2.82; per layer-window: CPU experts 12.73 (21.25 entries), VRAM hits 5.94, PCIe 2.43",
+        "strata serve: stage 0: 424 windows; per window: wait for the GPU 12.110 ms, pool + plan 64.419 ms, host staging 0.115 ms, commit 0.015 ms"
+      ],
+      "effect": "prompt lookup",
+      "measurements": [
+        {
+          "variant": "P-lookup",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022437.7306497,
+          "end_unix": 1791022444.7600887,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 711.6,
+          "decode_ms": 6316.8,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 47.49240121580547,
+          "prefill_tok_s": 75.88532883642496
+        },
+        {
+          "variant": "P-lookup",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022444.760508,
+          "end_unix": 1791022451.782107,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 704.0,
+          "decode_ms": 6316.6,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 47.493904948864895,
+          "prefill_tok_s": 76.70454545454545
+        },
+        {
+          "variant": "P-lookup",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022451.7825544,
+          "end_unix": 1791022458.7636464,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 697.0,
+          "decode_ms": 6283.1,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 47.74713119320081,
+          "prefill_tok_s": 77.47489239598278
+        },
+        {
+          "variant": "P-lookup",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022458.7641609,
+          "end_unix": 1791022467.8795595,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2943.2,
+          "decode_ms": 6171.3,
+          "finish": "length",
+          "draft_accepted": 257,
+          "draft_offered": 257,
+          "reused": 0,
+          "extra_done_fields": [
+            "16491",
+            "112672",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 48.6121238636916,
+          "prefill_tok_s": 113.14215819516174
+        },
+        {
+          "variant": "P-lookup",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022467.8801098,
+          "end_unix": 1791022496.1306999,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 21507.5,
+          "decode_ms": 6739.4,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 254,
+          "reused": 0,
+          "extra_done_fields": [
+            "26500",
+            "121360",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.51434845831973,
+          "prefill_tok_s": 1523.5615482971057
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 6.0989702579516525,
+        "edit_decode_tok_s": 27.57550922296541,
+        "long_prefill_tok_s": 0.001857014672612678,
+        "long_decode_tok_s": 2.174547991184572
+      }
+    },
+    "L-lookup": {
+      "code_decode_tok_s": 44.22756556736595,
+      "edit_decode_tok_s": 46.46984107314353,
+      "long_prefill_tok_s": 2026.4687693259123,
+      "long_decode_tok_s": 42.952866387950294,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 14,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2554",
+            "2554"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [],
+        "layer_helper": [
+          [
+            "2566",
+            "7.49"
+          ]
+        ],
+        "prompt_loans": [
+          "prompt path borrows 1690 CUDA0 cache slots (4.93 GiB)",
+          "prompt path borrows 1685 of its 2566 slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 89 windows, avg T 3.74, 3.37 tokens/window, 78.10 ms/window = verify 75.44 (GPU-reach wait 5.97 + per-layer host 36.32 [plan 0.11 actq 0.36 jobs 0.25 CPU 61.57] + stage 0.70) + commit/emit 0.60 + draft 2.07; per layer-window: CPU experts 13.82 (22.79 entries), VRAM hits 11.76, PCIe 2.71",
+        "strata serve: stage 0: 96 windows; per window: wait for the GPU 6.131 ms, pool + plan 37.204 ms, host staging 0.751 ms, commit 0.307 ms",
+        "strata serve: stage 1: 96 windows; per window: wait for the GPU 5.238 ms, pool + plan 27.288 ms, host staging 0.001 ms, commit 0.273 ms",
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 76.87 ms/window = verify 74.22 (GPU-reach wait 5.95 + per-layer host 36.31 [plan 0.10 actq 0.32 jobs 0.25 CPU 61.45] + stage 0.02) + commit/emit 0.60 + draft 2.05; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata serve: stage 0: 191 windows; per window: wait for the GPU 6.121 ms, pool + plan 37.086 ms, host staging 0.386 ms, commit 0.307 ms",
+        "strata serve: stage 1: 191 windows; per window: wait for the GPU 5.265 ms, pool + plan 27.070 ms, host staging 0.001 ms, commit 0.273 ms",
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 77.08 ms/window = verify 74.44 (GPU-reach wait 5.93 + per-layer host 36.01 [plan 0.11 actq 0.33 jobs 0.26 CPU 61.70] + stage 0.01) + commit/emit 0.60 + draft 2.04; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata serve: stage 0: 286 windows; per window: wait for the GPU 6.110 ms, pool + plan 36.994 ms, host staging 0.263 ms, commit 0.307 ms",
+        "strata serve: stage 1: 286 windows; per window: wait for the GPU 5.263 ms, pool + plan 27.262 ms, host staging 0.001 ms, commit 0.273 ms",
+        "strata decode timing: 44 windows, avg T 6.82, 6.82 tokens/window, 146.72 ms/window = verify 143.69 (GPU-reach wait 8.10 + per-layer host 73.99 [plan 0.19 actq 0.56 jobs 0.40 CPU 125.99] + stage 0.02) + commit/emit 0.79 + draft 2.24; per layer-window: CPU experts 28.68 (45.47 entries), VRAM hits 15.81, PCIe 6.42",
+        "strata serve: stage 0: 330 windows; per window: wait for the GPU 6.376 ms, pool + plan 41.927 ms, host staging 0.230 ms, commit 0.319 ms",
+        "strata serve: stage 1: 330 windows; per window: wait for the GPU 5.465 ms, pool + plan 30.717 ms, host staging 0.001 ms, commit 0.282 ms",
+        "strata decode timing: 93 windows, avg T 3.74, 3.23 tokens/window, 75.10 ms/window = verify 71.84 (GPU-reach wait 6.20 + per-layer host 34.23 [plan 0.11 actq 0.32 jobs 0.26 CPU 58.52] + stage 0.08) + commit/emit 0.60 + draft 2.66; per layer-window: CPU experts 13.41 (22.74 entries), VRAM hits 11.90, PCIe 2.60",
+        "strata serve: stage 0: 423 windows; per window: wait for the GPU 6.336 ms, pool + plan 40.234 ms, host staging 0.197 ms, commit 0.314 ms",
+        "strata serve: stage 1: 423 windows; per window: wait for the GPU 5.446 ms, pool + plan 29.459 ms, host staging 0.001 ms, commit 0.278 ms"
+      ],
+      "effect": "prompt lookup",
+      "measurements": [
+        {
+          "variant": "L-lookup",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022521.010841,
+          "end_unix": 1791022528.7636836,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 800.9,
+          "decode_ms": 6951.3,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 244,
+          "reused": 0,
+          "extra_done_fields": [
+            "50219",
+            "147558",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 43.15739501963662,
+          "prefill_tok_s": 67.4241478336871
+        },
+        {
+          "variant": "L-lookup",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022528.764107,
+          "end_unix": 1791022536.2469082,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 717.8,
+          "decode_ms": 6764.5,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.349175844482225,
+          "prefill_tok_s": 75.22986904430203
+        },
+        {
+          "variant": "L-lookup",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022536.2472908,
+          "end_unix": 1791022543.7854452,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 754.4,
+          "decode_ms": 6783.1,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.22756556736595,
+          "prefill_tok_s": 71.58006362672323
+        },
+        {
+          "variant": "L-lookup",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022543.7859504,
+          "end_unix": 1791022552.2708092,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2028.5,
+          "decode_ms": 6455.8,
+          "finish": "length",
+          "draft_accepted": 256,
+          "draft_offered": 256,
+          "reused": 0,
+          "extra_done_fields": [
+            "33392",
+            "129422",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 46.46984107314353,
+          "prefill_tok_s": 164.16070988415086
+        },
+        {
+          "variant": "L-lookup",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022552.2713575,
+          "end_unix": 1791022575.4291472,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 16170.0,
+          "decode_ms": 6984.4,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 255,
+          "reused": 0,
+          "extra_done_fields": [
+            "53104",
+            "154633",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 42.952866387950294,
+          "prefill_tok_s": 2026.4687693259123
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 0.7215066109297119,
+        "edit_decode_tok_s": 26.605967485858173,
+        "long_prefill_tok_s": 0.5778804481641142,
+        "long_decode_tok_s": 1.6234787661865813
+      }
+    },
+    "C-adapt": {
+      "code_decode_tok_s": 110.63578698923145,
+      "edit_decode_tok_s": 73.59434795407712,
+      "long_prefill_tok_s": 2773.001150903798,
+      "long_decode_tok_s": 104.05105438401776,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 14,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 89 windows, avg T 3.75, 3.37 tokens/window, 38.91 ms/window; wait 8.17 pool 26.84 host 0.21 commit 0.02 draft 1.88 ms/window",
+        "strata diagnostic timing: 88 windows, avg T 3.82, 3.41 tokens/window, 30.81 ms/window; wait 8.54 pool 18.96 host 0.05 commit 0.02 draft 1.86 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.81, 3.37 tokens/window, 29.58 ms/window; wait 8.66 pool 17.64 host 0.06 commit 0.02 draft 1.85 ms/window",
+        "strata diagnostic timing: 79 windows, avg T 3.90, 3.80 tokens/window, 51.60 ms/window; wait 8.02 pool 40.19 host 0.06 commit 0.02 draft 1.90 ms/window",
+        "strata diagnostic timing: 93 windows, avg T 3.70, 3.23 tokens/window, 31.00 ms/window; wait 8.72 pool 18.85 host 0.12 commit 0.01 draft 1.96 ms/window"
+      ],
+      "effect": "adaptive cache",
+      "measurements": [
+        {
+          "variant": "C-adapt",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022602.549273,
+          "end_unix": 1791022606.639661,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 627.2,
+          "decode_ms": 3463.1,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 245,
+          "reused": 0,
+          "extra_done_fields": [
+            "126460",
+            "156629"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 86.62758799919148,
+          "prefill_tok_s": 86.0969387755102
+        },
+        {
+          "variant": "C-adapt",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022606.6400783,
+          "end_unix": 1791022609.7425668,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 390.8,
+          "decode_ms": 2711.6,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "139704",
+            "159306"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 110.63578698923145,
+          "prefill_tok_s": 138.1780962128966
+        },
+        {
+          "variant": "C-adapt",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022609.7430975,
+          "end_unix": 1791022612.8170683,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 440.9,
+          "decode_ms": 2632.9,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 250,
+          "reused": 0,
+          "extra_done_fields": [
+            "141654",
+            "160880"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 113.94280071404155,
+          "prefill_tok_s": 122.4767520979814
+        },
+        {
+          "variant": "C-adapt",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022612.8176336,
+          "end_unix": 1791022618.0583117,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 1162.9,
+          "decode_ms": 4076.4,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 229,
+          "reused": 0,
+          "extra_done_fields": [
+            "103220",
+            "141927"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 73.59434795407712,
+          "prefill_tok_s": 286.3530828102158
+        },
+        {
+          "variant": "C-adapt",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022618.058888,
+          "end_unix": 1791022632.7660773,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 11816.8,
+          "decode_ms": 2883.2,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 251,
+          "reused": 0,
+          "extra_done_fields": [
+            "141560",
+            "163080"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 104.05105438401776,
+          "prefill_tok_s": 2773.001150903798
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 99.94977311914664,
+        "edit_decode_tok_s": 76.56688846285495,
+        "long_prefill_tok_s": 1.5558075136926641,
+        "long_decode_tok_s": 94.69792065001623
+      }
+    },
+    "P-adapt": {
+      "code_decode_tok_s": 70.2576112412178,
+      "edit_decode_tok_s": 54.20152125602992,
+      "long_prefill_tok_s": 1522.202659952524,
+      "long_decode_tok_s": 72.01670787622729,
+      "target_disagreements": [
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 13,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2432",
+            "2432"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1687 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 90 windows, avg T 3.71, 3.33 tokens/window, 56.86 ms/window = verify 44.11 (GPU-reach wait 11.20 + per-layer host 30.89 [plan 0.78 actq 0.32 jobs 0.30 CPU 29.48] + stage 0.73) + commit/emit 0.30 + draft 2.44; per layer-window: CPU experts 6.24 (7.60 entries), VRAM hits 17.34, PCIe 0.85",
+        "strata serve: stage 0: 97 windows; per window: wait for the GPU 11.534 ms, pool + plan 35.351 ms, host staging 0.752 ms, commit 0.020 ms",
+        "strata decode timing: 91 windows, avg T 3.68, 3.30 tokens/window, 46.92 ms/window = verify 35.93 (GPU-reach wait 10.86 + per-layer host 24.14 [plan 0.73 actq 0.30 jobs 0.28 CPU 22.81] + stage 0.05) + commit/emit 0.23 + draft 2.42; per layer-window: CPU experts 5.52 (6.53 entries), VRAM hits 17.25, PCIe 0.70",
+        "strata serve: stage 0: 195 windows; per window: wait for the GPU 11.389 ms, pool + plan 31.501 ms, host staging 0.397 ms, commit 0.015 ms",
+        "strata decode timing: 90 windows, avg T 3.72, 3.33 tokens/window, 46.30 ms/window = verify 35.56 (GPU-reach wait 10.90 + per-layer host 23.74 [plan 0.73 actq 0.31 jobs 0.28 CPU 22.42] + stage 0.03) + commit/emit 0.21 + draft 2.44; per layer-window: CPU experts 5.39 (6.35 entries), VRAM hits 17.25, PCIe 0.65",
+        "strata serve: stage 0: 292 windows; per window: wait for the GPU 11.352 ms, pool + plan 29.733 ms, host staging 0.276 ms, commit 0.013 ms",
+        "strata decode timing: 80 windows, avg T 3.91, 3.75 tokens/window, 69.19 ms/window = verify 53.72 (GPU-reach wait 11.08 + per-layer host 41.67 [plan 0.86 actq 0.36 jobs 0.35 CPU 40.09] + stage 0.08) + commit/emit 0.31 + draft 2.50; per layer-window: CPU experts 9.12 (10.55 entries), VRAM hits 18.41, PCIe 1.54",
+        "strata serve: stage 0: 372 windows; per window: wait for the GPU 11.294 ms, pool + plan 32.300 ms, host staging 0.234 ms, commit 0.014 ms",
+        "strata decode timing: 92 windows, avg T 3.72, 3.26 tokens/window, 45.28 ms/window = verify 34.84 (GPU-reach wait 11.49 + per-layer host 22.39 [plan 0.85 actq 0.30 jobs 0.26 CPU 20.97] + stage 0.08) + commit/emit 0.20 + draft 3.06; per layer-window: CPU experts 5.08 (6.09 entries), VRAM hits 16.08, PCIe 0.60",
+        "strata serve: stage 0: 464 windows; per window: wait for the GPU 11.333 ms, pool + plan 30.335 ms, host staging 0.202 ms, commit 0.014 ms"
+      ],
+      "effect": "adaptive cache",
+      "measurements": [
+        {
+          "variant": "P-adapt",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022659.1201959,
+          "end_unix": 1791022665.0355914,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 797.4,
+          "decode_ms": 5117.2,
+          "finish": "length",
+          "draft_accepted": 210,
+          "draft_offered": 244,
+          "reused": 0,
+          "extra_done_fields": [
+            "74914",
+            "107767",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 58.62581099038537,
+          "prefill_tok_s": 67.72009029345372
+        },
+        {
+          "variant": "P-adapt",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022665.0359728,
+          "end_unix": 1791022669.9579494,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 651.6,
+          "decode_ms": 4270.0,
+          "finish": "length",
+          "draft_accepted": 209,
+          "draft_offered": 244,
+          "reused": 0,
+          "extra_done_fields": [
+            "75327",
+            "103859",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 70.2576112412178,
+          "prefill_tok_s": 82.87292817679558
+        },
+        {
+          "variant": "P-adapt",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022669.9583595,
+          "end_unix": 1791022674.6532052,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 527.6,
+          "decode_ms": 4166.9,
+          "finish": "length",
+          "draft_accepted": 210,
+          "draft_offered": 245,
+          "reused": 0,
+          "extra_done_fields": [
+            "74531",
+            "101958",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 71.99596822577936,
+          "prefill_tok_s": 102.3502653525398
+        },
+        {
+          "variant": "P-adapt",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022674.6537461,
+          "end_unix": 1791022683.0040562,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2814.6,
+          "decode_ms": 5534.9,
+          "finish": "length",
+          "draft_accepted": 220,
+          "draft_offered": 233,
+          "reused": 0,
+          "extra_done_fields": [
+            "70699",
+            "111220",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 54.20152125602992,
+          "prefill_tok_s": 118.31166062673205
+        },
+        {
+          "variant": "P-adapt",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022683.0058904,
+          "end_unix": 1791022708.7029479,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 21526.7,
+          "decode_ms": 4165.7,
+          "finish": "length",
+          "draft_accepted": 208,
+          "draft_offered": 250,
+          "reused": 0,
+          "extra_done_fields": [
+            "71028",
+            "97936",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 72.01670787622729,
+          "prefill_tok_s": 1522.202659952524
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 56.951933379713694,
+        "edit_decode_tok_s": 42.244076689314426,
+        "long_prefill_tok_s": -0.08733620373438944,
+        "long_decode_tok_s": 65.30118557068185
+      }
+    },
+    "L-adapt": {
+      "code_decode_tok_s": 78.09449433814916,
+      "edit_decode_tok_s": 61.338403974728585,
+      "long_prefill_tok_s": 2015.6736340932298,
+      "long_decode_tok_s": 69.11964610741192,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 13,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2554",
+            "2554"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [],
+        "layer_helper": [
+          [
+            "2566",
+            "7.49"
+          ]
+        ],
+        "prompt_loans": [
+          "prompt path borrows 1690 CUDA0 cache slots (4.93 GiB)",
+          "prompt path borrows 1685 of its 2566 slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 88 windows, avg T 3.80, 3.41 tokens/window, 49.16 ms/window = verify 41.03 (GPU-reach wait 5.73 + per-layer host 18.03 [plan 0.12 actq 0.31 jobs 0.26 CPU 27.56] + stage 0.52) + commit/emit 0.88 + draft 2.24; per layer-window: CPU experts 6.69 (8.34 entries), VRAM hits 28.61, PCIe 0.98",
+        "strata serve: stage 0: 95 windows; per window: wait for the GPU 5.908 ms, pool + plan 20.029 ms, host staging 0.546 ms, commit 0.350 ms",
+        "strata serve: stage 1: 95 windows; per window: wait for the GPU 5.350 ms, pool + plan 12.498 ms, host staging 0.001 ms, commit 0.293 ms",
+        "strata decode timing: 89 windows, avg T 3.75, 3.37 tokens/window, 42.54 ms/window = verify 35.28 (GPU-reach wait 5.73 + per-layer host 15.60 [plan 0.11 actq 0.31 jobs 0.22 CPU 22.71] + stage 0.02) + commit/emit 0.81 + draft 2.11; per layer-window: CPU experts 5.70 (6.70 entries), VRAM hits 30.05, PCIe 0.76",
+        "strata serve: stage 0: 191 windows; per window: wait for the GPU 5.904 ms, pool + plan 18.809 ms, host staging 0.280 ms, commit 0.345 ms",
+        "strata serve: stage 1: 191 windows; per window: wait for the GPU 5.351 ms, pool + plan 10.963 ms, host staging 0.001 ms, commit 0.290 ms",
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 43.65 ms/window = verify 36.27 (GPU-reach wait 5.75 + per-layer host 16.45 [plan 0.12 actq 0.31 jobs 0.25 CPU 23.59] + stage 0.02) + commit/emit 0.86 + draft 2.12; per layer-window: CPU experts 5.74 (6.75 entries), VRAM hits 30.65, PCIe 0.77",
+        "strata serve: stage 0: 286 windows; per window: wait for the GPU 5.912 ms, pool + plan 18.682 ms, host staging 0.195 ms, commit 0.346 ms",
+        "strata serve: stage 1: 286 windows; per window: wait for the GPU 5.365 ms, pool + plan 10.478 ms, host staging 0.001 ms, commit 0.293 ms",
+        "strata decode timing: 79 windows, avg T 3.90, 3.80 tokens/window, 61.91 ms/window = verify 52.53 (GPU-reach wait 5.80 + per-layer host 25.27 [plan 0.14 actq 0.33 jobs 0.28 CPU 39.81] + stage 0.06) + commit/emit 0.92 + draft 2.20; per layer-window: CPU experts 9.10 (10.45 entries), VRAM hits 26.97, PCIe 1.54",
+        "strata serve: stage 0: 365 windows; per window: wait for the GPU 5.888 ms, pool + plan 20.107 ms, host staging 0.165 ms, commit 0.352 ms",
+        "strata serve: stage 1: 365 windows; per window: wait for the GPU 5.320 ms, pool + plan 11.521 ms, host staging 0.001 ms, commit 0.298 ms",
+        "strata decode timing: 91 windows, avg T 3.69, 3.30 tokens/window, 47.70 ms/window = verify 40.03 (GPU-reach wait 5.96 + per-layer host 17.37 [plan 0.11 actq 0.30 jobs 0.25 CPU 26.87] + stage 0.11) + commit/emit 0.87 + draft 2.72; per layer-window: CPU experts 6.25 (7.62 entries), VRAM hits 28.40, PCIe 0.88",
+        "strata serve: stage 0: 456 windows; per window: wait for the GPU 5.903 ms, pool + plan 19.560 ms, host staging 0.154 ms, commit 0.349 ms",
+        "strata serve: stage 1: 456 windows; per window: wait for the GPU 5.350 ms, pool + plan 11.252 ms, host staging 0.001 ms, commit 0.295 ms"
+      ],
+      "effect": "adaptive cache",
+      "measurements": [
+        {
+          "variant": "L-adapt",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022734.3008914,
+          "end_unix": 1791022739.3797038,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 750.4,
+          "decode_ms": 4326.2,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 246,
+          "reused": 0,
+          "extra_done_fields": [
+            "120833",
+            "156075",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 69.34492164023855,
+          "prefill_tok_s": 71.96162046908316
+        },
+        {
+          "variant": "L-adapt",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022739.380385,
+          "end_unix": 1791022743.8107095,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 644.0,
+          "decode_ms": 3786.1,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 245,
+          "reused": 0,
+          "extra_done_fields": [
+            "128375",
+            "156998",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 79.23720979371913,
+          "prefill_tok_s": 83.85093167701864
+        },
+        {
+          "variant": "L-adapt",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022743.8111718,
+          "end_unix": 1791022748.2919538,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 638.7,
+          "decode_ms": 3841.5,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "129479",
+            "157982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 78.09449433814916,
+          "prefill_tok_s": 84.54673555659933
+        },
+        {
+          "variant": "L-adapt",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022748.2938735,
+          "end_unix": 1791022755.023223,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 1837.6,
+          "decode_ms": 4890.9,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 229,
+          "reused": 0,
+          "extra_done_fields": [
+            "102271",
+            "141913",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 61.338403974728585,
+          "prefill_tok_s": 181.21462777535916
+        },
+        {
+          "variant": "L-adapt",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022755.0239685,
+          "end_unix": 1791022775.6245441,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 16256.6,
+          "decode_ms": 4340.3,
+          "finish": "length",
+          "draft_accepted": 209,
+          "draft_offered": 245,
+          "reused": 0,
+          "extra_done_fields": [
+            "124051",
+            "157331",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 69.11964610741192,
+          "prefill_tok_s": 2015.6736340932298
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 77.8482497702974,
+        "edit_decode_tok_s": 67.11501050833249,
+        "long_prefill_tok_s": 0.04209532416454831,
+        "long_decode_tok_s": 63.53225009666461
+      }
+    },
+    "C-prefetch0": {
+      "code_decode_tok_s": 51.02127587203864,
+      "edit_decode_tok_s": 41.390728476821195,
+      "long_prefill_tok_s": 2733.4456697642604,
+      "long_decode_tok_s": 50.828504625393926,
+      "target_disagreements": [
+        {
+          "different": 4,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 4,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 4,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 88 windows, avg T 3.82, 3.41 tokens/window, 66.82 ms/window; wait 8.41 pool 54.84 host 0.32 commit 0.02 draft 1.93 ms/window",
+        "strata diagnostic timing: 88 windows, avg T 3.82, 3.41 tokens/window, 66.84 ms/window; wait 8.46 pool 55.59 host 0.01 commit 0.02 draft 1.87 ms/window",
+        "strata diagnostic timing: 88 windows, avg T 3.82, 3.41 tokens/window, 65.77 ms/window; wait 8.44 pool 54.55 host 0.01 commit 0.02 draft 1.86 ms/window",
+        "strata diagnostic timing: 80 windows, avg T 3.90, 3.75 tokens/window, 90.60 ms/window; wait 8.63 pool 79.05 host 0.08 commit 0.02 draft 1.90 ms/window",
+        "strata diagnostic timing: 93 windows, avg T 3.69, 3.23 tokens/window, 63.47 ms/window; wait 8.67 pool 51.71 host 0.24 commit 0.01 draft 1.97 ms/window"
+      ],
+      "effect": "helper prefetch",
+      "measurements": [
+        {
+          "variant": "C-prefetch0",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022802.9340298,
+          "end_unix": 1791022809.503002,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 688.7,
+          "decode_ms": 5879.9,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "62747",
+            "150775"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 51.02127587203864,
+          "prefill_tok_s": 78.40859590532888
+        },
+        {
+          "variant": "C-prefetch0",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022809.5034077,
+          "end_unix": 1791022815.9968376,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 611.8,
+          "decode_ms": 5881.6,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "62747",
+            "150775"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 51.006528835690965,
+          "prefill_tok_s": 88.26413860738805
+        },
+        {
+          "variant": "C-prefetch0",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022815.9973388,
+          "end_unix": 1791022822.397887,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 611.4,
+          "decode_ms": 5788.2,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "62747",
+            "150775"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 51.8295843267337,
+          "prefill_tok_s": 88.32188420019628
+        },
+        {
+          "variant": "C-prefetch0",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022822.3983834,
+          "end_unix": 1791022830.9188952,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 1271.3,
+          "decode_ms": 7248.0,
+          "finish": "length",
+          "draft_accepted": 220,
+          "draft_offered": 232,
+          "reused": 0,
+          "extra_done_fields": [
+            "42742",
+            "134995"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 41.390728476821195,
+          "prefill_tok_s": 261.9366003303705
+        },
+        {
+          "variant": "C-prefetch0",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022830.9194016,
+          "end_unix": 1791022848.8180935,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 11987.8,
+          "decode_ms": 5902.2,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 250,
+          "reused": 0,
+          "extra_done_fields": [
+            "63893",
+            "154116"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 50.828504625393926,
+          "prefill_tok_s": 2733.4456697642604
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -7.790301741546957,
+        "edit_decode_tok_s": -0.6957417039208047,
+        "long_prefill_tok_s": 0.10716446952763192,
+        "long_decode_tok_s": -4.890880549942933
+      }
+    },
+    "C-prompt-main": {
+      "code_decode_tok_s": 57.20496539099594,
+      "edit_decode_tok_s": 44.7400602499478,
+      "long_prefill_tok_s": 1365.6121458131036,
+      "long_decode_tok_s": 45.05451596431682,
+      "target_disagreements": [
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 369 cache slots (1.08 GiB), 0 (0.00 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 59.21 ms/window; wait 8.14 pool 47.45 host 0.13 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 58.83 ms/window; wait 8.29 pool 47.53 host 0.01 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 58.92 ms/window; wait 8.29 pool 47.62 host 0.01 commit 0.01 draft 1.89 ms/window",
+        "strata diagnostic timing: 79 windows, avg T 3.87, 3.80 tokens/window, 84.88 ms/window; wait 8.55 pool 73.16 host 0.11 commit 0.02 draft 1.91 ms/window",
+        "strata diagnostic timing: 93 windows, avg T 3.66, 3.23 tokens/window, 71.60 ms/window; wait 9.03 pool 59.07 host 0.15 commit 0.01 draft 2.07 ms/window"
+      ],
+      "effect": "helper prompt processing",
+      "measurements": [
+        {
+          "variant": "C-prompt-main",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022878.9736469,
+          "end_unix": 1791022884.8228893,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 579.5,
+          "decode_ms": 5269.5,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 56.931397665812696,
+          "prefill_tok_s": 93.18377911993097
+        },
+        {
+          "variant": "C-prompt-main",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022884.823315,
+          "end_unix": 1791022890.5998027,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 540.3,
+          "decode_ms": 5236.0,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 57.29564553093965,
+          "prefill_tok_s": 99.94447529150473
+        },
+        {
+          "variant": "C-prompt-main",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022890.600291,
+          "end_unix": 1791022896.3853917,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 540.7,
+          "decode_ms": 5244.3,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 57.20496539099594,
+          "prefill_tok_s": 99.87053819123358
+        },
+        {
+          "variant": "C-prompt-main",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022896.3859038,
+          "end_unix": 1791022906.0250783,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2933.6,
+          "decode_ms": 6705.4,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 227,
+          "reused": 0,
+          "extra_done_fields": [
+            "52759",
+            "133552"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.7400602499478,
+          "prefill_tok_s": 113.51240796291246
+        },
+        {
+          "variant": "C-prompt-main",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791022906.0255606,
+          "end_unix": 1791022936.6866782,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 23995.1,
+          "decode_ms": 6658.6,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 247,
+          "reused": 0,
+          "extra_done_fields": [
+            "85055",
+            "154526"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 45.05451596431682,
+          "prefill_tok_s": 1365.6121458131036
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 3.385352628544891,
+        "edit_decode_tok_s": 7.339944541709964,
+        "long_prefill_tok_s": -49.98709460565684,
+        "long_decode_tok_s": -15.695034268746177
+      }
+    },
+    "P-hot0": {
+      "code_decode_tok_s": 37.38364340988673,
+      "edit_decode_tok_s": 29.240906078209676,
+      "long_prefill_tok_s": 1522.9950500801747,
+      "long_decode_tok_s": 46.72387745884405,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 14,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2435",
+            "2435"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1690 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 89 windows, avg T 3.76, 3.37 tokens/window, 89.85 ms/window = verify 87.54 (GPU-reach wait 11.47 + per-layer host 74.04 [plan 0.92 actq 0.37 jobs 0.21 CPU 72.53] + stage 0.68) + commit/emit 0.05 + draft 2.26; per layer-window: CPU experts 12.28 (20.62 entries), VRAM hits 6.40, PCIe 2.32",
+        "strata serve: stage 0: 96 windows; per window: wait for the GPU 11.781 ms, pool + plan 76.552 ms, host staging 0.715 ms, commit 0.020 ms",
+        "strata decode timing: 89 windows, avg T 3.76, 3.37 tokens/window, 90.17 ms/window = verify 87.89 (GPU-reach wait 11.32 + per-layer host 75.66 [plan 0.80 actq 0.35 jobs 0.20 CPU 74.30] + stage 0.01) + commit/emit 0.03 + draft 2.24; per layer-window: CPU experts 12.28 (20.62 entries), VRAM hits 6.40, PCIe 2.32",
+        "strata serve: stage 0: 192 windows; per window: wait for the GPU 11.769 ms, pool + plan 77.115 ms, host staging 0.365 ms, commit 0.018 ms",
+        "strata decode timing: 89 windows, avg T 3.76, 3.37 tokens/window, 91.04 ms/window = verify 88.72 (GPU-reach wait 11.42 + per-layer host 76.40 [plan 0.91 actq 0.38 jobs 0.22 CPU 74.88] + stage 0.02) + commit/emit 0.09 + draft 2.23; per layer-window: CPU experts 12.28 (20.62 entries), VRAM hits 6.40, PCIe 2.32",
+        "strata serve: stage 0: 288 windows; per window: wait for the GPU 11.788 ms, pool + plan 77.547 ms, host staging 0.248 ms, commit 0.019 ms",
+        "strata decode timing: 79 windows, avg T 3.91, 3.80 tokens/window, 129.87 ms/window = verify 127.55 (GPU-reach wait 11.65 + per-layer host 114.94 [plan 0.86 actq 0.35 jobs 0.20 CPU 113.52] + stage 0.05) + commit/emit 0.04 + draft 2.29; per layer-window: CPU experts 18.24 (24.29 entries), VRAM hits 5.45, PCIe 3.81",
+        "strata serve: stage 0: 367 windows; per window: wait for the GPU 11.758 ms, pool + plan 85.597 ms, host staging 0.206 ms, commit 0.019 ms",
+        "strata decode timing: 93 windows, avg T 3.69, 3.23 tokens/window, 69.04 ms/window = verify 66.16 (GPU-reach wait 11.82 + per-layer host 53.40 [plan 0.94 actq 0.34 jobs 0.20 CPU 51.90] + stage 0.05) + commit/emit 0.04 + draft 2.84; per layer-window: CPU experts 11.84 (20.20 entries), VRAM hits 6.32, PCIe 2.20",
+        "strata serve: stage 0: 460 windows; per window: wait for the GPU 11.771 ms, pool + plan 79.088 ms, host staging 0.175 ms, commit 0.018 ms"
+      ],
+      "effect": "peer placement",
+      "measurements": [
+        {
+          "variant": "P-hot0",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791022963.5740612,
+          "end_unix": 1791022972.4813745,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 910.1,
+          "decode_ms": 7996.6,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 246,
+          "reused": 0,
+          "extra_done_fields": [
+            "27352",
+            "115449",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 37.515944276317434,
+          "prefill_tok_s": 59.33413910559279
+        },
+        {
+          "variant": "P-hot0",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791022972.4817863,
+          "end_unix": 1791022981.362981,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 855.9,
+          "decode_ms": 8024.9,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 246,
+          "reused": 0,
+          "extra_done_fields": [
+            "27352",
+            "115449",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 37.38364340988673,
+          "prefill_tok_s": 63.09148264984227
+        },
+        {
+          "variant": "P-hot0",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791022981.3634667,
+          "end_unix": 1791022990.3264909,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 859.2,
+          "decode_ms": 8102.9,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 246,
+          "reused": 0,
+          "extra_done_fields": [
+            "27352",
+            "115449",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 37.02378160905355,
+          "prefill_tok_s": 62.84916201117318
+        },
+        {
+          "variant": "P-hot0",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791022990.327014,
+          "end_unix": 1791023003.5336676,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2946.4,
+          "decode_ms": 10259.6,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 230,
+          "reused": 0,
+          "extra_done_fields": [
+            "20676",
+            "112790",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 29.240906078209676,
+          "prefill_tok_s": 113.01927776269345
+        },
+        {
+          "variant": "P-hot0",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791023003.534179,
+          "end_unix": 1791023031.4748902,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 21515.5,
+          "decode_ms": 6420.7,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 250,
+          "reused": 0,
+          "extra_done_fields": [
+            "28209",
+            "118370",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 46.72387745884405,
+          "prefill_tok_s": 1522.9950500801747
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -16.48684026824292,
+        "edit_decode_tok_s": -23.261458529797807,
+        "long_prefill_tok_s": -0.03532617215166178,
+        "long_decode_tok_s": 7.246117826995402
+      }
+    },
+    "L-base-repeat": {
+      "code_decode_tok_s": 43.85900790924109,
+      "edit_decode_tok_s": 37.267080745341616,
+      "long_prefill_tok_s": 2031.0659873306308,
+      "long_decode_tok_s": 42.85163336142496,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2554",
+            "2554"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [],
+        "layer_helper": [
+          [
+            "2566",
+            "7.49"
+          ]
+        ],
+        "prompt_loans": [
+          "prompt path borrows 1690 CUDA0 cache slots (4.93 GiB)",
+          "prompt path borrows 1685 of its 2566 slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 78.31 ms/window = verify 75.65 (GPU-reach wait 5.93 + per-layer host 36.33 [plan 0.11 actq 0.33 jobs 0.26 CPU 62.07] + stage 0.46) + commit/emit 0.59 + draft 2.07; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata serve: stage 0: 95 windows; per window: wait for the GPU 6.092 ms, pool + plan 37.127 ms, host staging 0.506 ms, commit 0.309 ms",
+        "strata serve: stage 1: 95 windows; per window: wait for the GPU 5.263 ms, pool + plan 27.596 ms, host staging 0.001 ms, commit 0.274 ms",
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 77.73 ms/window = verify 75.11 (GPU-reach wait 5.93 + per-layer host 36.56 [plan 0.11 actq 0.33 jobs 0.26 CPU 62.37] + stage 0.01) + commit/emit 0.58 + draft 2.04; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata serve: stage 0: 190 windows; per window: wait for the GPU 6.092 ms, pool + plan 37.231 ms, host staging 0.260 ms, commit 0.309 ms",
+        "strata serve: stage 1: 190 windows; per window: wait for the GPU 5.261 ms, pool + plan 27.631 ms, host staging 0.001 ms, commit 0.273 ms",
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 76.92 ms/window = verify 74.30 (GPU-reach wait 5.93 + per-layer host 36.10 [plan 0.10 actq 0.33 jobs 0.26 CPU 61.56] + stage 0.01) + commit/emit 0.58 + draft 2.04; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata serve: stage 0: 285 windows; per window: wait for the GPU 6.092 ms, pool + plan 37.094 ms, host staging 0.178 ms, commit 0.308 ms",
+        "strata serve: stage 1: 285 windows; per window: wait for the GPU 5.259 ms, pool + plan 27.525 ms, host staging 0.001 ms, commit 0.273 ms",
+        "strata decode timing: 78 windows, avg T 3.95, 3.85 tokens/window, 103.21 ms/window = verify 100.49 (GPU-reach wait 6.11 + per-layer host 51.07 [plan 0.11 actq 0.35 jobs 0.25 CPU 87.44] + stage 0.03) + commit/emit 0.62 + draft 2.10; per layer-window: CPU experts 19.54 (26.03 entries), VRAM hits 9.23, PCIe 4.14",
+        "strata serve: stage 0: 363 windows; per window: wait for the GPU 6.096 ms, pool + plan 40.096 ms, host staging 0.146 ms, commit 0.310 ms",
+        "strata serve: stage 1: 363 windows; per window: wait for the GPU 5.250 ms, pool + plan 29.581 ms, host staging 0.001 ms, commit 0.274 ms",
+        "strata decode timing: 93 windows, avg T 3.71, 3.23 tokens/window, 75.28 ms/window = verify 72.06 (GPU-reach wait 6.15 + per-layer host 34.11 [plan 0.10 actq 0.32 jobs 0.25 CPU 58.89] + stage 0.04) + commit/emit 0.58 + draft 2.64; per layer-window: CPU experts 13.36 (22.56 entries), VRAM hits 11.77, PCIe 2.59",
+        "strata serve: stage 0: 456 windows; per window: wait for the GPU 6.106 ms, pool + plan 38.875 ms, host staging 0.125 ms, commit 0.307 ms",
+        "strata serve: stage 1: 456 windows; per window: wait for the GPU 5.271 ms, pool + plan 28.741 ms, host staging 0.001 ms, commit 0.271 ms"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "L-base-repeat",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791023056.516734,
+          "end_unix": 1791023064.1798172,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 771.4,
+          "decode_ms": 6891.3,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 43.53315049410126,
+          "prefill_tok_s": 70.0025926886181
+        },
+        {
+          "variant": "L-base-repeat",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791023064.1802092,
+          "end_unix": 1791023071.7672691,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 746.8,
+          "decode_ms": 6840.1,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 43.85900790924109,
+          "prefill_tok_s": 72.30851633636851
+        },
+        {
+          "variant": "L-base-repeat",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791023071.767761,
+          "end_unix": 1791023079.2718232,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 735.1,
+          "decode_ms": 6768.8,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.32100224559745,
+          "prefill_tok_s": 73.45939327982587
+        },
+        {
+          "variant": "L-base-repeat",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791023079.2723696,
+          "end_unix": 1791023089.3368142,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2014.2,
+          "decode_ms": 8050.0,
+          "finish": "length",
+          "draft_accepted": 222,
+          "draft_offered": 230,
+          "reused": 0,
+          "extra_done_fields": [
+            "34558",
+            "132024",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 37.267080745341616,
+          "prefill_tok_s": 165.3261840929401
+        },
+        {
+          "variant": "L-base-repeat",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791023089.3373103,
+          "end_unix": 1791023112.4744034,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 16133.4,
+          "decode_ms": 7000.9,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 252,
+          "reused": 0,
+          "extra_done_fields": [
+            "52534",
+            "153262",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 42.85163336142496,
+          "prefill_tok_s": 2031.0659873306308
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -0.11782700653536482,
+        "edit_decode_tok_s": 1.533267688845119,
+        "long_prefill_tok_s": 0.8060499861661796,
+        "long_decode_tok_s": 1.3839685032715154
+      }
+    },
+    "P-base-repeat": {
+      "code_decode_tok_s": 46.27059041273366,
+      "edit_decode_tok_s": 38.62743835704629,
+      "long_prefill_tok_s": 1523.2782465193036,
+      "long_decode_tok_s": 44.81424495466292,
+      "target_disagreements": [
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 14,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2432",
+            "2432"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1687 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 72.85 ms/window = verify 70.61 (GPU-reach wait 11.32 + per-layer host 57.56 [plan 0.64 actq 0.31 jobs 0.17 CPU 56.43] + stage 0.47) + commit/emit 0.02 + draft 2.22; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 96 windows; per window: wait for the GPU 11.646 ms, pool + plan 59.537 ms, host staging 0.512 ms, commit 0.015 ms",
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 70.58 ms/window = verify 68.35 (GPU-reach wait 11.32 + per-layer host 56.12 [plan 0.63 actq 0.31 jobs 0.17 CPU 55.02] + stage 0.01) + commit/emit 0.02 + draft 2.20; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 192 windows; per window: wait for the GPU 11.660 ms, pool + plan 58.786 ms, host staging 0.262 ms, commit 0.014 ms",
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 73.07 ms/window = verify 70.83 (GPU-reach wait 11.32 + per-layer host 58.60 [plan 0.93 actq 0.39 jobs 0.23 CPU 57.04] + stage 0.02) + commit/emit 0.03 + draft 2.21; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata serve: stage 0: 288 windows; per window: wait for the GPU 11.664 ms, pool + plan 59.217 ms, host staging 0.180 ms, commit 0.015 ms",
+        "strata decode timing: 79 windows, avg T 3.90, 3.80 tokens/window, 98.31 ms/window = verify 96.00 (GPU-reach wait 11.61 + per-layer host 83.46 [plan 0.63 actq 0.33 jobs 0.17 CPU 82.32] + stage 0.03) + commit/emit 0.03 + draft 2.28; per layer-window: CPU experts 18.76 (25.66 entries), VRAM hits 4.51, PCIe 3.94",
+        "strata serve: stage 0: 367 windows; per window: wait for the GPU 11.653 ms, pool + plan 64.435 ms, host staging 0.147 ms, commit 0.015 ms",
+        "strata decode timing: 93 windows, avg T 3.72, 3.23 tokens/window, 71.98 ms/window = verify 69.12 (GPU-reach wait 11.88 + per-layer host 56.30 [plan 0.78 actq 0.31 jobs 0.17 CPU 55.03] + stage 0.05) + commit/emit 0.03 + draft 2.84; per layer-window: CPU experts 12.69 (21.18 entries), VRAM hits 5.93, PCIe 2.43",
+        "strata serve: stage 0: 460 windows; per window: wait for the GPU 11.699 ms, pool + plan 62.790 ms, host staging 0.127 ms, commit 0.015 ms"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "P-base-repeat",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791023137.018205,
+          "end_unix": 1791023144.2421117,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 739.5,
+          "decode_ms": 6483.6,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 46.27059041273366,
+          "prefill_tok_s": 73.02231237322515
+        },
+        {
+          "variant": "P-base-repeat",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791023144.2426732,
+          "end_unix": 1791023151.2262282,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 701.7,
+          "decode_ms": 6281.2,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 47.76157422148634,
+          "prefill_tok_s": 76.95596408721676
+        },
+        {
+          "variant": "P-base-repeat",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791023151.226701,
+          "end_unix": 1791023158.4083533,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 677.6,
+          "decode_ms": 6503.4,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 46.12971676353907,
+          "prefill_tok_s": 79.69303423848878
+        },
+        {
+          "variant": "P-base-repeat",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791023158.4088671,
+          "end_unix": 1791023169.1362553,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 2960.2,
+          "decode_ms": 7766.5,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 229,
+          "reused": 0,
+          "extra_done_fields": [
+            "17107",
+            "114425",
+            "0",
+            "0",
+            "0.0",
+            "333"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 38.62743835704629,
+          "prefill_tok_s": 112.49239916221877
+        },
+        {
+          "variant": "P-base-repeat",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791023169.1367893,
+          "end_unix": 1791023197.3458261,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 21511.5,
+          "decode_ms": 6694.3,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 253,
+          "reused": 0,
+          "extra_done_fields": [
+            "26467",
+            "121034",
+            "0",
+            "0",
+            "0.0",
+            "32768"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.81424495466292,
+          "prefill_tok_s": 1523.2782465193036
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": 3.36614774683468,
+        "edit_decode_tok_s": 1.3721419001720747,
+        "long_prefill_tok_s": -0.01673803579150812,
+        "long_decode_tok_s": 2.8629055661965053
+      }
+    },
+    "C-base-repeat": {
+      "code_decode_tok_s": 55.24963627322787,
+      "edit_decode_tok_s": 42.59004244807564,
+      "long_prefill_tok_s": 2724.7630134708133,
+      "long_decode_tok_s": 53.07198330001592,
+      "target_disagreements": [
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 0,
+          "emitted": 300,
+          "single": 0
+        },
+        {
+          "different": 15,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 61.62 ms/window; wait 8.19 pool 49.88 host 0.10 commit 0.01 draft 1.88 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 61.01 ms/window; wait 8.29 pool 49.69 host 0.01 commit 0.01 draft 1.89 ms/window",
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 60.59 ms/window; wait 8.29 pool 49.27 host 0.01 commit 0.01 draft 1.89 ms/window",
+        "strata diagnostic timing: 79 windows, avg T 3.91, 3.80 tokens/window, 89.16 ms/window; wait 8.59 pool 77.40 host 0.06 commit 0.01 draft 1.93 ms/window",
+        "strata diagnostic timing: 93 windows, avg T 3.71, 3.23 tokens/window, 60.78 ms/window; wait 8.56 pool 48.98 host 0.12 commit 0.01 draft 1.98 ms/window"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "C-base-repeat",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791023224.9136856,
+          "end_unix": 1791023230.9955747,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 597.9,
+          "decode_ms": 5483.8,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 54.70659032058062,
+          "prefill_tok_s": 90.31610637230307
+        },
+        {
+          "variant": "C-base-repeat",
+          "request": 2,
+          "fixture": "code",
+          "start_unix": 1791023230.9959905,
+          "end_unix": 1791023236.9768853,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 550.9,
+          "decode_ms": 5429.9,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 55.24963627322787,
+          "prefill_tok_s": 98.02141949537122
+        },
+        {
+          "variant": "C-base-repeat",
+          "request": 3,
+          "fixture": "code",
+          "start_unix": 1791023236.977375,
+          "end_unix": 1791023242.9303672,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 560.7,
+          "decode_ms": 5392.2,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 55.635918549015244,
+          "prefill_tok_s": 96.30818619582664
+        },
+        {
+          "variant": "C-base-repeat",
+          "request": 4,
+          "fixture": "edit",
+          "start_unix": 1791023242.9308503,
+          "end_unix": 1791023251.242588,
+          "generated": 300,
+          "prompt_tokens": 333,
+          "prompt_ms": 1267.7,
+          "decode_ms": 7043.9,
+          "finish": "length",
+          "draft_accepted": 221,
+          "draft_offered": 230,
+          "reused": 0,
+          "extra_done_fields": [
+            "53549",
+            "134949"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 42.59004244807564,
+          "prefill_tok_s": 262.680444900213
+        },
+        {
+          "variant": "C-base-repeat",
+          "request": 5,
+          "fixture": "long-code",
+          "start_unix": 1791023251.2431028,
+          "end_unix": 1791023268.9290495,
+          "generated": 300,
+          "prompt_tokens": 32768,
+          "prompt_ms": 12026.0,
+          "decode_ms": 5652.7,
+          "finish": "length",
+          "draft_accepted": 207,
+          "draft_offered": 252,
+          "reused": 0,
+          "extra_done_fields": [
+            "86684",
+            "156878"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 53.07198330001592,
+          "prefill_tok_s": 2724.7630134708133
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 5,
+        "fixed_output_all_match": true
+      },
+      "change_vs_reference_percent": {
+        "code_decode_tok_s": -0.1484733070815203,
+        "edit_decode_tok_s": 2.181641438689086,
+        "long_prefill_tok_s": -0.21082103543960118,
+        "long_decode_tok_s": -0.6929352666642852
+      }
+    },
+    "C-profile": {
+      "code_decode_tok_s": 55.91381816826332,
+      "edit_decode_tok_s": null,
+      "long_prefill_tok_s": null,
+      "long_decode_tok_s": null,
+      "target_disagreements": [
+        {
+          "different": 1,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2460",
+            "2460"
+          ]
+        ],
+        "custom_helper": [
+          [
+            "4109",
+            "0",
+            "12.00"
+          ]
+        ],
+        "peer_helper": [],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows up to 356 cache slots (1.04 GiB), 174 (0.51 GiB) on the second GPU"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata diagnostic timing: 89 windows, avg T 3.79, 3.37 tokens/window, 60.29 ms/window; wait 8.30 pool 48.24 host 0.14 commit 0.01 draft 1.88 ms/window"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "C-profile",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791023299.607289,
+          "end_unix": 1791023305.55525,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 582.2,
+          "decode_ms": 5365.4,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "84245",
+            "152929"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 55.91381816826332,
+          "prefill_tok_s": 92.75163174166953
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 1,
+        "fixed_output_all_match": true
+      }
+    },
+    "P-profile": {
+      "code_decode_tok_s": 44.697398611400814,
+      "edit_decode_tok_s": null,
+      "long_prefill_tok_s": null,
+      "long_decode_tok_s": null,
+      "target_disagreements": [
+        {
+          "different": 3,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2432",
+            "2432"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [
+          [
+            "4096",
+            "11.96"
+          ]
+        ],
+        "layer_helper": [],
+        "prompt_loans": [
+          "prompt path borrows 1687 CUDA0 cache slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 89 windows, avg T 3.73, 3.37 tokens/window, 75.41 ms/window = verify 73.15 (GPU-reach wait 12.07 + per-layer host 59.01 [plan 0.81 actq 0.35 jobs 0.19 CPU 57.64] + stage 0.50) + commit/emit 0.04 + draft 2.23; per layer-window: CPU experts 13.01 (21.26 entries), VRAM hits 5.94, PCIe 2.50",
+        "strata decode GPU stages (ms/window): GDN layers: q8+qkv/q-idx gemv 1.24 conv 0.08 ab 0.39 z 0.81 rec 0.34 out-proj 0.89 hc-read1+router 2.12 shared+quant 0.74 waitA 0.23 VRAM hits 1.06 waitB 22.65 PCIe grp 0.37 waitCPU 21.43 copy+combine 1.33 (gap) 0.02 head 0.86   hc0 norm 0.31   hc0 down 0.84   hc0 up 0.49 | QSA layers: q8+kv-idx 0.06 k/v+norm-rope 0.11 kv+idx append 0.15 q+q-idx 0.63 scores+topk 0.06 kv-resolve 0.01 attention 0.50 gate 0.02 out-proj 0.30 hc-read1+router 0.72 shared+quant 0.25 waitA 0.08 VRAM hits 0.36 waitB 7.05 PCIe grp 0.12 waitCPU 6.81 copy+combine 0.44 (gap) 0.01   hc0 norm 0.05   hc0 down 0.28   hc0 up 0.16 | total 74.36 ms/window over 96 windows",
+        "strata serve: stage 0: 96 windows; per window: wait for the GPU 12.395 ms, pool + plan 61.097 ms, host staging 0.553 ms, commit 0.018 ms"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "P-profile",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791023333.4519286,
+          "end_unix": 1791023340.9451623,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 778.8,
+          "decode_ms": 6711.8,
+          "finish": "length",
+          "draft_accepted": 211,
+          "draft_offered": 243,
+          "reused": 0,
+          "extra_done_fields": [
+            "25355",
+            "116192",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 44.697398611400814,
+          "prefill_tok_s": 69.33744221879816
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 1,
+        "fixed_output_all_match": true
+      }
+    },
+    "L-profile": {
+      "code_decode_tok_s": 42.575536096958686,
+      "edit_decode_tok_s": null,
+      "long_prefill_tok_s": null,
+      "long_decode_tok_s": null,
+      "target_disagreements": [
+        {
+          "different": 2,
+          "emitted": 300,
+          "single": 0
+        }
+      ],
+      "capacity": {
+        "primary_filled": [
+          [
+            "2554",
+            "2554"
+          ]
+        ],
+        "custom_helper": [],
+        "peer_helper": [],
+        "layer_helper": [
+          [
+            "2566",
+            "7.49"
+          ]
+        ],
+        "prompt_loans": [
+          "prompt path borrows 1690 CUDA0 cache slots (4.93 GiB)",
+          "prompt path borrows 1685 of its 2566 slots (4.93 GiB)"
+        ],
+        "chunk_warning": []
+      },
+      "timing_lines": [
+        "strata decode timing: 88 windows, avg T 3.82, 3.41 tokens/window, 80.07 ms/window = verify 77.39 (GPU-reach wait 6.32 + per-layer host 36.76 [plan 0.12 actq 0.37 jobs 0.29 CPU 62.65] + stage 0.50) + commit/emit 0.60 + draft 2.08; per layer-window: CPU experts 13.97 (23.24 entries), VRAM hits 12.03, PCIe 2.75",
+        "strata decode GPU stages (ms/window): GDN layers: q8+qkv/q-idx gemv 0.66 conv 0.04 ab 0.21 z 0.43 rec 0.18 out-proj 0.47 hc-read1+router 1.13 shared+quant 0.40 waitA 0.13 VRAM hits 0.85 waitB 14.91 PCIe grp 0.22 waitCPU 12.91 copy+combine 0.63 (gap) 0.01   hc0 norm 0.25   hc0 down 0.45   hc0 up 0.26 | QSA layers: q8+kv-idx 0.03 k/v+norm-rope 0.05 kv+idx append 0.07 q+q-idx 0.31 scores+topk 0.03 kv-resolve 0.00 attention 0.25 gate 0.01 out-proj 0.15 hc-read1+router 0.37 shared+quant 0.13 waitA 0.04 VRAM hits 0.25 waitB 4.13 PCIe grp 0.07 waitCPU 3.65 copy+combine 0.20 (gap) 0.00   hc0 norm 0.03   hc0 down 0.14   hc0 up 0.08 | total 44.14 ms/window over 95 windows",
+        "strata serve: stage 0: 95 windows; per window: wait for the GPU 6.475 ms, pool + plan 37.652 ms, host staging 0.535 ms, commit 0.309 ms",
+        "strata serve: stage 1: 95 windows; per window: wait for the GPU 5.592 ms, pool + plan 28.018 ms, host staging 0.001 ms, commit 0.274 ms"
+      ],
+      "effect": "reference",
+      "measurements": [
+        {
+          "variant": "L-profile",
+          "request": 1,
+          "fixture": "code",
+          "start_unix": 1791023366.6697896,
+          "end_unix": 1791023374.5341926,
+          "generated": 300,
+          "prompt_tokens": 54,
+          "prompt_ms": 817.7,
+          "decode_ms": 7046.3,
+          "finish": "length",
+          "draft_accepted": 212,
+          "draft_offered": 248,
+          "reused": 0,
+          "extra_done_fields": [
+            "50830",
+            "148982",
+            "0",
+            "0",
+            "0.0",
+            "54"
+          ],
+          "output_sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792",
+          "decode_tok_s": 42.575536096958686,
+          "prefill_tok_s": 66.03888956830133
+        }
+      ],
+      "exit": {
+        "exit_code": 0,
+        "requests": 1,
+        "fixed_output_all_match": true
+      }
+    }
+  },
+  "reference_centers": {
+    "C": {
+      "code_decode_tok_s": 55.33178921053613,
+      "edit_decode_tok_s": 41.68071861874569,
+      "long_prefill_tok_s": 2730.5195230020868,
+      "long_decode_tok_s": 53.44230387085497
+    },
+    "P": {
+      "code_decode_tok_s": 44.763775589335125,
+      "edit_decode_tok_s": 38.10458932108321,
+      "long_prefill_tok_s": 1523.5332560609986,
+      "long_decode_tok_s": 43.56696391958626
+    },
+    "L": {
+      "code_decode_tok_s": 43.91074662753965,
+      "edit_decode_tok_s": 36.70430548886583,
+      "long_prefill_tok_s": 2014.8254867732226,
+      "long_decode_tok_s": 42.266675879867734
+    }
+  },
+  "request_count": 102,
+  "telemetry": {
+    "samples": 1693,
+    "peak_used_ram_gib": 93.90377807617188,
+    "pressure_states": [
+      "normal"
+    ],
+    "swap_min_gib": 7.301998138427734,
+    "swap_max_gib": 7.950370788574219,
+    "peak_cpu_percent": 85.33690571784973,
+    "gpu_peaks": {
+      "0": {
+        "device_utilization_percent": 100.0,
+        "in_use_system_memory_bytes": 16185032704,
+        "power_watts": 237.24,
+        "frequency_mhz": 2775.0,
+        "temperature_c": 63.0
+      },
+      "1": {
+        "device_utilization_percent": 100.0,
+        "in_use_system_memory_bytes": 16312958976,
+        "power_watts": 185.768,
+        "frequency_mhz": 2805.0,
+        "temperature_c": 63.0
+      }
+    },
+    "approximate_decode_intervals": {
+      "C-gate-original/code": {
+        "samples": 5,
+        "device_utilization_mean_percent": {
+          "0": 3.2,
+          "1": 82.0
+        },
+        "cpu_mean_percent": 48.01410675048828,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1062.0463134765625,
+        "process_rss_peak_bytes": 78558969856,
+        "process_gpu_mean_percent": 100.6,
+        "process_vram_peak_bytes": 29039263744,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "C-gate-patched/code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 6.5,
+          "1": 93.0
+        },
+        "cpu_mean_percent": 47.882282733917236,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 973.7680867513021,
+        "process_rss_peak_bytes": 78559395840,
+        "process_gpu_mean_percent": 95.33333333333333,
+        "process_vram_peak_bytes": 29039263744,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "P-gate-original/code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 2.8333333333333335,
+          "1": 99.33333333333333
+        },
+        "cpu_mean_percent": 49.097428719202675,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1098.4453735351562,
+        "process_rss_peak_bytes": 80179765248,
+        "process_gpu_mean_percent": 101.33333333333333,
+        "process_vram_peak_bytes": 29483859968,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "P-gate-patched/code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 2.6666666666666665,
+          "1": 97.83333333333333
+        },
+        "cpu_mean_percent": 57.2186549504598,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1099.9862263997395,
+        "process_rss_peak_bytes": 80177909760,
+        "process_gpu_mean_percent": 101.33333333333333,
+        "process_vram_peak_bytes": 29483859968,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "C-base/code": {
+        "samples": 16,
+        "device_utilization_mean_percent": {
+          "0": 19.9375,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 65.3560183942318,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1041.2556686401367,
+        "process_rss_peak_bytes": 78591254528,
+        "process_gpu_mean_percent": 120.5,
+        "process_vram_peak_bytes": 29091692544,
+        "openroad_cpu_mean_percent": 218.14196825027466,
+        "openroad_cpu_peak_percent": 504.4410171508789
+      },
+      "C-base/edit": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 13.428571428571429,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 82.5345686503819,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 976.8161185128348,
+        "process_rss_peak_bytes": 78884212736,
+        "process_gpu_mean_percent": 112.0,
+        "process_vram_peak_bytes": 29202841600,
+        "openroad_cpu_mean_percent": 799.8609270368304,
+        "openroad_cpu_peak_percent": 808.0123291015625
+      },
+      "C-base/long-code": {
+        "samples": 4,
+        "device_utilization_mean_percent": {
+          "0": 20.5,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 80.67560195922852,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1080.9887084960938,
+        "process_rss_peak_bytes": 78908018688,
+        "process_gpu_mean_percent": 121.5,
+        "process_vram_peak_bytes": 29211230208,
+        "openroad_cpu_mean_percent": 800.3418502807617,
+        "openroad_cpu_peak_percent": 805.9768676757812
+      },
+      "P-base/code": {
+        "samples": 19,
+        "device_utilization_mean_percent": {
+          "0": 2.4210526315789473,
+          "1": 99.52631578947368
+        },
+        "cpu_mean_percent": 80.52119549952056,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1077.1767835115131,
+        "process_rss_peak_bytes": 80181760000,
+        "process_gpu_mean_percent": 101.26315789473684,
+        "process_vram_peak_bytes": 29483859968,
+        "openroad_cpu_mean_percent": 799.2663783023232,
+        "openroad_cpu_peak_percent": 821.8408813476562
+      },
+      "P-base/edit": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 1.5714285714285714,
+          "1": 99.71428571428571
+        },
+        "cpu_mean_percent": 76.44258482115609,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1053.4279261997767,
+        "process_rss_peak_bytes": 80459612160,
+        "process_gpu_mean_percent": 100.0,
+        "process_vram_peak_bytes": 29578231808,
+        "openroad_cpu_mean_percent": 683.6367754255023,
+        "openroad_cpu_peak_percent": 807.8579406738281
+      },
+      "P-base/long-code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 2.1666666666666665,
+          "1": 99.66666666666667
+        },
+        "cpu_mean_percent": 79.6652356783549,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1067.2903442382812,
+        "process_rss_peak_bytes": 80476262400,
+        "process_gpu_mean_percent": 101.33333333333333,
+        "process_vram_peak_bytes": 29578231808,
+        "openroad_cpu_mean_percent": 799.4801788330078,
+        "openroad_cpu_peak_percent": 807.8401794433594
+      },
+      "L-base/code": {
+        "samples": 18,
+        "device_utilization_mean_percent": {
+          "0": 46.166666666666664,
+          "1": 54.888888888888886
+        },
+        "cpu_mean_percent": 80.06131913926866,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1068.7183973524307,
+        "process_rss_peak_bytes": 81361702912,
+        "process_gpu_mean_percent": 99.33333333333333,
+        "process_vram_peak_bytes": 30029119488,
+        "openroad_cpu_mean_percent": 800.2423078748915,
+        "openroad_cpu_peak_percent": 809.2503051757812
+      },
+      "L-base/edit": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 43.42857142857143,
+          "1": 54.0
+        },
+        "cpu_mean_percent": 80.38583057267326,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1083.2935442243304,
+        "process_rss_peak_bytes": 81361702912,
+        "process_gpu_mean_percent": 99.42857142857143,
+        "process_vram_peak_bytes": 30054285312,
+        "openroad_cpu_mean_percent": 789.6690543038504,
+        "openroad_cpu_peak_percent": 831.012451171875
+      },
+      "L-base/long-code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 45.166666666666664,
+          "1": 58.166666666666664
+        },
+        "cpu_mean_percent": 80.99478681882222,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1081.8053792317708,
+        "process_rss_peak_bytes": 81393061888,
+        "process_gpu_mean_percent": 99.5,
+        "process_vram_peak_bytes": 30064771072,
+        "openroad_cpu_mean_percent": 798.3670654296875,
+        "openroad_cpu_peak_percent": 814.02978515625
+      },
+      "C-chunk16K/code": {
+        "samples": 14,
+        "device_utilization_mean_percent": {
+          "0": 19.0,
+          "1": 99.42857142857143
+        },
+        "cpu_mean_percent": 75.44342875480652,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1089.4746878487724,
+        "process_rss_peak_bytes": 78985490432,
+        "process_gpu_mean_percent": 120.42857142857143,
+        "process_vram_peak_bytes": 29091692544,
+        "openroad_cpu_mean_percent": 665.9185153416225,
+        "openroad_cpu_peak_percent": 808.9585571289062
+      },
+      "C-chunk16K/edit": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 13.333333333333334,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 69.59620912869771,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1067.9611307779949,
+        "process_rss_peak_bytes": 79143788544,
+        "process_gpu_mean_percent": 113.66666666666667,
+        "process_vram_peak_bytes": 29202841600,
+        "openroad_cpu_mean_percent": 540.8598594665527,
+        "openroad_cpu_peak_percent": 646.0822448730469
+      },
+      "C-chunk16K/long-code": {
+        "samples": 4,
+        "device_utilization_mean_percent": {
+          "0": 22.5,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 61.60040199756622,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1109.0869750976562,
+        "process_rss_peak_bytes": 79214731264,
+        "process_gpu_mean_percent": 123.0,
+        "process_vram_peak_bytes": 29211230208,
+        "openroad_cpu_mean_percent": 319.22995376586914,
+        "openroad_cpu_peak_percent": 373.1878433227539
+      },
+      "C-single/code": {
+        "samples": 25,
+        "device_utilization_mean_percent": {
+          "0": 39.64,
+          "1": 99.92
+        },
+        "cpu_mean_percent": 63.64875674247742,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1055.5922534179688,
+        "process_rss_peak_bytes": 78548303872,
+        "process_gpu_mean_percent": 137.76,
+        "process_vram_peak_bytes": 29066526720,
+        "openroad_cpu_mean_percent": 332.4361752319336,
+        "openroad_cpu_peak_percent": 747.9069519042969
+      },
+      "C-single/edit": {
+        "samples": 12,
+        "device_utilization_mean_percent": {
+          "0": 30.416666666666668,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 71.8714952468872,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 937.4697774251302,
+        "process_rss_peak_bytes": 78858858496,
+        "process_gpu_mean_percent": 126.58333333333333,
+        "process_vram_peak_bytes": 29179772928,
+        "openroad_cpu_mean_percent": 732.584805170695,
+        "openroad_cpu_peak_percent": 827.1444702148438
+      },
+      "C-single/long-code": {
+        "samples": 11,
+        "device_utilization_mean_percent": {
+          "0": 26.545454545454547,
+          "1": 91.0
+        },
+        "cpu_mean_percent": 70.35239176316695,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 833.9272488680753,
+        "process_rss_peak_bytes": 78865207296,
+        "process_gpu_mean_percent": 122.18181818181819,
+        "process_vram_peak_bytes": 29188161536,
+        "openroad_cpu_mean_percent": 798.2276777787642,
+        "openroad_cpu_peak_percent": 820.8804321289062
+      },
+      "P-single/code": {
+        "samples": 32,
+        "device_utilization_mean_percent": {
+          "0": 2.21875,
+          "1": 99.65625
+        },
+        "cpu_mean_percent": 63.55431154370308,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1011.0764751434326,
+        "process_rss_peak_bytes": 80125059072,
+        "process_gpu_mean_percent": 101.0625,
+        "process_vram_peak_bytes": 29460791296,
+        "openroad_cpu_mean_percent": 448.5046555995941,
+        "openroad_cpu_peak_percent": 808.9471740722656
+      },
+      "P-single/edit": {
+        "samples": 10,
+        "device_utilization_mean_percent": {
+          "0": 1.6,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 48.02217483520508,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1099.3195068359375,
+        "process_rss_peak_bytes": 80403304448,
+        "process_gpu_mean_percent": 100.5,
+        "process_vram_peak_bytes": 29555163136,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "P-single/long-code": {
+        "samples": 9,
+        "device_utilization_mean_percent": {
+          "0": 2.3333333333333335,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 47.98765910996331,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1099.0086263020833,
+        "process_rss_peak_bytes": 80419840000,
+        "process_gpu_mean_percent": 101.55555555555556,
+        "process_vram_peak_bytes": 29555163136,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "L-single/code": {
+        "samples": 29,
+        "device_utilization_mean_percent": {
+          "0": 47.172413793103445,
+          "1": 53.206896551724135
+        },
+        "cpu_mean_percent": 48.17613219392711,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1096.9105098329742,
+        "process_rss_peak_bytes": 81037434880,
+        "process_gpu_mean_percent": 99.58620689655173,
+        "process_vram_peak_bytes": 29924261888,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "L-single/edit": {
+        "samples": 11,
+        "device_utilization_mean_percent": {
+          "0": 43.0,
+          "1": 55.63636363636363
+        },
+        "cpu_mean_percent": 59.44361199032176,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1060.0147205699575,
+        "process_rss_peak_bytes": 81315336192,
+        "process_gpu_mean_percent": 100.0,
+        "process_vram_peak_bytes": 30027022336,
+        "openroad_cpu_mean_percent": 300.7362074418501,
+        "openroad_cpu_peak_percent": 772.3404235839844
+      },
+      "L-single/long-code": {
+        "samples": 12,
+        "device_utilization_mean_percent": {
+          "0": 46.583333333333336,
+          "1": 54.416666666666664
+        },
+        "cpu_mean_percent": 75.62679002682368,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 965.7778371175131,
+        "process_rss_peak_bytes": 81347796992,
+        "process_gpu_mean_percent": 100.83333333333333,
+        "process_vram_peak_bytes": 30037508096,
+        "openroad_cpu_mean_percent": 784.2317708333334,
+        "openroad_cpu_peak_percent": 828.7317810058594
+      },
+      "C-lookup/code": {
+        "samples": 19,
+        "device_utilization_mean_percent": {
+          "0": 22.526315789473685,
+          "1": 95.21052631578948
+        },
+        "cpu_mean_percent": 68.68729999190883,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 995.4056010999178,
+        "process_rss_peak_bytes": 78887837696,
+        "process_gpu_mean_percent": 115.47368421052632,
+        "process_vram_peak_bytes": 29196550144,
+        "openroad_cpu_mean_percent": 586.4534249556692,
+        "openroad_cpu_peak_percent": 794.43798828125
+      },
+      "C-lookup/edit": {
+        "samples": 5,
+        "device_utilization_mean_percent": {
+          "0": 11.0,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 52.45340943336487,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1008.4646606445312,
+        "process_rss_peak_bytes": 78888034304,
+        "process_gpu_mean_percent": 108.4,
+        "process_vram_peak_bytes": 29202841600,
+        "openroad_cpu_mean_percent": 190.66661987304687,
+        "openroad_cpu_peak_percent": 251.5163116455078
+      },
+      "C-lookup/long-code": {
+        "samples": 4,
+        "device_utilization_mean_percent": {
+          "0": 23.75,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 47.91940152645111,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1098.6240234375,
+        "process_rss_peak_bytes": 78912061440,
+        "process_gpu_mean_percent": 123.75,
+        "process_vram_peak_bytes": 29211230208,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "P-lookup/code": {
+        "samples": 17,
+        "device_utilization_mean_percent": {
+          "0": 2.4705882352941178,
+          "1": 99.88235294117646
+        },
+        "cpu_mean_percent": 56.23618048780105,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1099.9240291819854,
+        "process_rss_peak_bytes": 80179933184,
+        "process_gpu_mean_percent": 101.58823529411765,
+        "process_vram_peak_bytes": 29483859968,
+        "openroad_cpu_mean_percent": 0,
+        "openroad_cpu_peak_percent": 0
+      },
+      "P-lookup/edit": {
+        "samples": 5,
+        "device_utilization_mean_percent": {
+          "0": 1.0,
+          "1": 98.0
+        },
+        "cpu_mean_percent": 55.307512283325195,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1071.083642578125,
+        "process_rss_peak_bytes": 80494731264,
+        "process_gpu_mean_percent": 100.0,
+        "process_vram_peak_bytes": 29599203328,
+        "openroad_cpu_mean_percent": 60.07583923339844,
+        "openroad_cpu_peak_percent": 100.34842681884766
+      },
+      "P-lookup/long-code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 2.1666666666666665,
+          "1": 85.66666666666667
+        },
+        "cpu_mean_percent": 60.637531677881874,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1047.4468180338542,
+        "process_rss_peak_bytes": 80512446464,
+        "process_gpu_mean_percent": 99.33333333333333,
+        "process_vram_peak_bytes": 29599203328,
+        "openroad_cpu_mean_percent": 235.81403223673502,
+        "openroad_cpu_peak_percent": 623.3766174316406
+      },
+      "L-lookup/code": {
+        "samples": 18,
+        "device_utilization_mean_percent": {
+          "0": 45.666666666666664,
+          "1": 55.27777777777778
+        },
+        "cpu_mean_percent": 70.50432132350073,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1087.2210489908855,
+        "process_rss_peak_bytes": 81085026304,
+        "process_gpu_mean_percent": 99.05555555555556,
+        "process_vram_peak_bytes": 29951524864,
+        "openroad_cpu_mean_percent": 464.1284107632107,
+        "openroad_cpu_peak_percent": 803.6824035644531
+      },
+      "L-lookup/edit": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 52.857142857142854,
+          "1": 65.85714285714286
+        },
+        "cpu_mean_percent": 71.68001788003104,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 944.1751360212054,
+        "process_rss_peak_bytes": 81417318400,
+        "process_gpu_mean_percent": 98.0,
+        "process_vram_peak_bytes": 30079451136,
+        "openroad_cpu_mean_percent": 682.4119916643415,
+        "openroad_cpu_peak_percent": 805.9491271972656
+      },
+      "L-lookup/long-code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 49.0,
+          "1": 55.833333333333336
+        },
+        "cpu_mean_percent": 80.74961602687836,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1090.2511800130208,
+        "process_rss_peak_bytes": 81431179264,
+        "process_gpu_mean_percent": 101.0,
+        "process_vram_peak_bytes": 30087839744,
+        "openroad_cpu_mean_percent": 795.0837097167969,
+        "openroad_cpu_peak_percent": 802.1365661621094
+      },
+      "C-adapt/code": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 47.57142857142857,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 73.90742216791425,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1083.5214320591517,
+        "process_rss_peak_bytes": 78882942976,
+        "process_gpu_mean_percent": 142.14285714285714,
+        "process_vram_peak_bytes": 29171384320,
+        "openroad_cpu_mean_percent": 605.9344569614956,
+        "openroad_cpu_peak_percent": 802.7118530273438
+      },
+      "C-adapt/edit": {
+        "samples": 5,
+        "device_utilization_mean_percent": {
+          "0": 40.2,
+          "1": 76.4
+        },
+        "cpu_mean_percent": 60.44596314430237,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 852.1869506835938,
+        "process_rss_peak_bytes": 78905323520,
+        "process_gpu_mean_percent": 124.4,
+        "process_vram_peak_bytes": 29204938752,
+        "openroad_cpu_mean_percent": 541.8813690185547,
+        "openroad_cpu_peak_percent": 558.6049957275391
+      },
+      "C-adapt/long-code": {
+        "samples": 2,
+        "device_utilization_mean_percent": {
+          "0": 51.0,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 70.04078030586243,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1086.2183227539062,
+        "process_rss_peak_bytes": 78942564352,
+        "process_gpu_mean_percent": 143.5,
+        "process_vram_peak_bytes": 29204938752,
+        "openroad_cpu_mean_percent": 544.2746810913086,
+        "openroad_cpu_peak_percent": 587.5829620361328
+      },
+      "P-adapt/code": {
+        "samples": 13,
+        "device_utilization_mean_percent": {
+          "0": 5.923076923076923,
+          "1": 93.3076923076923
+        },
+        "cpu_mean_percent": 68.80255891726567,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1063.513451209435,
+        "process_rss_peak_bytes": 80464531456,
+        "process_gpu_mean_percent": 103.76923076923077,
+        "process_vram_peak_bytes": 29561454592,
+        "openroad_cpu_mean_percent": 530.9099678626427,
+        "openroad_cpu_peak_percent": 581.9319610595703
+      },
+      "P-adapt/edit": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 3.1666666666666665,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 64.53504959742229,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 939.2796427408854,
+        "process_rss_peak_bytes": 80481808384,
+        "process_gpu_mean_percent": 102.16666666666667,
+        "process_vram_peak_bytes": 29578231808,
+        "openroad_cpu_mean_percent": 529.1149342854818,
+        "openroad_cpu_peak_percent": 575.0679779052734
+      },
+      "P-adapt/long-code": {
+        "samples": 4,
+        "device_utilization_mean_percent": {
+          "0": 5.75,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 60.86878180503845,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1018.9356231689453,
+        "process_rss_peak_bytes": 80482004992,
+        "process_gpu_mean_percent": 106.0,
+        "process_vram_peak_bytes": 29578231808,
+        "openroad_cpu_mean_percent": 400.59647369384766,
+        "openroad_cpu_peak_percent": 410.09710693359375
+      },
+      "L-adapt/code": {
+        "samples": 10,
+        "device_utilization_mean_percent": {
+          "0": 35.7,
+          "1": 65.7
+        },
+        "cpu_mean_percent": 60.54137051105499,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1099.5242553710937,
+        "process_rss_peak_bytes": 81087467520,
+        "process_gpu_mean_percent": 105.1,
+        "process_vram_peak_bytes": 29951524864,
+        "openroad_cpu_mean_percent": 306.23085632324216,
+        "openroad_cpu_peak_percent": 410.8695983886719
+      },
+      "L-adapt/edit": {
+        "samples": 5,
+        "device_utilization_mean_percent": {
+          "0": 33.6,
+          "1": 76.0
+        },
+        "cpu_mean_percent": 65.94106435775757,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 987.9567749023438,
+        "process_rss_peak_bytes": 81381216256,
+        "process_gpu_mean_percent": 105.0,
+        "process_vram_peak_bytes": 30054285312,
+        "openroad_cpu_mean_percent": 400.51817016601564,
+        "openroad_cpu_peak_percent": 415.62127685546875
+      },
+      "L-adapt/long-code": {
+        "samples": 4,
+        "device_utilization_mean_percent": {
+          "0": 45.25,
+          "1": 66.0
+        },
+        "cpu_mean_percent": 67.77380555868149,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1078.2008972167969,
+        "process_rss_peak_bytes": 81395175424,
+        "process_gpu_mean_percent": 108.5,
+        "process_vram_peak_bytes": 30064771072,
+        "openroad_cpu_mean_percent": 399.41609954833984,
+        "openroad_cpu_peak_percent": 409.3023376464844
+      },
+      "C-prefetch0/code": {
+        "samples": 16,
+        "device_utilization_mean_percent": {
+          "0": 3.4375,
+          "1": 94.5
+        },
+        "cpu_mean_percent": 75.16187317669392,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1067.2432556152344,
+        "process_rss_peak_bytes": 78881525760,
+        "process_gpu_mean_percent": 101.6875,
+        "process_vram_peak_bytes": 29188161536,
+        "openroad_cpu_mean_percent": 678.4431447982788,
+        "openroad_cpu_peak_percent": 785.2364501953125
+      },
+      "C-prefetch0/edit": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 1.5,
+          "1": 99.83333333333333
+        },
+        "cpu_mean_percent": 71.33483787377675,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1093.0258382161458,
+        "process_rss_peak_bytes": 78881722368,
+        "process_gpu_mean_percent": 100.83333333333333,
+        "process_vram_peak_bytes": 29194452992,
+        "openroad_cpu_mean_percent": 558.1559842427572,
+        "openroad_cpu_peak_percent": 666.3716430664062
+      },
+      "C-prefetch0/long-code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 13.0,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 67.20144947369893,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 982.9500935872396,
+        "process_rss_peak_bytes": 78905438208,
+        "process_gpu_mean_percent": 107.66666666666667,
+        "process_vram_peak_bytes": 29202841600,
+        "openroad_cpu_mean_percent": 568.7719065348307,
+        "openroad_cpu_peak_percent": 690.5487670898438
+      },
+      "C-prompt-main/code": {
+        "samples": 13,
+        "device_utilization_mean_percent": {
+          "0": 21.692307692307693,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 70.7137080339285,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1101.9041184645432,
+        "process_rss_peak_bytes": 78506147840,
+        "process_gpu_mean_percent": 121.76923076923077,
+        "process_vram_peak_bytes": 29056040960,
+        "openroad_cpu_mean_percent": 442.4776846078726,
+        "openroad_cpu_peak_percent": 649.3466796875
+      },
+      "C-prompt-main/edit": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 11.857142857142858,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 64.54108783176967,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 976.8084542410714,
+        "process_rss_peak_bytes": 78811652096,
+        "process_gpu_mean_percent": 112.14285714285714,
+        "process_vram_peak_bytes": 29112664064,
+        "openroad_cpu_mean_percent": 399.34411185128346,
+        "openroad_cpu_peak_percent": 401.84759521484375
+      },
+      "C-prompt-main/long-code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 20.166666666666668,
+          "1": 98.66666666666667
+        },
+        "cpu_mean_percent": 76.2144535779953,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1046.4361368815105,
+        "process_rss_peak_bytes": 78812934144,
+        "process_gpu_mean_percent": 117.33333333333333,
+        "process_vram_peak_bytes": 29112664064,
+        "openroad_cpu_mean_percent": 728.1373850504557,
+        "openroad_cpu_peak_percent": 794.1107788085938
+      },
+      "P-hot0/code": {
+        "samples": 23,
+        "device_utilization_mean_percent": {
+          "0": 2.260869565217391,
+          "1": 99.78260869565217
+        },
+        "cpu_mean_percent": 75.23431441058283,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 956.6381782863451,
+        "process_rss_peak_bytes": 80177991680,
+        "process_gpu_mean_percent": 101.0,
+        "process_vram_peak_bytes": 29488054272,
+        "openroad_cpu_mean_percent": 792.3507385253906,
+        "openroad_cpu_peak_percent": 805.0393676757812
+      },
+      "P-hot0/edit": {
+        "samples": 9,
+        "device_utilization_mean_percent": {
+          "0": 1.2222222222222223,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 72.37903674443562,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 940.7278917100695,
+        "process_rss_peak_bytes": 80455843840,
+        "process_gpu_mean_percent": 99.88888888888889,
+        "process_vram_peak_bytes": 29582426112,
+        "openroad_cpu_mean_percent": 672.5917222764757,
+        "openroad_cpu_peak_percent": 801.5426330566406
+      },
+      "P-hot0/long-code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 2.8333333333333335,
+          "1": 83.33333333333333
+        },
+        "cpu_mean_percent": 64.82234299182892,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1067.6541544596355,
+        "process_rss_peak_bytes": 80472379392,
+        "process_gpu_mean_percent": 98.83333333333333,
+        "process_vram_peak_bytes": 29582426112,
+        "openroad_cpu_mean_percent": 408.57718022664386,
+        "openroad_cpu_peak_percent": 608.1490173339844
+      },
+      "L-base-repeat/code": {
+        "samples": 19,
+        "device_utilization_mean_percent": {
+          "0": 41.73684210526316,
+          "1": 53.526315789473685
+        },
+        "cpu_mean_percent": 69.73683520367271,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1080.4537449886925,
+        "process_rss_peak_bytes": 81358159872,
+        "process_gpu_mean_percent": 99.0,
+        "process_vram_peak_bytes": 30033313792,
+        "openroad_cpu_mean_percent": 534.7946805452045,
+        "openroad_cpu_peak_percent": 620.7214202880859
+      },
+      "L-base-repeat/edit": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 43.714285714285715,
+          "1": 60.857142857142854
+        },
+        "cpu_mean_percent": 71.61605869020734,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1081.3532540457588,
+        "process_rss_peak_bytes": 81374105600,
+        "process_gpu_mean_percent": 99.57142857142857,
+        "process_vram_peak_bytes": 30054285312,
+        "openroad_cpu_mean_percent": 545.5016141619001,
+        "openroad_cpu_peak_percent": 612.4137878417969
+      },
+      "L-base-repeat/long-code": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 38.857142857142854,
+          "1": 42.714285714285715
+        },
+        "cpu_mean_percent": 68.08512551443917,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1037.2274344308037,
+        "process_rss_peak_bytes": 81389637632,
+        "process_gpu_mean_percent": 100.28571428571429,
+        "process_vram_peak_bytes": 30064771072,
+        "openroad_cpu_mean_percent": 542.5827723911831,
+        "openroad_cpu_peak_percent": 609.3312683105469
+      },
+      "P-base-repeat/code": {
+        "samples": 19,
+        "device_utilization_mean_percent": {
+          "0": 2.6315789473684212,
+          "1": 99.78947368421052
+        },
+        "cpu_mean_percent": 61.5296765377647,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1096.1343094675165,
+        "process_rss_peak_bytes": 80178540544,
+        "process_gpu_mean_percent": 101.52631578947368,
+        "process_vram_peak_bytes": 29483859968,
+        "openroad_cpu_mean_percent": 312.25524581106083,
+        "openroad_cpu_peak_percent": 400.921630859375
+      },
+      "P-base-repeat/edit": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 1.2857142857142858,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 65.22418430873326,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1098.8332345145088,
+        "process_rss_peak_bytes": 80456441856,
+        "process_gpu_mean_percent": 100.14285714285714,
+        "process_vram_peak_bytes": 29578231808,
+        "openroad_cpu_mean_percent": 399.0394069126674,
+        "openroad_cpu_peak_percent": 400.0
+      },
+      "P-base-repeat/long-code": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 2.142857142857143,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 59.916398354939055,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 983.88816179548,
+        "process_rss_peak_bytes": 80472387584,
+        "process_gpu_mean_percent": 100.14285714285714,
+        "process_vram_peak_bytes": 29578231808,
+        "openroad_cpu_mean_percent": 398.9830583844866,
+        "openroad_cpu_peak_percent": 401.2326354980469
+      },
+      "C-base-repeat/code": {
+        "samples": 14,
+        "device_utilization_mean_percent": {
+          "0": 20.0,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 69.16233258587974,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1100.026332310268,
+        "process_rss_peak_bytes": 78593761280,
+        "process_gpu_mean_percent": 120.85714285714286,
+        "process_vram_peak_bytes": 29091692544,
+        "openroad_cpu_mean_percent": 399.48211669921875,
+        "openroad_cpu_peak_percent": 401.85614013671875
+      },
+      "C-base-repeat/edit": {
+        "samples": 7,
+        "device_utilization_mean_percent": {
+          "0": 14.142857142857142,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 65.52505918911525,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1027.6208321707588,
+        "process_rss_peak_bytes": 78904565760,
+        "process_gpu_mean_percent": 113.14285714285714,
+        "process_vram_peak_bytes": 29202841600,
+        "openroad_cpu_mean_percent": 420.9953929356166,
+        "openroad_cpu_peak_percent": 547.7862548828125
+      },
+      "C-base-repeat/long-code": {
+        "samples": 5,
+        "device_utilization_mean_percent": {
+          "0": 22.6,
+          "1": 100.0
+        },
+        "cpu_mean_percent": 78.19600105285645,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1061.3674560546874,
+        "process_rss_peak_bytes": 78910914560,
+        "process_gpu_mean_percent": 121.8,
+        "process_vram_peak_bytes": 29211230208,
+        "openroad_cpu_mean_percent": 755.3701354980469,
+        "openroad_cpu_peak_percent": 781.5011596679688
+      },
+      "C-profile/code": {
+        "samples": 5,
+        "device_utilization_mean_percent": {
+          "0": 27.0,
+          "1": 79.0
+        },
+        "cpu_mean_percent": 62.09336280822754,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1035.5294067382813,
+        "process_rss_peak_bytes": 78622978048,
+        "process_gpu_mean_percent": 113.8,
+        "process_vram_peak_bytes": 29106372608,
+        "openroad_cpu_mean_percent": 334.14319610595703,
+        "openroad_cpu_peak_percent": 447.256103515625
+      },
+      "P-profile/code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 2.1666666666666665,
+          "1": 99.0
+        },
+        "cpu_mean_percent": 80.13598521550496,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1099.1727294921875,
+        "process_rss_peak_bytes": 80232542208,
+        "process_gpu_mean_percent": 100.33333333333333,
+        "process_vram_peak_bytes": 29500637184,
+        "openroad_cpu_mean_percent": 772.1570434570312,
+        "openroad_cpu_peak_percent": 802.476806640625
+      },
+      "L-profile/code": {
+        "samples": 6,
+        "device_utilization_mean_percent": {
+          "0": 41.833333333333336,
+          "1": 52.666666666666664
+        },
+        "cpu_mean_percent": 81.97436134020488,
+        "per_core_peak_percent": 100.0,
+        "process_cpu_mean_percent": 1091.567891438802,
+        "process_rss_peak_bytes": 81114931200,
+        "process_gpu_mean_percent": 98.83333333333333,
+        "process_vram_peak_bytes": 29955719168,
+        "openroad_cpu_mean_percent": 798.3621114095052,
+        "openroad_cpu_peak_percent": 799.3873901367188
+      }
+    }
+  },
+  "matched_capacity_checks_passed": true
+}

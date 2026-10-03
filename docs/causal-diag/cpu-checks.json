@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "engine": "strata-causal-upstream",
+      "case": "spec-one",
+      "exit_code": 2,
+      "diagnostic": "strata generate: diagnostics require --spec >= 2"
+    },
+    {
+      "engine": "strata-causal-upstream",
+      "case": "empty-follow",
+      "exit_code": 2,
+      "diagnostic": "strata generate: cannot read nonempty --spec-follow /tmp/tmplj19hvro"
+    },
+    {
+      "engine": "strata-causal-custom",
+      "case": "spec-one",
+      "exit_code": 2,
+      "diagnostic": "strata generate: invalid diagnostic window capacity or --spec < 2"
+    },
+    {
+      "engine": "strata-causal-custom",
+      "case": "empty-follow",
+      "exit_code": 2,
+      "diagnostic": "strata generate: cannot read nonempty --spec-follow /tmp/tmplj19hvro"
+    }
+  ]
+}

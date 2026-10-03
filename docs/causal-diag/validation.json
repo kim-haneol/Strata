@@ -1,0 +1,35 @@
+{
+  "phase1_lifetimes": 26,
+  "phase1_requests": 102,
+  "phase2_lifetimes": 7,
+  "phase2_requests": 31,
+  "ordinary_generation_gates": 5,
+  "fixed_output_requests": 128,
+  "all_child_exit_codes": 0,
+  "both_manifest_hash_sets_rechecked": true,
+  "limits": [
+    "Variable OpenROAD CPU concurrency was observed.",
+    "Teacher-forced throughput is not code correctness.",
+    "ASTOP unavailable exit status remains unknown; child exit records prove success."
+  ],
+  "closeout_observation": {
+    "timestamp_utc": "2026-10-03T10:48:36Z",
+    "nvidia_gpu_utilization_percent": [
+      0.0,
+      0.0
+    ],
+    "nvidia_gpu_in_use_memory_bytes": [
+      1114112,
+      1114112
+    ],
+    "own_observation_jobs_remaining": 0,
+    "ports_free": [
+      22868,
+      22938
+    ]
+  },
+  "original_worktree_commits": {
+    "upstream_ab": "3713abc",
+    "custom_5080": "7f2ad9d"
+  }
+}
