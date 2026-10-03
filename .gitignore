@@ -9,6 +9,7 @@ bench/micro/*.bin
 bench/micro/*.dll
 bench/micro/*.txt
 *.log
+/local-runs/
 build*/
 pack/
 logs/
@@ -48,4 +49,3 @@ build-vision.bat
 /dist/
 *.done
 /third_party/*.zip
-
