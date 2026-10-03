@@ -542,8 +542,11 @@ void qsa_block_scores(const float* pooled, const float* dead, const float* q_idx
 void qsa_block_topk(const float* scores, const int32_t* steps, int64_t nq, int64_t max_blocks, int64_t cap,
                     const QsaShapes& s, int32_t* ids, void* stream) {
     if (nq <= 0) return;
+    // Session arenas reserve two sentinel/tail rows beyond the complete key blocks.  The kernel bounds its
+    // register/shared tables by `n_bid`, so those stride-only rows must not make the exact 262144-cell geometry
+    // (65536 real blocks + 2 reserved rows) fail the host-side check.
     if (s.idx_block != R || cap < qsa_selection_width(kTopkMaxCells, s) ||
-        max_blocks > (int64_t) TOPK_MAX_ROWS * TOPK_T) {
+        max_blocks < 2 || max_blocks - 2 > (int64_t) TOPK_MAX_ROWS * TOPK_T) {
         std::fprintf(stderr, "qsa_block_topk: unsupported geometry or cap\n");
         std::exit(1);
     }

@@ -1,7 +1,8 @@
 // src/kernels/qsa_select_parity.cu - the QSA block scores and top-k (qsa_select.cu) against the kernels they
 // replaced, kept here as the reference: scores bitwise, selections identical, for decode windows (1-8 queries,
 // the captured graph's fixed grid) and the prompt path's batches (up to 256 queries), from the identity case to 200K
-// cells, with exact score ties, zero scores and every tail length.  --bench times both.
+// cells through the exact 262144-cell boundary, with exact score ties, zero scores and every tail length.
+// --bench times both.
 #include "strata/kernels/qsa.hpp"
 #include "strata/kernels/qsa_select.hpp"
 
@@ -190,7 +191,7 @@ template <typename T> T* dev(size_t n) {
     return p;
 }
 
-constexpr int64_t kMaxCells = 200192;   // the configs' --max-context
+constexpr int64_t kMaxCells = 262144;   // the model's maximum context and the top-k kernel's 65536-block boundary
 constexpr int QD = 512;                 // a query's floats: 4 heads x 128
 
 struct Data {
@@ -291,7 +292,8 @@ int compare(Data& d, int64_t pos0, int64_t nq, int64_t grid_blocks, cudaStream_t
 int selftest(Data& d, cudaStream_t s) {
     int bad = 0, cases = 0;
     // decode windows: the captured graph's fixed grid, 1-8 queries at consecutive positions
-    const int64_t pos_dec[] = {0, 3, 2046, 2047, 2050, 2051, 2052, 8190, 16381, 32766, 65533, 131070, 200180};
+    const int64_t pos_dec[] = {0, 3, 2046, 2047, 2050, 2051, 2052, 8190, 16381, 32766, 65533,
+                               131070, 200180, 262136};
     for (int64_t p : pos_dec)
         for (int64_t nq : {1, 2, 3, 4, 8}) {
             if (p + nq > kMaxCells) continue;
@@ -302,7 +304,7 @@ int selftest(Data& d, cudaStream_t s) {
     // covering the batch's last block
     const int64_t pos_pre[][2] = {{0, 256},          {1900, 256},        {16384, 256}, {65536 - 100, 256},
                                   {131072 - 256, 256}, {199936 - 1, 256}, {5000, 12},   {70001, 37},
-                                  {131072 - 100, 100}, {199936 - 255, 255}, {9000, 11}};
+                                  {131072 - 100, 100}, {199936 - 255, 255}, {262144 - 256, 256}, {9000, 11}};
     for (const auto& pq : pos_pre) {
         const int64_t p = pq[0], nq = pq[1], last = p + nq - 1;
         bad += compare(d, p, nq, (last + 1) / 4 + 1, s, "prompt");
