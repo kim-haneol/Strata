@@ -1,0 +1,112 @@
+{
+  "date": "2026-09-30",
+  "machine": "Ryzen 9 9900X, 2x RTX 5080 16 GB; physical GPU 0 PCIe 5.0 x8, GPU 1 x4",
+  "summary": "Same engine binary and 64K INT8 K/V config with the main/expert-tier GPU roles reversed. One API run per order.",
+  "config_differences": [
+    "gpu order [0, 1] vs [1, 0] (main = first entry)",
+    "--stats on in gpu0_x8_main only",
+    "engine log path"
+  ],
+  "limits": [
+    "one run per order",
+    "decode is free generation; output texts may differ (see output_text_sha256)",
+    "the swap changes the PCIe link and the physical card together",
+    "raw logs and telemetry are not published"
+  ],
+  "runs": {
+    "gpu0_x8_main": {
+      "run": "q4-64k-20260930",
+      "change_recorded_before_run": "64K context and 1024 MiB second-GPU reserve; stats enabled; K/V INT8 and images off unchanged",
+      "binary_sha256": "35e6766ba6264694011a25fd5aeb37cfde42255d61467937199742e23a5e5f69",
+      "config_sha256": "024e2f32c5acaa0060db9f7c73f110887d76f823dd5014d7a3bc5a7d5e6ef398",
+      "measurements": {
+        "english_4096": {
+          "prompt_tokens": 4097,
+          "completion_tokens": 256,
+          "prompt_tok_s": 972.2,
+          "decode_tok_s": 56.1,
+          "draft_n": 227,
+          "draft_n_accepted": 131
+        },
+        "retrieve_32768": {
+          "prompt_tokens": 32772,
+          "completion_tokens": 51,
+          "prompt_tok_s": 2703.7,
+          "decode_tok_s": 54.2,
+          "draft_n": 40,
+          "draft_n_accepted": 37
+        },
+        "short_code_300": {
+          "completion_tokens": 300,
+          "prompt_tok_s": 48.7,
+          "decode_tok_s": 69.4,
+          "draft_n": 268,
+          "draft_n_accepted": 205,
+          "output_text_sha256": "5a67c5e6779b8b2f15ec40f92f9db8f6ad691cbda0ca94dd9c4af5b6e9947251"
+        }
+      },
+      "arithmetic_check": {
+        "multiply": 391,
+        "sum": 579,
+        "sorted": [
+          1,
+          2,
+          3
+        ]
+      },
+      "source_file_sha256": {
+        "plan.json": "579faad814ece1c2b7bb5ae32a5b0d64fd7f7b92b42e938d801504940e82e6b3",
+        "checks.json": "71393b7982c1a4c9e041e9f05b8944da6256371758cae55c9a4dfa5ce2181e19",
+        "short-code-measurement.json": "38a7e0df055265ca404b7462d2b49270bbeece4b7f1c60b0060e5a390e159d45",
+        "short-code.json": "60bac3fce1d8e0363f87f478042824c3a278e29fa28d62300f544f789bfc9fe9"
+      }
+    },
+    "gpu1_x4_main": {
+      "run": "q4-reversed-20260930",
+      "change_recorded_before_run": "same 64K INT8 config; CUDA visibility reversed so physical GPU1 x4 is main and GPU0 x8 is expert tier",
+      "binary_sha256": "35e6766ba6264694011a25fd5aeb37cfde42255d61467937199742e23a5e5f69",
+      "config_sha256": "2d7030158e90b4f7cfb0b31216a755c74a6e1dc2576063b4802e52bd51b3728c",
+      "measurements": {
+        "english_4096": {
+          "prompt_tokens": 4097,
+          "completion_tokens": 256,
+          "prompt_tok_s": 1539.7,
+          "decode_tok_s": 72.3,
+          "draft_n": 229,
+          "draft_n_accepted": 130
+        },
+        "retrieve_32768": {
+          "prompt_tokens": 32772,
+          "completion_tokens": 51,
+          "prompt_tok_s": 3614.3,
+          "decode_tok_s": 55.0,
+          "draft_n": 40,
+          "draft_n_accepted": 37
+        },
+        "short_code_300": {
+          "completion_tokens": 300,
+          "prompt_tok_s": 71.7,
+          "decode_tok_s": 82.1,
+          "draft_n": 250,
+          "draft_n_accepted": 214,
+          "output_text_sha256": "fe98a7c88bf9bdb67242af4b5f6d4a5449fbd260b2e52c44de5bc49e382a4516"
+        }
+      },
+      "arithmetic_check": {
+        "multiply": 391,
+        "sum": 579,
+        "sorted": [
+          1,
+          2,
+          3
+        ]
+      },
+      "source_file_sha256": {
+        "plan.json": "f94f51d9c897d929235682321b7074e828fdda09904a9fef40dc47712e61cd58",
+        "checks.json": "4831ecb7fd5799092317eb59e7d6e33ab8be812af4481adcbe0d40903ca8dbe7",
+        "short-code-measurement.json": "4fb126036dceecf94dc295f7b2d42e397976a799cc1ea97eb6fb6e2cb5577309",
+        "short-code.json": "6a4147945cdec5716f767699d265891786dcb44441afb94ff11a0dd969ccd656"
+      }
+    }
+  }
+}
