@@ -364,6 +364,8 @@ struct Options {
     /// the exactness test); `spec_corrupt` N > 0 replaces every Nth draft with a wrong token.
     int spec = 0;
     std::string spec_oracle;
+    std::string spec_follow;   ///< diagnostic: emit a saved continuation, retaining target disagreement counts
+    bool diag_single_token = false; ///< keep MTP/verify allocations, but measure one-token windows without drafting
     int spec_corrupt = 0;
     /// Plan v0.3 P6: the MTP draft layer's runtime directory (tools/mtp_rt.py); drafts come from it.
     std::string mtp;
@@ -519,6 +521,8 @@ void usage() {
                  "  --turn-token ID      --serve: the token that opens a chat turn (default 248045, <|im_start|>)\n"
                  "  --short-read N       --serve: read at most N fresh text tokens through the decode windows instead\n"
                  "                       of the batched prompt path (default 64, 0 = off)\n"
+                 "  --spec-follow PATH   diagnostic: emit this saved continuation; report target disagreement\n"
+                 "  --diag-single-token  diagnostic: one-token windows; retain MTP allocations and prompt work\n"
                  "  --suffix-draft N     prompt lookup: draft from an earlier repeat of the last N+ tokens of context\n"
                  "                       when it pays (default 3; 0 = MTP only)\n"
                  "  --mtp-max-t M        cap the MTP's windows at M tokens (0 = --spec; longer ones come from suffixes)\n"
@@ -1215,6 +1219,8 @@ int main(int argc, char** argv) {
         else if (a == "--dump-final-r") o.dump_final_r = next("--dump-final-r");
         else if (a == "--spec") o.spec = std::atoi(next("--spec"));
         else if (a == "--spec-oracle") o.spec_oracle = next("--spec-oracle");
+        else if (a == "--spec-follow") o.spec_follow = next("--spec-follow");
+        else if (a == "--diag-single-token") o.diag_single_token = true;
         else if (a == "--spec-corrupt") o.spec_corrupt = std::atoi(next("--spec-corrupt"));
         else if (a == "--mtp") o.mtp = next("--mtp");
         else if (a == "--mtp-window") o.mtp_window = std::atoll(next("--mtp-window"));
@@ -1347,6 +1353,19 @@ int main(int argc, char** argv) {
     }
     strata::core::set_coupled_draft(o.coupled_draft);
     strata::core::set_peer_portable(o.peer_device >= 1);   // multi-GPU: the Portable flag on mapped host buffers only with a peer device (before any allocation)
+    if ((!o.spec_follow.empty() || o.diag_single_token) && o.spec < 2) {
+        std::fprintf(stderr, "strata generate: diagnostics require --spec >= 2\n");
+        return 2;
+    }
+    std::vector<int64_t> diagnostic_follow;
+    if (o.serve && !o.spec_follow.empty()) {
+        std::ifstream in(o.spec_follow);
+        std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()), e;
+        if (!in || !parse_i64_list(text.c_str(), diagnostic_follow, e) || diagnostic_follow.empty()) {
+            std::fprintf(stderr, "strata generate: cannot read nonempty --spec-follow %s\n", o.spec_follow.c_str());
+            return 2;
+        }
+    }
     if (o.serve && o.conversation_cache_mib > 0 && (o.prompt_cache == 0 || o.conversation_cache_slots == 0))
         std::fprintf(stderr, "strata serve: warning: conversation caching is disabled by %s\n",
                      o.prompt_cache == 0 ? "--prompt-cache 0" : "--conversation-cache-slots 0");
@@ -5063,7 +5082,7 @@ int main(int argc, char** argv) {
                 continue;
             }
             char* endp = nullptr;
-            const long long max_new = std::strtoll(line.c_str() + (geni ? 5 : 4), &endp, 10);
+            long long max_new = std::strtoll(line.c_str() + (geni ? 5 : 4), &endp, 10);
             // optional sampling keys between max_new and the ids: temperature=F, top_p=F, top_k=N, min_p=F,
             // penalty_last_n=N, penalty_repeat=F, penalty_freq=F, penalty_present=F, seed=N (text requests
             // only).  Absent keys keep today's behavior: greedy, no penalties.
@@ -5664,6 +5683,9 @@ int main(int argc, char** argv) {
             int64_t p = n - 1;
             int32_t x = (int32_t) ids[(size_t) (n - 1)];
             std::vector<int32_t> drafts((size_t) S, 0), window((size_t) S), outv((size_t) S);
+            std::vector<uint8_t> follow_diff((size_t) S, 0);
+            int64_t follow_differ = 0;
+            if (!diagnostic_follow.empty()) max_new = std::min<int64_t>(max_new, diagnostic_follow.size());
             std::vector<float> dprob((size_t) S, 0.0f);
             std::vector<int32_t> sbuf((size_t) S, 0);
             if (o.suffix_draft > 0) {
@@ -5705,12 +5727,12 @@ int main(int argc, char** argv) {
                     T = 1;
                     while (T < S_mtp && dprob[(size_t) T - 1] >= (float) req_spec_min_p) ++T;
                 }
-                if (first_window) T = 1;
+                if (first_window || o.diag_single_token) T = 1;
                 // a repeat of earlier context (prompt lookup) where the MTP's own first guess agrees: the policy takes it
                 // when its expected tokens per ms, from the measured acceptance and window costs, beat the MTP window's
                 bool from_sfx = false;
                 int sfx_match = 0;
-                if (o.suffix_draft > 0 && !first_window) {
+                if (o.suffix_draft > 0 && !first_window && !o.diag_single_token) {
                     const int k = sfx.propose(S - 1, sbuf.data());
                     sfx_match = sfx.last_match();
                     if (k > 0 && sbuf[0] == drafts[0]) {
@@ -5720,6 +5742,7 @@ int main(int argc, char** argv) {
                 }
                 const bool timed_round = !first_window;
                 const Clock::time_point round0 = Clock::now();
+                if (!diagnostic_follow.empty()) T = (int) std::min<int64_t>(T, max_new - produced_n);
                 if (p + T > o.max_context) break;
                 window[0] = x;
                 for (int i = 1; i < T; ++i) window[(size_t) i] = from_sfx ? sbuf[(size_t) i - 1] : drafts[(size_t) i - 1];
@@ -5747,6 +5770,12 @@ int main(int argc, char** argv) {
                     std::printf("ERR %s\n", drive.d.failed && drive.d.fail ? drive.d.fail : err.c_str());
                     return 1;
                 }
+                if (!diagnostic_follow.empty()) {
+                    for (int i = 0; i < T && (size_t) produced_n + (size_t) i < diagnostic_follow.size(); ++i) {
+                        follow_diff[(size_t) i] = outv[(size_t) i] != (int32_t) diagnostic_follow[(size_t) produced_n + (size_t) i];
+                        outv[(size_t) i] = (int32_t) diagnostic_follow[(size_t) produced_n + (size_t) i];
+                    }
+                }
                 int a = 0;
                 while (a < T - 1 && window[(size_t) a + 1] == outv[(size_t) a]) ++a;
                 if (from_sfx) { ++sfx_windows; sfx_drafts += T - 1; sfx_ok += a; }
@@ -5767,6 +5796,7 @@ int main(int argc, char** argv) {
                 first_window = false;
                 bool eos = false;
                 for (int i = 0; i <= a && produced_n < max_new && !eos; ++i) {
+                    if (!diagnostic_follow.empty()) follow_differ += follow_diff[(size_t) i];
                     std::printf("T %d\n", (int) outv[(size_t) i]);
                     strata::core::progress_beat();
                     ++produced_n;
@@ -5780,7 +5810,7 @@ int main(int argc, char** argv) {
                 // commit, outv[a] is its row 0) - the drafts extend it on the device as the verify rows will
                 if (hist_n > 0 && mtp.coupled() && !eos && produced_n < max_new)
                     mtp.set_draft_history(consumed.data(), (int64_t) consumed.size(), outv[(size_t) a]);
-                const bool drafted = eos || produced_n >= max_new ||
+                const bool drafted = o.diag_single_token || eos || produced_n >= max_new ||
                                      mtp.draft(T, outv.data(), p, a, drafts.data(), err, dprob.data(), (float) req_spec_min_p);
                 {
                     const Clock::time_point tw3 = Clock::now();
@@ -5806,6 +5836,9 @@ int main(int argc, char** argv) {
                 p += a + 1;
             }
             const double decode_ms = std::chrono::duration<double, std::milli>(Clock::now() - d0).count();
+            if (!diagnostic_follow.empty())
+                std::fprintf(stderr, "strata diagnostic follow: %lld of %lld emitted tokens differ from argmax; single=%d\n",
+                             (long long) follow_differ, (long long) produced_n, o.diag_single_token ? 1 : 0);
             // the last commit (set_commit_async): the session is complete before anything reads or copies it
             if (!ver.wait_commit(err)) {
                 std::printf("ERR %s\n", err.c_str());
@@ -6371,7 +6404,8 @@ int main(int argc, char** argv) {
     const bool ended = o.stop_eos && !produced.empty() &&
                        std::find(o.eos_ids.begin(), o.eos_ids.end(), (int64_t) produced.back()) != o.eos_ids.end();
     if (spec_pos > 0 && (int64_t) produced.size() < o.max_new && !ended) {
-        std::vector<int64_t> oracle;
+        std::vector<int64_t> oracle, follow;
+        int64_t follow_differ = 0, follow_emitted = 0;
         if (!o.spec_oracle.empty()) {
             std::ifstream in(o.spec_oracle);
             std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
@@ -6380,6 +6414,16 @@ int main(int argc, char** argv) {
                 std::fprintf(stderr, "strata generate: cannot read --spec-oracle %s\n", o.spec_oracle.c_str());
                 return 2;
             }
+        }
+        if (!o.spec_follow.empty()) {
+            std::ifstream in(o.spec_follow);
+            std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+            std::string e;
+            if (!in || !parse_i64_list(text.c_str(), follow, e) || follow.empty()) {
+                std::fprintf(stderr, "strata generate: cannot read nonempty --spec-follow %s\n", o.spec_follow.c_str());
+                return 2;
+            }
+            o.max_new = std::min<int64_t>(o.max_new, (int64_t) follow.size());
         }
         if (thits.d_res == nullptr) {
             std::fprintf(stderr, "strata generate: --spec needs the device residency table (--expert-profile, "
@@ -6398,8 +6442,8 @@ int main(int argc, char** argv) {
             std::fprintf(stderr, "strata generate: %s\n", err.c_str());
             return 1;
         }
-        const bool use_mtp = !o.mtp.empty();
-        if (use_mtp && !mtp.bind(wt, &native_head, ver.final_R_all(), err)) {
+        const bool use_mtp = !o.mtp.empty() && !o.diag_single_token;
+        if (!o.mtp.empty() && !mtp.bind(wt, &native_head, ver.final_R_all(), err)) {
             std::fprintf(stderr, "strata generate: %s\n", err.c_str());
             return 1;
         }
@@ -6535,6 +6579,7 @@ int main(int argc, char** argv) {
             return 1;
         }
         std::vector<int32_t> window((size_t) o.spec), outv((size_t) o.spec);
+        std::vector<uint8_t> fdiff((size_t) o.spec, 0);
         std::vector<int64_t> accepted_hist((size_t) o.spec, 0);
         int64_t rounds = 0, drafts_total = 0, drafts_ok = 0, corrupt_counter = 0;
         const int S_mtp = o.mtp_max_t > 0 ? std::min(o.mtp_max_t, o.spec) : o.spec;
@@ -6556,10 +6601,10 @@ int main(int argc, char** argv) {
                 T = 1;
                 while (T < S_mtp && dprob[(size_t) T - 1] >= (float) o.spec_min_p) ++T;
             }
-            if (first_window) T = 1;
+            if (first_window || o.diag_single_token) T = 1;
             bool from_sfx = false;
             int sfx_match = 0;
-            if (o.suffix_draft > 0 && !first_window) {
+            if (o.suffix_draft > 0 && !first_window && !o.diag_single_token) {
                 const int k = sfx.propose(o.spec - 1, sbuf.data());
                 sfx_match = sfx.last_match();
                 if (k > 0 && (!use_mtp || sbuf[0] == drafts[0])) {
@@ -6568,6 +6613,7 @@ int main(int argc, char** argv) {
                 }
             }
             const bool timed_round = !first_window;
+            if (!follow.empty()) T = (int) std::min<int64_t>(T, o.max_new - (int64_t) produced.size());
             ++window_hist[(size_t) T];
             if (p + T > o.max_context) {
                 std::fprintf(stderr, "strata generate: ran out of context at position %lld\n", (long long) p);
@@ -6597,6 +6643,13 @@ int main(int argc, char** argv) {
                              (long long) drive.d.fail_layer, (long long) drive.d.fail_expert,
                              drive.d.fail ? drive.d.fail : "(no message)");
                 return 1;
+            }
+            if (!follow.empty()) {
+                const size_t k0 = produced.size();
+                for (int i = 0; i < T && k0 + (size_t) i < follow.size(); ++i) {
+                    fdiff[(size_t) i] = outv[(size_t) i] != (int32_t) follow[k0 + (size_t) i];
+                    outv[(size_t) i] = (int32_t) follow[k0 + (size_t) i];
+                }
             }
             int a = 0;
             while (a < T - 1 && window[(size_t) a + 1] == outv[(size_t) a]) ++a;
@@ -6632,6 +6685,7 @@ int main(int argc, char** argv) {
             if (from_sfx) { ++sfx_windows; sfx_drafts += T - 1; sfx_ok += a; }
             bool eos = false;
             for (int i = 0; i <= a && (int64_t) produced.size() < o.max_new && !eos; ++i) {
+                if (!follow.empty()) { follow_differ += fdiff[(size_t) i]; ++follow_emitted; }
                 produced.push_back(outv[(size_t) i]);
                 if (o.suffix_draft > 0) sfx.append(outv[(size_t) i]);
                 eos = o.stop_eos && std::find(o.eos_ids.begin(), o.eos_ids.end(), (int64_t) outv[(size_t) i]) != o.eos_ids.end();
@@ -6667,6 +6721,11 @@ int main(int argc, char** argv) {
                     "speculation", (long long) rounds, o.spec, (long long) drafts_ok, (long long) drafts_total,
                     drafts_total > 0 ? (double) drafts_ok / (double) drafts_total : 0.0,
                     rounds > 0 ? (double) (drafts_ok + rounds) / (double) rounds : 0.0);
+        if (!follow.empty())
+            std::printf("%-24s %lld of %lld emitted tokens differ from the argmax\n", "follow",
+                        (long long) follow_differ, (long long) follow_emitted);
+        if (o.diag_single_token)
+            std::printf("diagnostic single-token: MTP allocations and prompt work retained; decode drafting disabled\n");
         if (o.spec_min_p > 0.0) {
             std::printf("%-24s", "window sizes");
             for (size_t i = 1; i < window_hist.size(); ++i) std::printf(" T%zu:%lld", i, (long long) window_hist[i]);
@@ -6727,6 +6786,8 @@ int main(int argc, char** argv) {
             std::printf("%-24s %.3f ms/round drafting (%lld rounds), MTP prompt %.1f ms, %.0f MiB of VRAM\n", "mtp",
                         mtp.ms_draft / (double) mtp.rounds, (long long) mtp.rounds, mtp.ms_prefill,
                         (double) mtp.vram_bytes() / 1048576.0);
+        const std::string stage_profile = ver.profile_report();
+        if (!stage_profile.empty()) std::printf("verify stage profile%s\n", stage_profile.c_str());
     }
 
     if (dump != nullptr && std::fclose(dump) != 0) {
