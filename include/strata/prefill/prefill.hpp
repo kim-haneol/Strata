@@ -57,7 +57,7 @@ public:
     /// that computes the experts this GPU's cache does not hold; null: they stream here.
     bool init(const core::WeightTable& wt, const core::ModelGeometry& g, core::SessionState& ss,
               core::ExpertSource* src, const core::ExpertCache* cache, const int32_t* host_res, int64_t max_chunk,
-              void* stream, ExpertRunner* offload, std::string& err);
+              void* stream, ExpertRunner* offload, std::string& err, long long helper_affinity = -1);
 
     /// Device bytes of the buffers for chunks of `chunk` tokens.
     static uint64_t bytes_needed(const core::ModelGeometry& g, const core::SessionState& ss, int64_t chunk,

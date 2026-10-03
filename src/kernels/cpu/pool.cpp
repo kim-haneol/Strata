@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cmath>
 #include <chrono>
+#include <fstream>
 #include <immintrin.h>
 
 #include <cstdio>
@@ -43,11 +44,33 @@ std::vector<std::vector<int>> physical_cores() {
         }
     }
 #else
-    cpu_set_t set;   // each logical processor as a core of its own
+    cpu_set_t set;
     CPU_ZERO(&set);
     if (sched_getaffinity(0, sizeof set, &set) == 0) {
-        for (int i = 0; i < CPU_SETSIZE; ++i)
-            if (CPU_ISSET(i, &set)) cores.push_back({i});
+        std::vector<std::pair<int, int>> ids;
+        bool topology = true;
+        for (int i = 0; i < CPU_SETSIZE; ++i) {
+            if (!CPU_ISSET(i, &set)) continue;
+            int package = -1, core = -1;
+            std::ifstream("/sys/devices/system/cpu/cpu" + std::to_string(i) +
+                          "/topology/physical_package_id") >> package;
+            std::ifstream("/sys/devices/system/cpu/cpu" + std::to_string(i) +
+                          "/topology/core_id") >> core;
+            if (package < 0 || core < 0) { topology = false; break; }
+            const auto id = std::make_pair(package, core);
+            const auto at = std::find(ids.begin(), ids.end(), id);
+            if (at == ids.end()) {
+                ids.push_back(id);
+                cores.push_back({i});
+            } else {
+                cores[(size_t) std::distance(ids.begin(), at)].push_back(i);
+            }
+        }
+        if (!topology) {
+            cores.clear();
+            for (int i = 0; i < CPU_SETSIZE; ++i)
+                if (CPU_ISSET(i, &set)) cores.push_back({i});
+        }
     }
 #endif
     if (cores.empty())

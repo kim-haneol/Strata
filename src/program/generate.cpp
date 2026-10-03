@@ -2376,7 +2376,8 @@ int main(int argc, char** argv) {
                                  host_res2.empty() ? nullptr : host_res2.data(), g.n_expert, o.prefill_chunk, true, e))
             return false;
         if (!prefill.init(wt, g, ss, srcp, o.expert_cache > 0 ? &xcache : nullptr,
-                          host_res.empty() ? nullptr : host_res.data(), o.prefill_chunk, main_cs, off ? &offload : nullptr, e))
+                          host_res.empty() ? nullptr : host_res.data(), o.prefill_chunk, main_cs,
+                          off ? &offload : nullptr, e, loop_scratch.pinned_core))
             return false;
         pbuf.prefill = &prefill;
         pbuf.offload = off ? &offload : nullptr;

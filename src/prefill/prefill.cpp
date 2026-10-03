@@ -2,6 +2,7 @@
 #include "strata/prefill/prefill.hpp"
 
 #include "strata/core/layout.hpp"
+#include "strata/kernels/cpu/pool.hpp"
 #include "strata/kernels/dequant_bf16.hpp"
 #include "strata/kernels/native_qsa_indexer.hpp"
 #include "strata/kernels/native_ple_postops.hpp"
@@ -149,6 +150,7 @@ struct Prefill::Impl {
     const core::ExpertCache* cache = nullptr;
     const int32_t* host_res = nullptr;
     ExpertRunner* offload = nullptr;
+    long long helper_affinity = -1;
     ExpertRunner local;
     int64_t max_chunk = 0, T = 0;   // T: the chunk the buffers are bound for
     strata::kernels::QsaShapes s;
@@ -193,9 +195,10 @@ Prefill::~Prefill() {
 
 bool Prefill::init(const core::WeightTable& wt, const core::ModelGeometry& g, core::SessionState& ss,
                    core::ExpertSource* src, const core::ExpertCache* cache, const int32_t* host_res, int64_t max_chunk,
-                   void* stream, ExpertRunner* offload, std::string& err) {
+                   void* stream, ExpertRunner* offload, std::string& err, long long helper_affinity) {
     Impl& m = *impl_;
     m.wt = &wt; m.g = &g; m.ss = &ss; m.cache = cache; m.host_res = host_res; m.offload = offload;
+    m.helper_affinity = helper_affinity;
     m.max_chunk = max_chunk; m.cs = (cudaStream_t) stream;
     if (g.n_embd != N || g.hc != HC || g.hc_lr != LR || g.n_expert != NE || ss.k != K) {
         err = "prefill: geometry differs from the artifact's"; return false;
@@ -424,6 +427,7 @@ bool Prefill::run(const int64_t* tokens, int64_t n, int64_t pos0, std::string& e
         }
         ple_read.ok = true;
         ple_read.th = std::thread([&m, &ss, &ple_read, rows, Tc, out = m.ple_host[buf]] {
+            strata::kernels::cpu::restore_thread_affinity(m.helper_affinity);
             ple_read.ok = ss.ple.table->gather_batch(rows, (size_t) Tc, out, ple_read.err);
         });
     };
