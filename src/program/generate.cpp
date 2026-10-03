@@ -231,6 +231,10 @@ struct Options {
     /// Benchmarks: the run emits this continuation (token ids) instead of the window's argmax, and a draft is
     /// accepted when it matches it, so runs with different speculation settings process the same text.
     std::string spec_follow;
+    bool diag_single_token = false; ///< diagnostic: keep allocations, skip decode drafting and use one-token windows
+    int diag_window_cap = 0; ///< diagnostic: keep verifier/drafter capacity fixed across lookup interventions
+    int diag_predict_learn = -1; ///< -1 follows adaptation, 0/1 separates predictor learning from cache moves
+    int64_t diag_second_slots = 0; ///< 0 follows the budget; positive caps the helper's initial expert count
     /// Plan v0.3 P6: the MTP draft layer's runtime directory (tools/mtp_rt.py); drafts come from it.
     std::string mtp;
     int64_t mtp_window = 32768;   ///< the draft layer attends to the last N cells (0 = every cell)
@@ -258,7 +262,7 @@ struct Options {
     /// 0 = off.
     int spec_lookup = 0;
     /// The verify windows' capacity: --spec, or the kernels' maximum with prompt lookup.
-    int max_window() const { return spec_lookup > 0 ? std::max(spec, strata::kernels::kVerifyMaxT) : spec; }
+    int max_window() const { return std::max(diag_window_cap, spec_lookup > 0 ? std::max(spec, strata::kernels::kVerifyMaxT) : spec); }
     /// Stop when the model emits an end-of-turn token (<|endoftext|> 248044, <|im_end|> 248046, or --eos-ids).
     bool stop_eos = false;
     std::vector<int64_t> eos_ids = {248044, 248046};
@@ -377,9 +381,12 @@ void usage() {
                  "                       each GPU streams its part after the last layer; 0 = all on the main GPU)\n"
                  "  --no-prompt-offload  with --second-gpu: the prompt path streams the experts the main GPU's cache\n"
                  "                       lacks to the main GPU instead of computing them on the second\n"
-                 "  --spec-follow PATH   benchmarks: emit this continuation (token ids) instead of the argmax and\n"
-                 "                       accept the drafts that match it, so speculation settings compare on the\n"
-                 "                       same text (not --serve)\n"
+                 "  --spec-follow PATH   diagnostic: emit this continuation and accept drafts that match it;\n"
+                 "                       report target disagreement separately (CLI or --serve)\n"
+                 "  --diag-single-token  keep MTP allocations and prompt work; skip decode drafting\n"
+                 "  --diag-window-cap N  retain N verifier/drafter rows for diagnostic comparisons\n"
+                 "  --diag-predict-learn 0|1 separate predictor learning from cache adaptation\n"
+                 "  --diag-second-slots N cap initial helper slots (diagnostic; 0 follows VRAM budget)\n"
                  "  --no-token-graph     A/B: two graphs per layer (the host launches each) instead of one per token\n"
                  "  --no-fused-gr        A/B: the six-kernel hyper-connection read and a separate write (native)\n"
                  "  --prefill CHUNK      batched prompt processing in chunks of CHUNK tokens (needs --native; auto: 16384)\n"
@@ -878,6 +885,10 @@ int main(int argc, char** argv) {
         else if (a == "--spec") o.spec = std::atoi(next("--spec"));
         else if (a == "--spec-oracle") o.spec_oracle = next("--spec-oracle");
         else if (a == "--spec-follow") o.spec_follow = next("--spec-follow");
+        else if (a == "--diag-single-token") o.diag_single_token = true;
+        else if (a == "--diag-window-cap") o.diag_window_cap = std::atoi(next("--diag-window-cap"));
+        else if (a == "--diag-predict-learn") o.diag_predict_learn = std::atoi(next("--diag-predict-learn"));
+        else if (a == "--diag-second-slots") o.diag_second_slots = std::atoll(next("--diag-second-slots"));
         else if (a == "--spec-corrupt") o.spec_corrupt = std::atoi(next("--spec-corrupt"));
         else if (a == "--mtp") o.mtp = next("--mtp");
         else if (a == "--mtp-window") o.mtp_window = std::atoll(next("--mtp-window"));
@@ -1002,6 +1013,21 @@ int main(int argc, char** argv) {
         }
         // Plan v0.3 (24 Sep): the CPU experts stay on the VNNI kernel.  The llama.cpp-CPU-exact q8_0 contract
         // cost 27.0 vs 17.2 ms/token of pool time and G-C does not need it; `--cpu-oracle-q8-0` still selects it.
+    }
+    if (o.diag_window_cap < 0 || o.diag_window_cap > strata::kernels::kVerifyMaxT ||
+        o.diag_predict_learn < -1 || o.diag_predict_learn > 1 || o.diag_second_slots < 0 ||
+        (o.diag_single_token && o.spec < 2)) {
+        std::fprintf(stderr, "strata generate: invalid diagnostic window capacity or --spec < 2\n");
+        return 2;
+    }
+    std::vector<int64_t> diagnostic_follow;
+    if (o.serve && !o.spec_follow.empty()) {
+        std::ifstream in(o.spec_follow);
+        std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()), e;
+        if (!in || !parse_i64_list(text.c_str(), diagnostic_follow, e) || diagnostic_follow.empty()) {
+            std::fprintf(stderr, "strata generate: cannot read nonempty --spec-follow %s\n", o.spec_follow.c_str());
+            return 2;
+        }
     }
     if (o.logits_stride > 1 && (o.max_new != 1 || o.dump_logits.empty())) {
         std::fprintf(stderr, "strata generate: --logits-stride > 1 requires --max-new 1 and --dump-logits\n");
@@ -2249,6 +2275,7 @@ int main(int argc, char** argv) {
                                                          : (free_b > reserve ? (uint64_t) free_b - reserve : 0);
             uint64_t used = 0;
             for (size_t i = (size_t) prefilled; i < profile.size(); ++i) {
+                if (o.diag_second_slots > 0 && sizes.size() >= (size_t) o.diag_second_slots) break;
                 const auto& pr = profile[i];
                 if (host_res[(size_t) (pr.first * g.n_expert + pr.second)] >= 0) continue;   // the first GPU holds it
                 const uint64_t b = (lay.blob_bytes(pr.first) + 255) / 256 * 256;
@@ -2257,7 +2284,7 @@ int main(int argc, char** argv) {
                 sizes.push_back((int64_t) lay.blob_bytes(pr.first));
                 pre.push_back(pr);
             }
-            {   // the rest in empty slots (without the adaptive tier only the prompt path's loans use them)
+            if (o.diag_second_slots == 0) {   // default: the rest in empty slots; a diagnostic cap must remain exact
                 uint64_t round = 0;
                 for (int64_t l = 0; l < g.n_layers; ++l) round += (lay.blob_bytes(l) + 255) / 256 * 256;
                 for (uint64_t q = (budget - used) / round; q > 0; --q)
@@ -2460,7 +2487,8 @@ int main(int argc, char** argv) {
         ver.set_pcie_mode(o.pcie_mode == "dma" ? 0 : o.pcie_mode == "direct" ? 1 : o.pcie_mode == "kernel" ? 2
                           : native_pack ? 0 : 2);   // auto: DMA for the native packs, the copy kernel for Q2_0
         if (drive.d.gpu2 != nullptr && gpu2.prefetch_slots() > 0)
-            ver.set_predict(&drive_predict, &drive, o.adapt_every > 0 && o.adapt_swaps > 0);
+            ver.set_predict(&drive_predict, &drive, o.diag_predict_learn < 0
+                ? o.adapt_every > 0 && o.adapt_swaps > 0 : o.diag_predict_learn != 0);
         if (drive.d.gpu2 != nullptr) {
             ver.set_gpu2(true);
             ver.set_watch(&drive_watch, &drive);
@@ -2597,7 +2625,7 @@ int main(int argc, char** argv) {
                 continue;
             }
             char* endp = nullptr;
-            const long long max_new = std::strtoll(line.c_str() + (geni ? 5 : 4), &endp, 10);
+            long long max_new = std::strtoll(line.c_str() + (geni ? 5 : 4), &endp, 10);
             // optional keys between max_new and the ids: temperature=F, top_p=F, top_k=N, min_p=F, penalty_last_n=N,
             // penalty_repeat=F, penalty_freq=F, penalty_present=F, seed=N, spec_min_p=F (this request's draft floor);
             // unknown keys (cvec, pcie_frac) are skipped.  Absent keys: greedy, no penalties.
@@ -2854,8 +2882,16 @@ int main(int argc, char** argv) {
             int32_t x = (int32_t) ids[(size_t) (n - 1)];
             bool first_window = true;
             int64_t produced_n = 0;
+            int64_t follow_differ = 0;
+            std::vector<uint8_t> follow_diff((size_t) W, 0);
+            if (!diagnostic_follow.empty()) max_new = std::min<int64_t>(max_new, diagnostic_follow.size());
             const char* finish = "length";
             const Clock::time_point d0 = Clock::now();
+            const int64_t diagnostic_rounds0 = rounds;
+            const double diagnostic_wait0 = ver.ms_wait, diagnostic_pool0 = ver.ms_pool;
+            const double diagnostic_host0 = ver.ms_host, diagnostic_commit0 = ver.ms_commit;
+            const double diagnostic_draft0 = mtp.ms_draft;
+            int64_t diagnostic_T = 0;
             int64_t draft_offered = 0, draft_accepted = 0;
             // the expert-cache hits of the decode: rows either GPU computes from its VRAM cache, of all routed rows
             const int64_t hits0 = drive.d.cache_hits + drive.d.gpu2_entries, look0 = hits0 + drive.d.cache_refused;
@@ -2879,7 +2915,7 @@ int main(int argc, char** argv) {
                     while (T < S && dprob[(size_t) T - 1] >= (float) req_spec_min_p) ++T;
                 }
                 if (lk > 0) T = 1 + lk;
-                if (first_window) T = 1;
+                if (first_window || o.diag_single_token) T = 1;
                 const std::vector<int32_t>& dr = lk > 0 ? ldrafts : drafts;
                 // Never verify past what this request emits: the committed cells then hold exactly the tokens the
                 // client saw, so its next turn continues from them.  So the window stops at the output limit and
@@ -2892,6 +2928,7 @@ int main(int argc, char** argv) {
                         break;
                     }
                 if (p + T > o.max_context) break;
+                diagnostic_T += T;
                 window[0] = x;
                 for (int i = 1; i < T; ++i) window[(size_t) i] = dr[(size_t) i - 1];
                 if (hist_n > 0) {
@@ -2913,6 +2950,12 @@ int main(int argc, char** argv) {
                     std::printf("ERR %s\n", drive.d.failed && drive.d.fail ? drive.d.fail : err.c_str());
                     return 1;
                 }
+                if (!diagnostic_follow.empty()) {
+                    for (int i = 0; i < T && (size_t) produced_n + (size_t) i < diagnostic_follow.size(); ++i) {
+                        follow_diff[(size_t) i] = outv[(size_t) i] != (int32_t) diagnostic_follow[(size_t) produced_n + (size_t) i];
+                        outv[(size_t) i] = (int32_t) diagnostic_follow[(size_t) produced_n + (size_t) i];
+                    }
+                }
                 int a = 0;
                 while (a < T - 1 && window[(size_t) a + 1] == outv[(size_t) a]) ++a;
                 if (!ver.commit(a + 1, err, false)) {   // beside the draft
@@ -2928,6 +2971,7 @@ int main(int argc, char** argv) {
                 first_window = false;
                 bool eos = false;
                 for (int i = 0; i <= a && produced_n < max_new && !eos; ++i) {
+                    if (!diagnostic_follow.empty()) follow_differ += follow_diff[(size_t) i];
                     std::printf("T %d\n", (int) outv[(size_t) i]);
                     if (o.spec_lookup > 0) lookup.append(outv[(size_t) i]);
                     ++produced_n;
@@ -2938,13 +2982,13 @@ int main(int argc, char** argv) {
                 // the next window's drafts: the lookup's when they are more than the draft layer's chain allows (the
                 // chain stops at its first draft then)
                 lk = 0;
-                if (o.spec_lookup > 0 && !eos && produced_n < max_new) {
+                if (o.spec_lookup > 0 && !o.diag_single_token && !eos && produced_n < max_new) {
                     lk = lookup.propose(W - 1, ldrafts.data());
                     if (lk < S) lk = 0;
                     for (int j = 0; j < lk; ++j) ver.ple_ahead(j + 1, ldrafts[(size_t) j]);
                 }
                 mtp.set_max_drafts(lk > 0 ? 1 : S - 1);
-                const bool drafted = (eos || produced_n >= max_new ||
+                const bool drafted = (o.diag_single_token || eos || produced_n >= max_new ||
                                       mtp.draft(T, outv.data(), p, a, drafts.data(), err, dprob.data(), (float) req_spec_min_p)) &&
                                      ver.wait_commit(err);
                 if (!drive.join_adapt()) {
@@ -2961,6 +3005,19 @@ int main(int argc, char** argv) {
             }
             mtp.on_draft = nullptr;
             const double decode_ms = std::chrono::duration<double, std::milli>(Clock::now() - d0).count();
+            if (!diagnostic_follow.empty()) {
+                const double w = (double) (rounds - diagnostic_rounds0);
+                if (w > 0) std::fprintf(stderr,
+                    "strata diagnostic timing: %.0f windows, avg T %.2f, %.2f tokens/window, %.2f ms/window; "
+                    "wait %.2f pool %.2f host %.2f commit %.2f draft %.2f ms/window\n",
+                    w, diagnostic_T / w, produced_n / w, decode_ms / w, (ver.ms_wait - diagnostic_wait0) / w,
+                    (ver.ms_pool - diagnostic_pool0) / w, (ver.ms_host - diagnostic_host0) / w,
+                    (ver.ms_commit - diagnostic_commit0) / w, (mtp.ms_draft - diagnostic_draft0) / w);
+                if (o.window_profile) ver.print_profile();
+            }
+            if (!diagnostic_follow.empty())
+                std::fprintf(stderr, "strata diagnostic follow: %lld of %lld emitted tokens differ from argmax; single=%d\n",
+                             (long long) follow_differ, (long long) produced_n, o.diag_single_token ? 1 : 0);
             const int64_t hits1 = drive.d.cache_hits + drive.d.gpu2_entries, look1 = hits1 + drive.d.cache_refused;
             // DONE <generated> <prompt> <prompt ms> <decode ms> <finish> <drafts accepted> <drafts offered> <reused>
             // <expert-cache hits> <lookups>
@@ -3308,8 +3365,8 @@ int main(int argc, char** argv) {
             std::fprintf(stderr, "strata generate: %s\n", err.c_str());
             return 1;
         }
-        const bool use_mtp = !o.mtp.empty();
-        if (use_mtp && !mtp.bind(wt, &native_head, ver.final_R_all(), err)) {
+        const bool use_mtp = !o.mtp.empty() && !o.diag_single_token;
+        if (!o.mtp.empty() && !mtp.bind(wt, &native_head, ver.final_R_all(), err)) {
             std::fprintf(stderr, "strata generate: %s\n", err.c_str());
             return 1;
         }
@@ -3320,7 +3377,8 @@ int main(int argc, char** argv) {
         ver.set_pcie_mode(o.pcie_mode == "dma" ? 0 : o.pcie_mode == "direct" ? 1 : o.pcie_mode == "kernel" ? 2
                           : native_pack ? 0 : 2);   // auto: DMA for the native packs, the copy kernel for Q2_0
         if (drive.d.gpu2 != nullptr && gpu2.prefetch_slots() > 0)
-            ver.set_predict(&drive_predict, &drive, o.adapt_every > 0 && o.adapt_swaps > 0);
+            ver.set_predict(&drive_predict, &drive, o.diag_predict_learn < 0
+                ? o.adapt_every > 0 && o.adapt_swaps > 0 : o.diag_predict_learn != 0);
         if (drive.d.gpu2 != nullptr) {
             ver.set_gpu2(true);
             ver.set_watch(&drive_watch, &drive);
@@ -3407,7 +3465,7 @@ int main(int argc, char** argv) {
                 while (T < o.spec && dprob[(size_t) T - 1] >= (float) o.spec_min_p) ++T;
             }
             if (lk > 0) T = 1 + lk;
-            if (first_window) T = 1;
+            if (first_window || o.diag_single_token) T = 1;
             ++window_hist[(size_t) T];
             if (p + T > o.max_context) {
                 std::fprintf(stderr, "strata generate: ran out of context at position %lld\n", (long long) p);
@@ -3502,7 +3560,7 @@ int main(int argc, char** argv) {
             // the next window's drafts: the lookup's when they are more than the draft layer's chain allows (the
             // chain stops at its first draft then)
             lk = 0;
-            if (o.spec_lookup > 0 && (int64_t) produced.size() < max_new) {
+            if (o.spec_lookup > 0 && !o.diag_single_token && (int64_t) produced.size() < max_new) {
                 lk = lookup.propose(W - 1, ldrafts.data());
                 if (lk < o.spec) lk = 0;
                 for (int j = 0; j < lk; ++j) ver.ple_ahead(j + 1, ldrafts[(size_t) j]);
