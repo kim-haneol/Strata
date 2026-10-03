@@ -1553,19 +1553,13 @@ int main(int argc, char** argv) {
                      (long long) xcache.slots(), xcache.gib());
         mem_mark("opening the expert cache");
         xcache.set_per_layer_admission(o.expert_cache_per_layer);
-        // **ROUND 328: THE HIT PATH IS PROVABLY WRONG, AND THIS SAYS SO OUT LOUD RATHER THAN LETTING IT
-        // CORRUPT A RUN QUIETLY.**  With the cache on, the generated tokens DIVERGE from the cache-off run:
-        // at 256 global slots (2.97% hits) the first difference is at **token 40**; at 4096 per-layer slots
-        // (54.4% hits) it is at **token 0**.  The cache-off run is deterministic across repeated runs, so
-        // this is a real fault in `moe_hit_grouped_s2`'s inputs or the fill - not noise.  It also explains
-        // what R4 recorded as "a better profile makes the token worse": more hits means more wrong rows, so
-        // the payoff is non-monotone BY CONSTRUCTION rather than by any memory-system effect.
-        // The cache stays opt-in and this warning is not a refusal, because the divergence IS the diagnostic.
+        // Round 328's hit-path fault was fixed before the published cache parity run.  A GPU expert and the CPU
+        // retain different floating-point reduction orders, so near ties can still flip while measured perplexity
+        // remains equal within the error bars.
         std::fprintf(stderr,
-                     "strata generate: *** WARNING: --expert-cache is enabled and the GPU hit path is NOT\n"
-                     "                 CORRECT. The generated tokens diverge from a cache-off run (measured:\n"
-                     "                 first difference at token 40 at 2.97%% hits, token 0 at 54.4%%). Any\n"
-                     "                 timing from this run is real; any OUTPUT from it is not. ***\n");
+                     "strata generate: the GPU computes the experts in the cache; it rounds differently from the CPU,\n"
+                     "                 so a reply can differ slightly from a run without the cache (same quality:\n"
+                     "                 bench/results/2026-09-27-cache-parity).\n");
         if (o.expert_cache_per_layer) {
             int64_t lo = 0, hi = 0;
             xcache.layer_slot_range(0, lo, hi);
