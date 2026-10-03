@@ -16,11 +16,22 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from serve.frontend import ChatTemplate  # noqa: E402
-from serve.server import CTX_SLACK, ByteTokenizer, EngineDied, MockEngine, Service, StrataEngine, request_timings, serve  # noqa: E402
+from serve.server import (CTX_SLACK, ByteTokenizer, EngineDied, MockEngine, Service, StrataEngine, engine_args,
+                          request_timings, serve)  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 CTX = 4096
 ANSWER = "x" * 2000                              # longer than the old 1024 fallback: one token per byte
+
+
+class MultiGpuArguments(unittest.TestCase):
+    def test_layer_split_is_added_for_upstream_multi_gpu_config(self):
+        self.assertEqual(engine_args({"gpu": [0, 1], "args": ["--kv", "int8"]}),
+                         ["--kv", "int8", "--layer-split", "auto"])
+
+    def test_second_gpu_expert_tier_does_not_gain_layer_split(self):
+        args = ["--kv", "int8", "--main-gpu", "0", "--second-gpu", "1"]
+        self.assertEqual(engine_args({"gpu": [0, 1], "args": args}), args)
 
 
 class RecordingEngine(MockEngine):

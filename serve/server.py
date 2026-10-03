@@ -477,10 +477,10 @@ def gpu_list(cfg: dict) -> list[int]:
 
 
 def engine_args(cfg: dict) -> list[str]:
-    """The engine's arguments: the config's, and with several GPUs the layer split across them ("layer_split" in the
-    config: "auto" by default, or the first layer of each later GPU's share, e.g. "18" or "16,32")."""
+    """The engine's arguments, adding upstream's layer split only when the config did not select the custom fork's
+    second-GPU expert tier.  ``gpu`` still names every visible/monitored card for both modes."""
     args = list(cfg["args"])
-    if len(gpu_list(cfg)) > 1 and "--layer-split" not in args:
+    if len(gpu_list(cfg)) > 1 and "--layer-split" not in args and "--second-gpu" not in args:
         args += ["--layer-split", str(cfg.get("layer_split") or "auto")]
     return args
 
@@ -1712,7 +1712,10 @@ def main() -> int:
                             env=env)
         print("loading the model (the first start takes a minute or two) ...", flush=True)
         if len(gpu_list(cfg)) > 1:
-            print(f"[strata] layer split across GPUs {gpu_list(cfg)} ({cfg.get('layer_split') or 'auto'})", flush=True)
+            if "--second-gpu" in cfg.get("args", []):
+                print(f"[strata] main GPU plus expert-tier GPU from visible cards {gpu_list(cfg)}", flush=True)
+            else:
+                print(f"[strata] layer split across GPUs {gpu_list(cfg)} ({cfg.get('layer_split') or 'auto'})", flush=True)
         engine = StrataEngine(cfg["exe"], engine_args(cfg), cwd=cfg.get("cwd"), log=cfg.get("log"), env=env)
         warn_tight_ram(engine.info.get("arena_mib"))
     else:
