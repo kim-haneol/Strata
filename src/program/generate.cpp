@@ -658,13 +658,6 @@ void mem_mark(const char* where) {
     std::fprintf(stderr, "strata trace: %lld MiB free after %s\n", (long long) (free_b >> 20), where);
 }
 
-int argmax(const std::vector<float>& v) {
-    int best = 0;
-    for (size_t i = 1; i < v.size(); ++i)
-        if (v[i] > v[best]) best = (int) i;
-    return best;
-}
-
 /// Expert-cache slots lent to the batched prompt path for its buffers: the cache's last slots, as many as hold the
 /// buffers, while at least 128 stay.  `lend` takes their experts out of the residency table (the prompt path
 /// streams them instead), `give_back` copies them in again from the arena once the prompt is done.

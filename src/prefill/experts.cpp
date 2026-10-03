@@ -380,8 +380,14 @@ bool ExpertRunner::run_layer(int64_t layer, int64_t T, const std::vector<int32_t
     for (size_t j0 = 0; j0 < n_exp;) {
         size_t j1 = j0 + 1;
         int64_t rows = off[j0 + 1] - off[j0];
-        if (rows <= ROWS)
-            while (j1 < n_exp && j1 - j0 < (size_t) G && rows + (off[j1 + 1] - off[j1]) <= ROWS) rows += off[j1 + 1] - off[j1++];
+        if (rows <= ROWS) {
+            while (j1 < n_exp && j1 - j0 < (size_t) G) {
+                const int64_t next_rows = off[j1 + 1] - off[j1];
+                if (rows + next_rows > ROWS) break;
+                rows += next_rows;
+                ++j1;
+            }
+        }
         batches.emplace_back(j0, j1);
         j0 = j1;
     }

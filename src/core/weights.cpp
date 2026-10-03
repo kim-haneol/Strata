@@ -1,6 +1,7 @@
 // src/core/weights.cpp - the dense-weight loader.  See the header for the engine-vs-pack distinction.
 #include "strata/core/weights.hpp"
 
+#include <cinttypes>
 #include "strata/kernels/f16_bits.hpp"
 
 #include <cuda_runtime.h>
@@ -130,9 +131,12 @@ bool WeightTable::load(const std::string& pack_dir, void* arena_base, uint64_t a
     char line[1024];
     while (std::fgets(line, sizeof line, idx)) {
         if (line[0] == '#') {
-            unsigned long long p = 0;
+            uint64_t p = 0;
             int a = 0, t = 0;
-            if (std::sscanf(line, "# align %d pool %llu tensors %d", &a, &p, &t) == 3) { pool = p; align = a; }
+            if (std::sscanf(line, "# align %d pool %" SCNu64 " tensors %d", &a, &p, &t) == 3) {
+                pool = p;
+                align = a;
+            }
             continue;
         }
         IndexRow r;
@@ -141,7 +145,9 @@ bool WeightTable::load(const std::string& pack_dir, void* arena_base, uint64_t a
         // The format is written by tools/pack_index.py and is space-separated with no quoting; a name with a
         // space in it would break the parse, which is why the parser REFUSES rather than taking what it got.
         const int n = std::sscanf(line,
-                                  "%255s %d %d %llu %llu %llu %llu %lld %lld %d %d %d %d %d %llu %llu %llu %d %d",
+                                  "%255s %d %d %" SCNu64 " %" SCNu64 " %" SCNu64 " %" SCNu64
+                                  " %" SCNd64 " %" SCNd64 " %d %d %d %d %d %" SCNu64 " %" SCNu64
+                                  " %" SCNu64 " %d %d",
                                   name, &r.file, &kind, &r.src_off, &r.src_bytes, &r.dst_off, &r.dst_bytes,
                                   &r.ne0, &r.ne1, &r.code_bits, &r.code_bias, &r.group_elems, &r.codebook,
                                   &r.has_offset, &r.codes_bytes, &r.scales_bytes, &r.offset_bytes,
