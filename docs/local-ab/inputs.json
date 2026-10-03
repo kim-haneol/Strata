@@ -1,0 +1,128 @@
+{
+  "upstream_commit": "99f3dbd0b21d1401b3769e0c0d963913607f380b",
+  "upstream_version": "0.1.38",
+  "status": "prepared_not_gpu_validated",
+  "historical_custom_commit": "5af4d62",
+  "historical_custom_binary_sha256": "35e6766ba6264694011a25fd5aeb37cfde42255d61467937199742e23a5e5f69",
+  "files": [
+    {
+      "path": "/home/haneol/work/strata-custom-5080/local-runs/q4-final-20260930/checks.json",
+      "bytes": 1991,
+      "sha256": "de728aab4aa24e5d8b0f3171c942995f2fdbd188cfc1be00a1a7a185a53f3d22"
+    },
+    {
+      "path": "/home/haneol/work/strata-custom-5080/local-runs/q4-final-20260930/short-code-summary.json",
+      "bytes": 705,
+      "sha256": "0bcd982b06ec250d49db63593f4e350635347a8d02a68a1e6a663314c31fe15b"
+    },
+    {
+      "path": "/home/haneol/work/strata-custom-5080/local-runs/q4-final-20260930/short-code-request.json",
+      "bytes": 421,
+      "sha256": "d971e9220abca2b88d882954c45ea21f8bad72a3c24ce2a6584b342da5f3426f"
+    },
+    {
+      "path": "/home/haneol/work/strata-custom-5080/local-runs/fixed-profile-20260930/follow.tokens",
+      "bytes": 1341,
+      "sha256": "0ae98061f13237ca3fb25c2ac433558f829ecb23ec4df41153adc3c6b194a792"
+    },
+    {
+      "path": "/home/haneol/work/strata-custom-5080/data/expert-profile.bin",
+      "bytes": 196632,
+      "sha256": "8f59b4aa8873209dff11c11e37bcda9529a1335b724a1afeea37bf6388975baf"
+    },
+    {
+      "path": "/home/haneol/models/strata/mtp/rt/dense.bin",
+      "bytes": 116099072,
+      "sha256": "c724dc0b0822ada5d2977bf5bde821605feabaa64ea2e0045b67ca656329070a"
+    },
+    {
+      "path": "/home/haneol/models/strata/mtp/rt/dense.txt",
+      "bytes": 1851,
+      "sha256": "991456cf4eb266eb8a888c349e548d11bc640f5dbd9149439aa9786af0f732fd"
+    },
+    {
+      "path": "/home/haneol/models/strata/mtp/rt/experts.bin",
+      "bytes": 707788800,
+      "sha256": "09398406be61f1f54c93861f449e48b8df0bfccbc9ec9b2b7636775a6ea9244f"
+    },
+    {
+      "path": "/home/haneol/models/strata/mtp/rt/draft_vocab.bin",
+      "bytes": 425196,
+      "sha256": "b1e1d3a7a9e4bf862dcd5923ce661fb59bbd07907e594df5cf86a62ac235cb91"
+    },
+    {
+      "path": "/home/haneol/work/strata/local-runs/compare-20260930T114000Z/fixtures/english-4096-r1.json",
+      "bytes": 60197,
+      "sha256": "b2d439e8bf6f2f8475df584e936cd887f80a9db761d7171bedbead04fc3a3640"
+    },
+    {
+      "path": "/home/haneol/work/strata/local-runs/compare-20260930T114000Z/fixtures/english-32768-r1.json",
+      "bytes": 476888,
+      "sha256": "8e0f439f309aa991bbc5081b0cd209f2d97d64b995e7805f055a49fe6ddb731b"
+    },
+    {
+      "path": "/home/haneol/work/strata/local-runs/compare-20260930T114000Z/fixtures/retrieve-32768.json",
+      "bytes": 476870,
+      "sha256": "d4fab1e10013ff8e519f27a9aa14c804a272a8115604fc2013f92f29763f0107"
+    },
+    {
+      "path": "/home/haneol/models/strata/packs/ud-q4-k-xl-upstream-0138/index.txt",
+      "bytes": 93560,
+      "sha256": "cfc07e91c4d9b8e8c999fd1f70fa364e584748e70fa377b30e0fc85426f52711"
+    },
+    {
+      "path": "/home/haneol/models/strata/packs/ud-q4-k-xl-upstream-0138/dense.bin",
+      "bytes": 1485688320,
+      "sha256": "f53174059b262ed342b82e143af62056081948ef5e5f1903a1a70eeb73fa4a23"
+    },
+    {
+      "path": "/home/haneol/models/strata/packs/ud-q4-k-xl-upstream-0138/native_experts.txt",
+      "bytes": 5795,
+      "sha256": "5ed2c4a55910616db1efe16f0c989e9bec80cc8b9e95bf1c42f886aadfffd2d6"
+    },
+    {
+      "path": "/home/haneol/models/strata/packs/ud-q4-k-xl-upstream-0138/conversions.json",
+      "bytes": 167871,
+      "sha256": "722a102cb500b9097d1890cffebf142904fa6534c209ac44c6445f0aec3d0cc4"
+    },
+    {
+      "path": "/home/haneol/models/strata/packs/ud-q4-k-xl-upstream-0138/compat-bf16.json",
+      "bytes": 21095,
+      "sha256": "8692e9a69a04f384b20a3f4e59240e6800aae48d39d275deb88cf335fc962696"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/docs/local-ab/layer-split.json",
+      "bytes": 1317,
+      "sha256": "0ece97671647c12754d24ddb1bc35295b432e1d89effac555a7463bc524c174d"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/docs/local-ab/peer-host.json",
+      "bytes": 1446,
+      "sha256": "26037daff9aa58ac8f6ca8be61052388e780c24f3f4b1bcc856f38eccab3dddf"
+    }
+  ],
+  "gguf_shards": [
+    {
+      "path": "/home/haneol/models/hf/unsloth/Qwen3.8-Flash-Next-GGUF/UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00001-of-00004.gguf",
+      "bytes": 10946624
+    },
+    {
+      "path": "/home/haneol/models/hf/unsloth/Qwen3.8-Flash-Next-GGUF/UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00002-of-00004.gguf",
+      "bytes": 49859583136
+    },
+    {
+      "path": "/home/haneol/models/hf/unsloth/Qwen3.8-Flash-Next-GGUF/UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00003-of-00004.gguf",
+      "bytes": 49376141504
+    },
+    {
+      "path": "/home/haneol/models/hf/unsloth/Qwen3.8-Flash-Next-GGUF/UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00004-of-00004.gguf",
+      "bytes": 12087983520
+    }
+  ],
+  "limits": [
+    "Historical custom results are not a simultaneous three-mode benchmark.",
+    "The two upstream modes share settings but use different expert placement.",
+    "Speculative lookup policy and numerical kernels differ from the custom fork.",
+    "K-quant MMQ is explicitly enabled in this build; it is off in the stock build."
+  ]
+}

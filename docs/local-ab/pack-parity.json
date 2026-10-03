@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "stored_tensor_count": 776,
+  "native_tensor_count": 303,
+  "representation_changes": [
+    {
+      "name": "blk.1.ple_conv1d.weight",
+      "historical_kind": 5,
+      "upstream_kind": 3
+    }
+  ],
+  "comparison": "bitwise values after the loaders F16 narrowing",
+  "historical_pack": "/home/haneol/models/strata/packs/ud-q4-k-xl-custom",
+  "upstream_pack": "/home/haneol/models/strata/packs/ud-q4-k-xl-upstream-0138"
+}

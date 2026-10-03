@@ -1,0 +1,836 @@
+{
+  "date": "2026-10-03",
+  "upstream_commit": "99f3dbd0b21d1401b3769e0c0d963913607f380b",
+  "upstream_version": "0.1.38",
+  "run_root": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z",
+  "p2p": [
+    {
+      "from_device": 0,
+      "to_device": 1,
+      "return_code": 0,
+      "can_access_peer": false
+    },
+    {
+      "from_device": 1,
+      "to_device": 0,
+      "return_code": 0,
+      "can_access_peer": false
+    }
+  ],
+  "modes": {
+    "layer-split": {
+      "passed": true,
+      "request_count": 7,
+      "engine": {
+        "model": "qwen3.8-flash-next-ud-q4-k-xl",
+        "max_context": 65536,
+        "images": false,
+        "version": "0.1.38",
+        "context": 65536,
+        "kv": "int8",
+        "kv_resident": 0,
+        "expert_slots": 5678,
+        "expert_cache_mib": 16960,
+        "expert_slots_primary": 3112,
+        "expert_cache_primary_mib": 9286,
+        "spec": 6,
+        "mtp_max": 4,
+        "lookup": 3,
+        "vram_free_mib": 700,
+        "cvec": 0,
+        "arena_mib": 73450,
+        "pool_workers": 10,
+        "pcie_frac": "0.20",
+        "spec_min_p": "0.50",
+        "conversation_cache_mib": 0,
+        "conversation_cache_slots": 4,
+        "conversation_cache_min_free_mib": 2560,
+        "engine": "0.1.38"
+      },
+      "actual_prompt_chunk": 8192,
+      "split_first_stage_layers": 25,
+      "peer_expert_slots": 0,
+      "prefill_4k_tok_s": 994.5,
+      "decode_4k_tok_s": 58.2,
+      "prefill_32k_retrieval_tok_s": 2068.9,
+      "decode_32k_prose_tok_s": 54.4,
+      "code_decode_tok_s": [
+        68.7,
+        79.5,
+        82.3
+      ],
+      "code_decode_median_tok_s": 79.5,
+      "measurements": [
+        {
+          "mode": "layer-split",
+          "fixture": "arithmetic",
+          "usage": {
+            "prompt_tokens": 49,
+            "completion_tokens": 43,
+            "total_tokens": 92,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 1.7426023490261286,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 49,
+            "prompt_ms": 779.4,
+            "prompt_per_token_ms": 15.906,
+            "prompt_per_second": 62.9,
+            "predicted_n": 43,
+            "predicted_ms": 960.4,
+            "predicted_per_token_ms": 22.335,
+            "predicted_per_second": 44.8,
+            "draft_n": 33,
+            "draft_n_accepted": 33
+          }
+        },
+        {
+          "mode": "layer-split",
+          "fixture": "english-4096-r1",
+          "usage": {
+            "prompt_tokens": 4097,
+            "completion_tokens": 256,
+            "total_tokens": 4353,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 8.527411149989348,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 4097,
+            "prompt_ms": 4119.8,
+            "prompt_per_token_ms": 1.006,
+            "prompt_per_second": 994.5,
+            "predicted_n": 256,
+            "predicted_ms": 4395.5,
+            "predicted_per_token_ms": 17.17,
+            "predicted_per_second": 58.2,
+            "draft_n": 238,
+            "draft_n_accepted": 130
+          }
+        },
+        {
+          "mode": "layer-split",
+          "fixture": "retrieve-32768",
+          "usage": {
+            "prompt_tokens": 32772,
+            "completion_tokens": 51,
+            "total_tokens": 32823,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 17.063573462015484,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 32772,
+            "prompt_ms": 15840.5,
+            "prompt_per_token_ms": 0.483,
+            "prompt_per_second": 2068.9,
+            "predicted_n": 51,
+            "predicted_ms": 1143.3,
+            "predicted_per_token_ms": 22.418,
+            "predicted_per_second": 44.6,
+            "draft_n": 37,
+            "draft_n_accepted": 36
+          }
+        },
+        {
+          "mode": "layer-split",
+          "fixture": "short-code-1",
+          "usage": {
+            "prompt_tokens": 54,
+            "completion_tokens": 300,
+            "total_tokens": 354,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 5.203577434993349,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 54,
+            "prompt_ms": 834.3,
+            "prompt_per_token_ms": 15.45,
+            "prompt_per_second": 64.7,
+            "predicted_n": 300,
+            "predicted_ms": 4366.5,
+            "predicted_per_token_ms": 14.555,
+            "predicted_per_second": 68.7,
+            "draft_n": 263,
+            "draft_n_accepted": 203
+          }
+        },
+        {
+          "mode": "layer-split",
+          "fixture": "short-code-2",
+          "usage": {
+            "prompt_tokens": 54,
+            "completion_tokens": 300,
+            "total_tokens": 354,
+            "prompt_tokens_details": {
+              "cached_tokens": 47
+            }
+          },
+          "wall_s": 3.852063291997183,
+          "timings": {
+            "cache_n": 47,
+            "prompt_n": 7,
+            "prompt_ms": 74.8,
+            "prompt_per_token_ms": 10.686,
+            "prompt_per_second": 93.6,
+            "predicted_n": 300,
+            "predicted_ms": 3775.0,
+            "predicted_per_token_ms": 12.583,
+            "predicted_per_second": 79.5,
+            "draft_n": 264,
+            "draft_n_accepted": 206
+          }
+        },
+        {
+          "mode": "layer-split",
+          "fixture": "short-code-3",
+          "usage": {
+            "prompt_tokens": 54,
+            "completion_tokens": 300,
+            "total_tokens": 354,
+            "prompt_tokens_details": {
+              "cached_tokens": 47
+            }
+          },
+          "wall_s": 3.734491623006761,
+          "timings": {
+            "cache_n": 47,
+            "prompt_n": 7,
+            "prompt_ms": 87.9,
+            "prompt_per_token_ms": 12.557,
+            "prompt_per_second": 79.6,
+            "predicted_n": 300,
+            "predicted_ms": 3644.1,
+            "predicted_per_token_ms": 12.147,
+            "predicted_per_second": 82.3,
+            "draft_n": 258,
+            "draft_n_accepted": 207
+          }
+        },
+        {
+          "mode": "layer-split",
+          "fixture": "english-32768-r1",
+          "usage": {
+            "prompt_tokens": 32768,
+            "completion_tokens": 256,
+            "total_tokens": 33024,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 20.792495288013015,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 32768,
+            "prompt_ms": 16011.0,
+            "prompt_per_token_ms": 0.489,
+            "prompt_per_second": 2046.6,
+            "predicted_n": 256,
+            "predicted_ms": 4702.9,
+            "predicted_per_token_ms": 18.371,
+            "predicted_per_second": 54.4,
+            "draft_n": 251,
+            "draft_n_accepted": 126
+          }
+        }
+      ],
+      "telemetry": {
+        "samples": 173,
+        "approximate_decode_samples": 22,
+        "gpus": [
+          {
+            "physical_gpu": 0,
+            "max_vram_gib": 15.053955078125,
+            "max_util_percent": 100.0,
+            "max_power_w": 231.818,
+            "max_temperature_c": 56.0,
+            "decode_mean_util_percent": 41.90909090909091,
+            "decode_max_util_percent": 54.0
+          },
+          {
+            "physical_gpu": 1,
+            "max_vram_gib": 14.862548828125,
+            "max_util_percent": 100.0,
+            "max_power_w": 150.733,
+            "max_temperature_c": 57.0,
+            "decode_mean_util_percent": 59.63636363636363,
+            "decode_max_util_percent": 100.0
+          }
+        ],
+        "max_used_ram_gib": 96.03768920898438,
+        "memory_pressure": [
+          "normal"
+        ],
+        "swap_start_gib": 5.320186614990234,
+        "swap_end_gib": 5.410274505615234,
+        "phase_note": "Decode windows approximate server start plus reported prompt/decode time; 1-second samples."
+      },
+      "server_stop_record": "MainPID=0\nResult=exit-code\nExecMainCode=1\nExecMainStatus=130\nActiveState=failed\nSubState=failed\n",
+      "gpu_memory_released": true
+    },
+    "peer-host": {
+      "passed": true,
+      "request_count": 7,
+      "engine": {
+        "model": "qwen3.8-flash-next-ud-q4-k-xl",
+        "max_context": 65536,
+        "images": false,
+        "version": "0.1.38",
+        "context": 65536,
+        "kv": "int8",
+        "kv_resident": 0,
+        "expert_slots": 2336,
+        "expert_cache_mib": 6979,
+        "expert_slots_primary": 2336,
+        "expert_cache_primary_mib": 6979,
+        "spec": 6,
+        "mtp_max": 4,
+        "lookup": 3,
+        "vram_free_mib": 700,
+        "cvec": 0,
+        "arena_mib": 73450,
+        "pool_workers": 10,
+        "pcie_frac": "0.20",
+        "spec_min_p": "0.50",
+        "conversation_cache_mib": 0,
+        "conversation_cache_slots": 4,
+        "conversation_cache_min_free_mib": 2560,
+        "engine": "0.1.38"
+      },
+      "actual_prompt_chunk": 8192,
+      "split_first_stage_layers": null,
+      "peer_expert_slots": 4793,
+      "prefill_4k_tok_s": 726.8,
+      "decode_4k_tok_s": 49.8,
+      "prefill_32k_retrieval_tok_s": 1504.4,
+      "decode_32k_prose_tok_s": 49.2,
+      "code_decode_tok_s": [
+        66.3,
+        76.0,
+        76.7
+      ],
+      "code_decode_median_tok_s": 76.0,
+      "measurements": [
+        {
+          "mode": "peer-host",
+          "fixture": "arithmetic",
+          "usage": {
+            "prompt_tokens": 49,
+            "completion_tokens": 43,
+            "total_tokens": 92,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 1.7408366070012562,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 49,
+            "prompt_ms": 767.1,
+            "prompt_per_token_ms": 15.655,
+            "prompt_per_second": 63.9,
+            "predicted_n": 43,
+            "predicted_ms": 970.3,
+            "predicted_per_token_ms": 22.565,
+            "predicted_per_second": 44.3,
+            "draft_n": 33,
+            "draft_n_accepted": 32
+          }
+        },
+        {
+          "mode": "peer-host",
+          "fixture": "english-4096-r1",
+          "usage": {
+            "prompt_tokens": 4097,
+            "completion_tokens": 256,
+            "total_tokens": 4353,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 10.789874330046587,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 4097,
+            "prompt_ms": 5637.3,
+            "prompt_per_token_ms": 1.376,
+            "prompt_per_second": 726.8,
+            "predicted_n": 256,
+            "predicted_ms": 5139.8,
+            "predicted_per_token_ms": 20.077,
+            "predicted_per_second": 49.8,
+            "draft_n": 228,
+            "draft_n_accepted": 130
+          }
+        },
+        {
+          "mode": "peer-host",
+          "fixture": "retrieve-32768",
+          "usage": {
+            "prompt_tokens": 32772,
+            "completion_tokens": 51,
+            "total_tokens": 32823,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 22.884420778020285,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 32772,
+            "prompt_ms": 21783.5,
+            "prompt_per_token_ms": 0.665,
+            "prompt_per_second": 1504.4,
+            "predicted_n": 51,
+            "predicted_ms": 1022.3,
+            "predicted_per_token_ms": 20.045,
+            "predicted_per_second": 49.9,
+            "draft_n": 40,
+            "draft_n_accepted": 36
+          }
+        },
+        {
+          "mode": "peer-host",
+          "fixture": "short-code-1",
+          "usage": {
+            "prompt_tokens": 54,
+            "completion_tokens": 300,
+            "total_tokens": 354,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 5.235005666036159,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 54,
+            "prompt_ms": 710.6,
+            "prompt_per_token_ms": 13.159,
+            "prompt_per_second": 76.0,
+            "predicted_n": 300,
+            "predicted_ms": 4521.8,
+            "predicted_per_token_ms": 15.073,
+            "predicted_per_second": 66.3,
+            "draft_n": 256,
+            "draft_n_accepted": 204
+          }
+        },
+        {
+          "mode": "peer-host",
+          "fixture": "short-code-2",
+          "usage": {
+            "prompt_tokens": 54,
+            "completion_tokens": 300,
+            "total_tokens": 354,
+            "prompt_tokens_details": {
+              "cached_tokens": 47
+            }
+          },
+          "wall_s": 4.017921174992807,
+          "timings": {
+            "cache_n": 47,
+            "prompt_n": 7,
+            "prompt_ms": 69.5,
+            "prompt_per_token_ms": 9.929,
+            "prompt_per_second": 100.7,
+            "predicted_n": 300,
+            "predicted_ms": 3945.9,
+            "predicted_per_token_ms": 13.153,
+            "predicted_per_second": 76.0,
+            "draft_n": 249,
+            "draft_n_accepted": 212
+          }
+        },
+        {
+          "mode": "peer-host",
+          "fixture": "short-code-3",
+          "usage": {
+            "prompt_tokens": 54,
+            "completion_tokens": 300,
+            "total_tokens": 354,
+            "prompt_tokens_details": {
+              "cached_tokens": 47
+            }
+          },
+          "wall_s": 3.976082975976169,
+          "timings": {
+            "cache_n": 47,
+            "prompt_n": 7,
+            "prompt_ms": 63.0,
+            "prompt_per_token_ms": 9.0,
+            "prompt_per_second": 111.1,
+            "predicted_n": 300,
+            "predicted_ms": 3910.5,
+            "predicted_per_token_ms": 13.035,
+            "predicted_per_second": 76.7,
+            "draft_n": 248,
+            "draft_n_accepted": 217
+          }
+        },
+        {
+          "mode": "peer-host",
+          "fixture": "english-32768-r1",
+          "usage": {
+            "prompt_tokens": 32768,
+            "completion_tokens": 256,
+            "total_tokens": 33024,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "wall_s": 27.027238326030783,
+          "timings": {
+            "cache_n": 0,
+            "prompt_n": 32768,
+            "prompt_ms": 21743.6,
+            "prompt_per_token_ms": 0.664,
+            "prompt_per_second": 1507.0,
+            "predicted_n": 256,
+            "predicted_ms": 5204.9,
+            "predicted_per_token_ms": 20.332,
+            "predicted_per_second": 49.2,
+            "draft_n": 224,
+            "draft_n_accepted": 129
+          }
+        }
+      ],
+      "telemetry": {
+        "samples": 124,
+        "approximate_decode_samples": 22,
+        "gpus": [
+          {
+            "physical_gpu": 0,
+            "max_vram_gib": 14.721923828125,
+            "max_util_percent": 13.0,
+            "max_power_w": 64.693,
+            "max_temperature_c": 47.0,
+            "decode_mean_util_percent": 6.454545454545454,
+            "decode_max_util_percent": 13.0
+          },
+          {
+            "physical_gpu": 1,
+            "max_vram_gib": 14.880126953125,
+            "max_util_percent": 100.0,
+            "max_power_w": 145.27,
+            "max_temperature_c": 57.0,
+            "decode_mean_util_percent": 99.0909090909091,
+            "decode_max_util_percent": 100.0
+          }
+        ],
+        "max_used_ram_gib": 93.79125595092773,
+        "memory_pressure": [
+          "normal"
+        ],
+        "swap_start_gib": 5.410274505615234,
+        "swap_end_gib": 5.58062744140625,
+        "phase_note": "Decode windows approximate server start plus reported prompt/decode time; 1-second samples."
+      },
+      "server_stop_record": "MainPID=0\nResult=success\nExecMainCode=0\nExecMainStatus=0\nActiveState=inactive\nSubState=dead\n",
+      "gpu_memory_released": true
+    }
+  },
+  "custom_rerun": false,
+  "historical_custom": {
+    "source": "/home/haneol/work/strata-custom-5080/local-runs/q4-final-20260930",
+    "date": "2026-09-30",
+    "context": 65536,
+    "prefill_4k_tok_s": 1538.0,
+    "prefill_32k_retrieval_tok_s": 3616.7,
+    "code_decode_tok_s": [
+      84.6,
+      108.3,
+      117.5
+    ],
+    "code_decode_median_tok_s": 108.3
+  },
+  "evidence": [
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/arithmetic.json",
+      "sha256": "3f23941e032400be7bc6ece51af3e98648d5ffec390c8b5f82fecd1d342c81b9"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/bench-observed-start-r2.json",
+      "sha256": "cd27d630126ba0e33dd6e3c0cca046d6436daaaefb84c5570a62ccca4dfee3c4"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/bench-observed-start.json",
+      "sha256": "cd27d630126ba0e33dd6e3c0cca046d6436daaaefb84c5570a62ccca4dfee3c4"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/bench-result.json",
+      "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/bench-systemd-result.txt",
+      "sha256": "520515d77c6ad9730b1626c6895507ea9e08cdf69c013bd4a22bcbd11a91dea0"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/bench-terminal.json",
+      "sha256": "4d653ef969975f8871f0f137279bd7472fd158cc0b18b13b7a4eaf2e89830e3e"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/bench-watch-r2.json",
+      "sha256": "75701c01c7e6a5e8934348f6856d7a8e637bd32ad36dfcca633c985266b8624a"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/bench-watch.json",
+      "sha256": "0a84ddd0c4d0d0ed32ce679aaf01ea192bedde546efa7a296d45e5e09cb7f39d"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/bench.log",
+      "sha256": "62d0c12f64e6a2d1c8607e75cd00bf6da3d6066c0e02595ef9cd2113d4515a72"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/build-verification.json",
+      "sha256": "f81e95e2915edaf28f003bc8cae5a2b621617766846fcf2798f0dae3a8aeff46"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/checks.json",
+      "sha256": "170672e8380205a26821e2fca912f821fe2f009e845d8f46e643bbb890ce6a74"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/config.json",
+      "sha256": "8c10860e0d77be7efd1cc45119c6096ee26200589d3b1f53fba8a28c0342f934"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/engine.log",
+      "sha256": "dbfe5be177c2e4124011b0df52dce883bced46ec5fb299fbc559377e3a729c37"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/english-32768-r1.json",
+      "sha256": "8f7e4c195af16da102cd6ee726f3a6a339675fef5e7cc0675340a320e6a153d3"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/english-4096-r1.json",
+      "sha256": "7535a8f27a46941882d96fc31128658c900f831676bade5fa36ca629774f1403"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/health.json",
+      "sha256": "d6d89de2ef2f503f1339789d105f5c8f651fc3b6b645e56b3d049dfe4a5b37de"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/launcher-failed-result.json",
+      "sha256": "7bc3b5ac4ba8de8813f5e2e21b2d6fe73586fe0c19a77b45c6619592089e71d0"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/launcher-failed-systemd.txt",
+      "sha256": "f313f8a9df16ab3d3c2536f7564a785d2cc306047fc2d09a2d6d0bdb278a311b"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/launcher-failed-terminal.json",
+      "sha256": "f090fa8da8d35d97db25dd9c557811aa27589a0c9a8a78cb89b85263fa4cd9c9"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/launcher-failed.log",
+      "sha256": "5d9007cb8d22ab87ef2d5ab06840ae6daaf62b63e65fa0a6cf3ca4e7148f58d1"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/measurements.json",
+      "sha256": "2d614c9d8aeb4df1055f1208e3ce97b1f4cec3fc238c99cab13af608ae0de757"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/metrics.json",
+      "sha256": "91082b5aa0bbf2bcbe92ca4a58b76697405c426962d29fe241c1f41bf2631442"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/observed-start.json",
+      "sha256": "cd27d630126ba0e33dd6e3c0cca046d6436daaaefb84c5570a62ccca4dfee3c4"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/post-stop-astop.json",
+      "sha256": "ffa598951fda2a6ad0bcde380c06d9a33c8fdf4a58bdf5c804c93acdf9fb6336"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/preflight-astop.json",
+      "sha256": "3c2f7f47bfb036417469ed66b1afd1b233b9d2ad70cf5ff3d151d3191f6f9cf1"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/receipt.json",
+      "sha256": "dfa9421b06fb7cc7454157530e62423a866db912f55ae740b35da99c91ad8aac"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/retrieve-32768.json",
+      "sha256": "bd080188fbb172b28a9be4cb4aabe4d1a0a000962648f9694b73aa96752f7e9d"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/server-systemd-stop.txt",
+      "sha256": "80a048a3faf6d11a73537251a652cb79b6efc47105dcfe5eea4cdf8f60750999"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/server-terminal.json",
+      "sha256": "f8622517a8cd5f10d7d44e5a41b5a1cc37393baabe861dbb787e3dc19c084ad9"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/server.log",
+      "sha256": "a7463074f1b4445cd61a9687057c9a9967d72eb950d09eec05d86c595276585e"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/short-code-1.json",
+      "sha256": "a89fd7cb3d7a30d31935f222d45d28171bfc434ef4f47b50088c823ebfb867c9"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/short-code-2.json",
+      "sha256": "b557f4b39ad0b0e6060f569148254755d73552f402a7288c6f5ce4784ac066bb"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/short-code-3.json",
+      "sha256": "1895f977e0484822f883eb1b3b201b31009e5b4ec03539e87d5344daf3b59eca"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/telemetry-summary.json",
+      "sha256": "49aa33e15d8e1bfc103f175d3fa0090893e577d10d521a1d736351fd09265c97"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/telemetry.jsonl",
+      "sha256": "df413c70f617c0378415a50911639e36e1a90e4dc5e80075b7b11ea25f99d9ca"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/layer-split/watch.json",
+      "sha256": "fc3f10634f6c663f8ea8ab057339c4743145eb86cdb6dbf764a89ebf541bd3a3"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/p2p.json",
+      "sha256": "d5c9198868dcaf89d41ad3d5777b9c0c9eb11ae815f43d6f5af2c306133056d8"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/arithmetic.json",
+      "sha256": "b526bb16235b5d1e9279947e3d17f8f9dedbdc3e043077edb4d8a8c0ce112bbd"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/bench-observed-start.json",
+      "sha256": "cd27d630126ba0e33dd6e3c0cca046d6436daaaefb84c5570a62ccca4dfee3c4"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/bench-result.json",
+      "sha256": "81868a6e94ffc0178bf833deb1c9013d9fab4ee95ddb876a5e8ec4f1d26376d2"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/bench-systemd-result.txt",
+      "sha256": "520515d77c6ad9730b1626c6895507ea9e08cdf69c013bd4a22bcbd11a91dea0"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/bench-terminal.json",
+      "sha256": "b3ac28b4f5101215151fdcb7f8efd43d6d83300cd39a8d62537ce3fff9222b18"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/bench-watch.json",
+      "sha256": "368c5485acedecbef384fd8d82b7a1565f86e1da1658e38c160086659dcc3e9b"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/bench.log",
+      "sha256": "d0d463f2c8fb3cc0b8b7bb6dce805e3c30c745843646f8a6c5e71c4ef55c55ad"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/build-verification.json",
+      "sha256": "f81e95e2915edaf28f003bc8cae5a2b621617766846fcf2798f0dae3a8aeff46"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/checks.json",
+      "sha256": "cfdf11e92517798a2b5d4aed2b2279ec37e8feb9c6319086a88b6108548c4a35"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/config.json",
+      "sha256": "665c70d4b4959ffb97c7216145ecd9e1bb79dd12fd0cf0c4b46e454e95c915ce"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/engine.log",
+      "sha256": "349ac8ff34f69e8f2924c815348bbf3e14d2952ab5e799150929a1ea1540ce26"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/english-32768-r1.json",
+      "sha256": "da32ed2892d8c68cc83f26116c9374a7f840a6658babb2313559152c406ab675"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/english-4096-r1.json",
+      "sha256": "f69e67874f2076bd30c8c0e16724dc8848049cca5cffd87c223437f15016d8e4"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/health.json",
+      "sha256": "d6d89de2ef2f503f1339789d105f5c8f651fc3b6b645e56b3d049dfe4a5b37de"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/measurements.json",
+      "sha256": "bdfd0888188ffd77d42a98a310911b3e8f132f863692de03e387f3c53b891231"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/metrics.json",
+      "sha256": "83dd6e6b882a30b928df4f324fe4e97e82eb436b088f08c9f1b46d9611d90d3c"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/observed-start.json",
+      "sha256": "cd27d630126ba0e33dd6e3c0cca046d6436daaaefb84c5570a62ccca4dfee3c4"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/post-stop-astop.json",
+      "sha256": "848cb416e3f516fd52c45e6993befcedd459fdd7deea3d48f586dcf02c99cd21"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/preflight-astop.json",
+      "sha256": "437ba564ddf65b6203e484f8612969c477d1f70a6a715bd47d8850c34990c855"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/receipt.json",
+      "sha256": "0a2070626a4d2c650651cc2bcb9ccdc528ecd63c722ffa123a73ba83a500a7a9"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/retrieve-32768.json",
+      "sha256": "25c50e39c4a94dbb11aba0324135bd6fefbcc3375d2964c2f9c113f64ace44ba"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/server-systemd-stop.txt",
+      "sha256": "32a174f180c5883d1dca00156ad9862aae2503a7d1dd1cb36f2aec7fcaeac1f8"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/server-terminal.json",
+      "sha256": "dbe18e32598270bd0bf64aa7f698af40032d19b4650fccd43b9862887f570e58"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/server.log",
+      "sha256": "76d5fe186ba2cfae8a3b7bfdf1e2b16a68c06ec02229764498785ff2e7865d6a"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/short-code-1.json",
+      "sha256": "ae99c980ecd2b106e309988a5c70036d79620bb1c7b53f3af556ce3832bb6621"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/short-code-2.json",
+      "sha256": "9b6e2ebb4045d6b9648455582b99ccb12c8020259c78495723d0a1813067341c"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/short-code-3.json",
+      "sha256": "d6ecda65ce36627a8fef19d22579dea9fd3d3fa7b15c76895a59c6bdea00bfbc"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/telemetry-summary.json",
+      "sha256": "101e257c1e0ad6068100d9f7dd6e3bd70ef6ab5b940bf9264a74dbf3eaf3e90c"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/telemetry.jsonl",
+      "sha256": "9c733af589b431358a08ef1457aa0cbd5ca25a06cf243eebd9d7baa1ec0ef2a5"
+    },
+    {
+      "path": "/home/haneol/work/strata-upstream-ab/local-runs/upstream-ab-20261003T092400Z/peer-host/watch.json",
+      "sha256": "136506c899926554de77f54cb725a414b2cfd37cec1c7df1b794261821d64c29"
+    }
+  ],
+  "limits": [
+    "Custom is a historical reference, not a contemporary rerun.",
+    "Both upstream modes chose 8192 rather than the requested 16384 prompt chunk.",
+    "Code outputs have the same requested length, not necessarily the same generated text.",
+    "The upstream speculative implementation and lookup differ from the custom fork.",
+    "Upstream warm code reused 47 prompt tokens; the custom second run reused 53.",
+    "One sequence per upstream mode; no statistical significance is claimed.",
+    "A launcher PATH failure preceded all measured requests and did not restart the engine.",
+    "Layer-split server stop returned uv status 130 after the requested stop, not during a benchmark."
+  ]
+}

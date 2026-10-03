@@ -1,0 +1,19 @@
+{
+  "upstream_version": "0.1.38",
+  "upstream_commit": "99f3dbd0b21d1401b3769e0c0d963913607f380b",
+  "binary": "/home/haneol/work/strata-upstream-ab/build/strata",
+  "binary_sha256": "86ff30855c7aa9b37e9a7e476917c3e8ef052c640e0bba6152f166ef08a83ecd",
+  "cuda_toolkit": "13.0.88",
+  "cuda_architecture": "sm_120",
+  "mmq_kquants": true,
+  "build_exit_code": 0,
+  "linked_libraries_resolved": true,
+  "help_exit_code": 0,
+  "inference_source_modified": false,
+  "gpu_inference_validated": true,
+  "cpu_preparation": "success",
+  "benchmark_status": "completed_servers_stopped",
+  "runtime_port": 22938,
+  "run_evidence": "/home/haneol/work/strata-upstream-ab/local-runs/build-0138-20261003",
+  "runtime_validation_results": "/home/haneol/work/strata-upstream-ab/docs/local-ab/results-20261003.json"
+}

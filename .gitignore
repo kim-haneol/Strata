@@ -50,4 +50,7 @@ build-vision.bat
 *.done
 /third_party/*.zip
 
+# Local benchmark outputs and process receipts.
+/local-runs/
+
 /.rocm-win/
